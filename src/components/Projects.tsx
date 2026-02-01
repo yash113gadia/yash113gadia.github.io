@@ -148,19 +148,37 @@ const Projects = () => {
         {/* Other Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {otherProjects.map((project, index) => (
-            <a
+            <div
               key={project.title}
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bento-card group cursor-pointer animate-fade-in-up"
+              className="bento-card group animate-fade-in-up"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`w-10 h-10 rounded-xl bg-${project.color}-500/10 flex items-center justify-center`}>
                   <Github className={`w-5 h-5 text-${project.color}-400`} />
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                <div className="flex gap-3">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-500 hover:text-white transition-colors"
+                    title="View on GitHub"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                  {project.demo !== "#" && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neutral-500 hover:text-emerald-400 transition-colors"
+                      title="View Live Demo"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
               </div>
               
               <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">
@@ -178,7 +196,7 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-            </a>
+            </div>
           ))}
         </div>
 
