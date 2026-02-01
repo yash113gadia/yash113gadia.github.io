@@ -15,11 +15,11 @@ const projects = [
   {
     title: "AttendEase",
     subtitle: "Enterprise Attendance System",
-    description: "Enterprise-grade management system with normalized PostgreSQL schema (3NF). Implemented SQL indexing strategies for high-performance queries on attendance logs.",
-    tech: ["Java", "PostgreSQL", "JDBC", "Schema Design"],
+    description: "Full-stack attendance management system with Spring Boot REST API, JWT authentication, and React dashboard. Deployed on Render with Neon PostgreSQL for scalable cloud hosting.",
+    tech: ["Spring Boot", "React", "PostgreSQL", "JWT", "Docker"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-    github: "https://github.com/yash113gadia/AttendanceSystem",
-    demo: "#",
+    github: "https://github.com/yash113gadia/AttendEase-Web",
+    demo: "https://attend-ease-web.vercel.app",
     featured: true,
     color: "violet"
   },
