@@ -139,11 +139,9 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="w-[110%] h-[110%] object-cover object-top -ml-[5%] -mt-[2%] transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br from-${project.color}-500/40 to-transparent mix-blend-multiply`} />
-                  {/* Hide watermark in bottom-right */}
-                  <div className="absolute bottom-0 right-0 w-24 h-12 bg-gradient-to-tl from-neutral-900 via-neutral-900/90 to-transparent" />
                 </div>
               </div>
 
