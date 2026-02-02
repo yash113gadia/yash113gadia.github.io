@@ -40,9 +40,9 @@ const projects: Project[] = [
   },
   {
     title: "WhatsMyScore",
-    subtitle: "ADHD Clinical Screening Tool",
-    description: "Digital diagnostic tool implementing DSM-5-TR criteria for ADHD screening. Features interactive questionnaire, real-time scoring algorithm, and comprehensive data visualization with clinical insights using Recharts.",
-    tech: ["React", "TypeScript", "Recharts", "Tailwind"],
+    subtitle: "Dual-Mode Quiz Platform",
+    description: "Full-featured quiz platform with Clinical Mode (ADHD, Anxiety/Depression, Personality, Career tests using ASRS, PHQ-9, GAD-7, RIASEC) and Viral Mode (Rice Purity, Red Flag, Political Compass, Gen Z vs Boomer). 9+ tests with shareable results.",
+    tech: ["React", "TypeScript", "Tailwind", "Recharts", "Framer Motion"],
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     github: "https://github.com/yash113gadia/WhatsMyScore",
     demo: "https://adhd-web-dun.vercel.app",
