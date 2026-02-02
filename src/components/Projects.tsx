@@ -1,25 +1,39 @@
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Eye } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { trackProjectView, getProjectViews } from '../services/firestore';
 
-const projects = [
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  tech: string[];
+  image?: string;
+  github: string;
+  demo: string;
+  featured: boolean;
+  color: string;
+}
+
+const projects: Project[] = [
   {
-    title: "Qlaa",
-    subtitle: "Hyper-local Service Marketplace",
-    description: "Full-stack marketplace platform with booking system, real-time updates via Socket.io, and GEO-based service discovery. Built for scale with JWT auth and role-based access.",
-    tech: ["React", "Node.js", "MongoDB", "Socket.io", "TypeScript"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    github: "https://github.com/yash113gadia",
-    demo: "https://qlaa.in",
+    title: "ADHD Predictor",
+    subtitle: "Clinical Screening Tool",
+    description: "Digital diagnostic tool based on DSM-5-TR criteria with interactive data visualization.",
+    tech: ["React", "TypeScript", "Recharts"],
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+    github: "https://github.com/yash113gadia/WhatsMyScore",
+    demo: "https://adhd-web-dun.vercel.app",
     featured: true,
     color: "emerald"
   },
   {
     title: "AttendEase",
     subtitle: "Enterprise Attendance System",
-    description: "Full-stack attendance management system with Spring Boot REST API, JWT authentication, and React dashboard. Deployed on Render with Neon PostgreSQL for scalable cloud hosting.",
+    description: "Built end-to-end attendance management platform from scratch — Spring Boot REST API with 13+ endpoints, JWT auth, normalized PostgreSQL schema, and responsive React dashboard deployed on cloud.",
     tech: ["Spring Boot", "React", "PostgreSQL", "JWT", "Docker"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     github: "https://github.com/yash113gadia/AttendEase-Web",
-    demo: "https://attend-ease-web.vercel.app",
+    demo: "https://attendease-web-eight.vercel.app",
     featured: true,
     color: "violet"
   },
@@ -54,20 +68,49 @@ const projects = [
     color: "rose"
   },
   {
-    title: "ADHD Predictor",
-    subtitle: "Clinical Screening Tool",
-    description: "Digital diagnostic tool based on DSM-5-TR criteria with interactive data visualization.",
-    tech: ["React", "TypeScript", "Recharts"],
-    github: "https://github.com/yash113gadia/WhatsMyScore",
-    demo: "https://adhd-web-dun.vercel.app",
-    featured: false,
-    color: "emerald"
+    title: "Qlaa",
+    subtitle: "Hyper-local Service Marketplace",
+    description: "Production-ready marketplace connecting clients with creative professionals. Features Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews system, and artist onboarding. Deployed with CI/CD on custom domain.",
+    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
+    github: "https://github.com/yash113gadia",
+    demo: "https://qlaa.in",
+    featured: true,
+    color: "violet"
   }
 ];
+
+// Helper to create URL-safe project ID
+const getProjectId = (title: string) => title.toLowerCase().replace(/\s+/g, '-');
 
 const Projects = () => {
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
+  const [viewCounts, setViewCounts] = useState<Record<string, number>>({});
+
+  // Fetch view counts on mount
+  useEffect(() => {
+    const fetchViews = async () => {
+      const counts: Record<string, number> = {};
+      for (const project of projects) {
+        const id = getProjectId(project.title);
+        counts[id] = await getProjectViews(id);
+      }
+      setViewCounts(counts);
+    };
+    fetchViews();
+  }, []);
+
+  // Track project click
+  const handleProjectClick = async (projectTitle: string) => {
+    const id = getProjectId(projectTitle);
+    await trackProjectView(id);
+    // Update local count
+    setViewCounts(prev => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1
+    }));
+  };
 
   return (
     <section id="projects" className="py-24 px-6 md:px-12 lg:px-24">
@@ -117,12 +160,18 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className={`flex gap-4 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                <div className={`flex items-center gap-4 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                  {/* View count */}
+                  <span className="flex items-center gap-1 text-xs text-neutral-500">
+                    <Eye className="w-3.5 h-3.5" />
+                    {viewCounts[getProjectId(project.title)] || 0}
+                  </span>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-400 hover:text-white transition-colors"
+                    onClick={() => handleProjectClick(project.title)}
                   >
                     <Github className="w-5 h-5" />
                   </a>
@@ -131,6 +180,7 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-400 hover:text-white transition-colors"
+                    onClick={() => handleProjectClick(project.title)}
                   >
                     <ExternalLink className="w-5 h-5" />
                   </a>
@@ -157,13 +207,19 @@ const Projects = () => {
                 <div className={`w-10 h-10 rounded-xl bg-${project.color}-500/10 flex items-center justify-center`}>
                   <Github className={`w-5 h-5 text-${project.color}-400`} />
                 </div>
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3">
+                  {/* View count */}
+                  <span className="flex items-center gap-1 text-xs text-neutral-600">
+                    <Eye className="w-3 h-3" />
+                    {viewCounts[getProjectId(project.title)] || 0}
+                  </span>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-500 hover:text-white transition-colors"
                     title="View on GitHub"
+                    onClick={() => handleProjectClick(project.title)}
                   >
                     <Github className="w-5 h-5" />
                   </a>
@@ -174,6 +230,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="text-neutral-500 hover:text-emerald-400 transition-colors"
                       title="View Live Demo"
+                      onClick={() => handleProjectClick(project.title)}
                     >
                       <ExternalLink className="w-5 h-5" />
                     </a>
