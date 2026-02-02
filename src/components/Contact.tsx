@@ -1,5 +1,6 @@
-import { Mail, MapPin, Send, Github, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin, ArrowUpRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { submitContactMessage } from '../services/firestore';
 
 const socialLinks = [
   {
@@ -13,12 +14,6 @@ const socialLinks = [
     url: "https://linkedin.com/in/yashgadia",
     icon: Linkedin,
     handle: "Yash Gadia"
-  },
-  {
-    name: "Twitter",
-    url: "https://twitter.com/yashgadia",
-    icon: Twitter,
-    handle: "@yashgadia"
   }
 ];
 
@@ -29,15 +24,28 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    const result = await submitContactMessage(formData);
+
     setIsSubmitting(false);
-    setFormData({ name: '', email: '', message: '' });
-    alert('Message sent! I\'ll get back to you soon.');
+
+    if (result.success) {
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } else {
+      setSubmitStatus('error');
+      setErrorMessage(result.error || 'Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -115,6 +123,21 @@ const Contact = () => {
                   </>
                 )}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="flex items-center gap-2 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  <span>Message sent successfully! I'll get back to you soon.</span>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400">
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
             </form>
           </div>
 
