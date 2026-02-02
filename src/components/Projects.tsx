@@ -39,13 +39,13 @@ const projects: Project[] = [
     color: "violet"
   },
   {
-    title: "Syllabus AI",
-    subtitle: "AI-Powered Learning Platform",
-    description: "Full-stack educational platform with Node.js/TypeScript backend, PostgreSQL database with Sequelize ORM, and AI-integrated learning features.",
-    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize", "React"],
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
-    github: "https://github.com/yash113gadia/SyllabusAI",
-    demo: "https://client-theta-woad.vercel.app",
+    title: "ADHD Predictor",
+    subtitle: "Clinical Screening Tool",
+    description: "Digital diagnostic tool implementing DSM-5-TR criteria for ADHD screening. Features interactive questionnaire, real-time scoring algorithm, and comprehensive data visualization with clinical insights using Recharts.",
+    tech: ["React", "TypeScript", "Recharts", "Tailwind"],
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+    github: "https://github.com/yash113gadia/WhatsMyScore",
+    demo: "https://adhd-web-dun.vercel.app",
     featured: true,
     color: "sky"
   },
@@ -61,12 +61,12 @@ const projects: Project[] = [
     color: "rose"
   },
   {
-    title: "ADHD Predictor",
-    subtitle: "Clinical Screening Tool",
-    description: "Digital diagnostic tool implementing DSM-5-TR criteria with interactive data visualization using Recharts.",
-    tech: ["React", "TypeScript", "Recharts"],
-    github: "https://github.com/yash113gadia/WhatsMyScore",
-    demo: "https://adhd-web-dun.vercel.app",
+    title: "Syllabus AI",
+    subtitle: "Educational Platform",
+    description: "AI-integrated learning platform with Node.js/TypeScript backend and PostgreSQL database using Sequelize ORM.",
+    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize"],
+    github: "https://github.com/yash113gadia/SyllabusAI",
+    demo: "https://client-theta-woad.vercel.app",
     featured: false,
     color: "amber"
   },
