@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
           {/* Left side - Text content */}
-          <div className="flex-1">
+          <div className="flex-1 lg:max-w-[60%]">
             {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -113,6 +113,48 @@ const Hero = () => {
           ))}
         </motion.div>
           </div>
+
+          {/* Right side - Profile Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="hidden lg:flex flex-1 justify-center items-center"
+          >
+            <div className="relative">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-violet-500/20 to-emerald-500/30 rounded-full blur-3xl scale-110" />
+
+              {/* Rotating border */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500 via-violet-500 to-emerald-500 rounded-full opacity-50 animate-spin-slow" style={{ animationDuration: '8s' }} />
+
+              {/* Photo container */}
+              <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden border-4 border-neutral-800 bg-neutral-900">
+                <img
+                  src="/my-photo.png"
+                  alt="Yash Gadia"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+
+              {/* Floating badges */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -right-4 top-8 px-4 py-2 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+              >
+                <span className="text-emerald-400 font-semibold text-sm">Full-Stack Dev</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -left-4 bottom-12 px-4 py-2 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+              >
+                <span className="text-violet-400 font-semibold text-sm">Co-Founder @ Qlaa</span>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
