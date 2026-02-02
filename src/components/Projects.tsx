@@ -39,8 +39,8 @@ const projects: Project[] = [
     color: "violet"
   },
   {
-    title: "ADHD Predictor",
-    subtitle: "Clinical Screening Tool",
+    title: "WhatsMyScore",
+    subtitle: "ADHD Clinical Screening Tool",
     description: "Digital diagnostic tool implementing DSM-5-TR criteria for ADHD screening. Features interactive questionnaire, real-time scoring algorithm, and comprehensive data visualization with clinical insights using Recharts.",
     tech: ["React", "TypeScript", "Recharts", "Tailwind"],
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
