@@ -42,7 +42,7 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-2 top-4 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+                className="absolute -right-16 sm:-right-20 top-2 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
                 <span className="text-emerald-400 font-semibold text-xs">Full-Stack Dev</span>
               </motion.div>
@@ -50,7 +50,7 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -left-2 bottom-6 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+                className="absolute -left-16 sm:-left-20 bottom-4 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
                 <span className="text-violet-400 font-semibold text-xs">Co-Founder @ Qlaa</span>
               </motion.div>
