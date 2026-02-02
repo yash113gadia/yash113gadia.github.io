@@ -16,15 +16,34 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-violet-500/5 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
+          {/* Mobile Profile Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex lg:hidden justify-center mb-4"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-violet-500/20 to-emerald-500/30 rounded-full blur-2xl scale-110" />
+              <div className="relative w-32 h-32 rounded-full overflow-hidden border-3 border-neutral-800 bg-neutral-900">
+                <img
+                  src="/my-photo.png"
+                  alt="Yash Gadia"
+                  className="w-full h-full object-cover object-top scale-110"
+                />
+              </div>
+            </div>
+          </motion.div>
+
           {/* Left side - Text content */}
-          <div className="flex-1 lg:max-w-[60%]">
+          <div className="flex-1 lg:max-w-[60%] text-center lg:text-left">
             {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-8"
+              className="flex items-center justify-center lg:justify-start gap-3 mb-6 lg:mb-8"
             >
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -38,7 +57,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 lg:mb-6"
             >
               <span className="text-white">Hi, I'm </span>
               <span className="text-emerald-400">Yash</span>
@@ -49,10 +68,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-xl md:text-2xl lg:text-3xl text-neutral-400 max-w-3xl mb-8 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-400 max-w-3xl mx-auto lg:mx-0 mb-6 lg:mb-8 leading-relaxed"
             >
           Full-Stack Developer building{' '}
-          <Typewriter 
+          <Typewriter
             words={['marketplace platforms', 'scalable applications', 'AI-powered tools', 'seamless user experiences']}
             className="text-white"
           />
@@ -62,9 +81,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg text-neutral-500 max-w-2xl mb-12"
+          className="text-base lg:text-lg text-neutral-500 max-w-2xl mx-auto lg:mx-0 mb-8 lg:mb-12 hidden sm:block"
         >
-          Passionate about building products that solve real problems. 
+          Passionate about building products that solve real problems.
           I specialize in <span className="text-emerald-400 font-medium">Next.js</span>, <span className="text-emerald-400 font-medium">Node.js</span>, and <span className="text-emerald-400 font-medium">PostgreSQL</span>.
         </motion.p>
 
@@ -73,17 +92,17 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap gap-4 mb-16"
+          className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mb-10 lg:mb-16"
         >
           <a
             href="#projects"
-            className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-emerald-400 hover:text-black transition-all duration-300"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-full hover:bg-emerald-400 hover:text-black transition-all duration-300 text-center"
           >
             View My Work
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 border border-neutral-700 text-white font-semibold rounded-full hover:border-neutral-500 hover:bg-neutral-900 transition-all duration-300"
+            className="px-6 sm:px-8 py-3 sm:py-4 border border-neutral-700 text-white font-semibold rounded-full hover:border-neutral-500 hover:bg-neutral-900 transition-all duration-300 text-center"
           >
             Get In Touch
           </a>
@@ -94,7 +113,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex gap-4"
+          className="flex justify-center lg:justify-start gap-4"
         >
           {[
             { icon: Github, href: "https://github.com/yash113gadia", label: "GitHub" },
@@ -158,12 +177,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="hidden sm:flex absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
       >
         <span className="text-xs text-neutral-600 uppercase tracking-widest">Scroll</span>
         <motion.div
