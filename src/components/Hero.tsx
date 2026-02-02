@@ -25,7 +25,11 @@ const Hero = () => {
             className="flex lg:hidden justify-center mb-4"
           >
             <div className="relative">
+              {/* Glowing background effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-violet-500/20 to-emerald-500/30 rounded-full blur-2xl scale-110" />
+              {/* Rotating border */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 via-violet-500 to-emerald-500 rounded-full opacity-50 animate-spin-slow" style={{ animationDuration: '8s' }} />
+              {/* Photo container */}
               <div className="relative w-32 h-32 rounded-full overflow-hidden border-3 border-neutral-800 bg-neutral-900">
                 <img
                   src="/my-photo.png"

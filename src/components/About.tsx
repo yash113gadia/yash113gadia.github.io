@@ -71,9 +71,9 @@ const About = () => {
             style={{ animationDelay: '0.4s' }}
           >
             <Trophy className="w-8 h-8 text-amber-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">Top 43 / 500+</h4>
-            <p className="text-sm text-neutral-400">MIT Pune Startup Event</p>
-            <p className="text-xs text-neutral-500 mt-2">Impact Career Solution</p>
+            <h4 className="text-white font-semibold mb-1">Rank 6 / 150</h4>
+            <p className="text-sm text-neutral-400">Techvanya 2.0 Promptathon</p>
+            <p className="text-xs text-neutral-500 mt-2">GLA University, Mathura</p>
           </div>
 
           {/* Skills Overview Card */}
