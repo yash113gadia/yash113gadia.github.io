@@ -21,7 +21,7 @@ const projects: Project[] = [
     subtitle: "Live Production Marketplace",
     description: "Full-stack marketplace with Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews & ratings, and multi-step artist onboarding. Deployed on custom domain with CI/CD pipeline.",
     tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
-    image: "/qlaa-preview.png",
+    image: "/qlaa-preview.jpg",
     github: "https://github.com/yash113gadia",
     demo: "https://qlaa.in",
     featured: true,
@@ -32,7 +32,7 @@ const projects: Project[] = [
     subtitle: "Enterprise Attendance System",
     description: "End-to-end attendance platform with Spring Boot REST API (13+ endpoints), JWT authentication, normalized PostgreSQL schema, and React dashboard. Containerized with Docker.",
     tech: ["Spring Boot", "React", "PostgreSQL", "JWT", "Docker"],
-    image: "/attendease-preview.png",
+    image: "/attendease-preview.jpg",
     github: "https://github.com/yash113gadia/AttendEase-Web",
     demo: "https://attendease-web-eight.vercel.app",
     featured: true,
@@ -43,7 +43,7 @@ const projects: Project[] = [
     subtitle: "Dual-Mode Quiz Platform",
     description: "Full-featured quiz platform with Clinical Mode (ADHD, Anxiety/Depression, Personality, Career tests using ASRS, PHQ-9, GAD-7, RIASEC) and Viral Mode (Rice Purity, Red Flag, Political Compass, Gen Z vs Boomer). 9+ tests with shareable results.",
     tech: ["React", "TypeScript", "Tailwind", "Recharts", "Framer Motion"],
-    image: "/whatsmyscore-preview.png",
+    image: "/whatsmyscore-preview.jpg",
     github: "https://github.com/yash113gadia/WhatsMyScore",
     demo: "https://adhd-web-dun.vercel.app",
     featured: true,
@@ -139,9 +139,11 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br from-${project.color}-500/40 to-transparent mix-blend-multiply`} />
+                  {/* Hide watermark in bottom-right */}
+                  <div className="absolute bottom-0 right-0 w-24 h-12 bg-gradient-to-tl from-neutral-900 via-neutral-900/90 to-transparent" />
                 </div>
               </div>
 
