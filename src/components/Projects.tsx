@@ -15,21 +15,22 @@ interface Project {
 }
 
 const projects: Project[] = [
+  // === FEATURED PROJECTS (ordered by impact) ===
   {
-    title: "ADHD Predictor",
-    subtitle: "Clinical Screening Tool",
-    description: "Digital diagnostic tool based on DSM-5-TR criteria with interactive data visualization.",
-    tech: ["React", "TypeScript", "Recharts"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    github: "https://github.com/yash113gadia/WhatsMyScore",
-    demo: "https://adhd-web-dun.vercel.app",
+    title: "Qlaa",
+    subtitle: "Live Production Marketplace",
+    description: "Full-stack marketplace with Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews & ratings, and multi-step artist onboarding. Deployed on custom domain with CI/CD pipeline.",
+    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
+    github: "https://github.com/yash113gadia",
+    demo: "https://qlaa.in",
     featured: true,
     color: "emerald"
   },
   {
     title: "AttendEase",
     subtitle: "Enterprise Attendance System",
-    description: "Built end-to-end attendance management platform from scratch — Spring Boot REST API with 13+ endpoints, JWT auth, normalized PostgreSQL schema, and responsive React dashboard deployed on cloud.",
+    description: "End-to-end attendance platform with Spring Boot REST API (13+ endpoints), JWT authentication, normalized PostgreSQL schema, and React dashboard. Containerized with Docker.",
     tech: ["Spring Boot", "React", "PostgreSQL", "JWT", "Docker"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     github: "https://github.com/yash113gadia/AttendEase-Web",
@@ -39,43 +40,44 @@ const projects: Project[] = [
   },
   {
     title: "Syllabus AI",
-    subtitle: "Educational Platform",
-    description: "AI-integrated learning platform with Node.js/TypeScript backend. PostgreSQL with Sequelize ORM for data modeling and migrations.",
-    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize"],
+    subtitle: "AI-Powered Learning Platform",
+    description: "Full-stack educational platform with Node.js/TypeScript backend, PostgreSQL database with Sequelize ORM, and AI-integrated learning features.",
+    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize", "React"],
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
     github: "https://github.com/yash113gadia/SyllabusAI",
     demo: "https://client-theta-woad.vercel.app",
-    featured: false,
+    featured: true,
     color: "sky"
   },
-  {
-    title: "FitTrack",
-    subtitle: "AI Nutrition Assistant",
-    description: "Mobile app using Gemini AI to analyze natural language food logs. Offline-first with SQLite storage.",
-    tech: ["React Native", "Gemini AI", "SQLite"],
-    github: "https://github.com/yash113gadia/FitTrack",
-    demo: "#",
-    featured: false,
-    color: "amber"
-  },
+  // === OTHER NOTEWORTHY PROJECTS ===
   {
     title: "DevAge Platform",
-    subtitle: "Agency Dashboard",
-    description: "High-performance admin dashboard containerized with Docker for consistent deployments.",
-    tech: ["FastAPI", "React", "Docker"],
+    subtitle: "Agency Management Dashboard",
+    description: "High-performance admin dashboard with Python FastAPI backend, React frontend, and Docker containerization for consistent deployments.",
+    tech: ["FastAPI", "React", "Docker", "Python"],
     github: "https://github.com/yash113gadia/devage-platform",
     demo: "https://frontend-puce-ten-d1v383fm36.vercel.app",
     featured: false,
     color: "rose"
   },
   {
-    title: "Qlaa",
-    subtitle: "Hyper-local Service Marketplace",
-    description: "Production-ready marketplace connecting clients with creative professionals. Features Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews system, and artist onboarding. Deployed with CI/CD on custom domain.",
-    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
-    github: "https://github.com/yash113gadia",
-    demo: "https://qlaa.in",
-    featured: true,
+    title: "ADHD Predictor",
+    subtitle: "Clinical Screening Tool",
+    description: "Digital diagnostic tool implementing DSM-5-TR criteria with interactive data visualization using Recharts.",
+    tech: ["React", "TypeScript", "Recharts"],
+    github: "https://github.com/yash113gadia/WhatsMyScore",
+    demo: "https://adhd-web-dun.vercel.app",
+    featured: false,
+    color: "amber"
+  },
+  {
+    title: "FitTrack",
+    subtitle: "AI Nutrition Assistant",
+    description: "Cross-platform mobile app using Gemini AI to analyze natural language food logs. Offline-first architecture with SQLite.",
+    tech: ["React Native", "Gemini AI", "SQLite", "Expo"],
+    github: "https://github.com/yash113gadia/FitTrack",
+    demo: "#",
+    featured: false,
     color: "violet"
   }
 ];
