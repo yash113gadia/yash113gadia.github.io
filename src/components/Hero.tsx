@@ -22,7 +22,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex lg:hidden justify-center mb-4"
+            className="flex lg:hidden justify-center mb-6"
           >
             <div className="relative">
               {/* Glowing background effect */}
@@ -30,13 +30,30 @@ const Hero = () => {
               {/* Rotating border */}
               <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 via-violet-500 to-emerald-500 rounded-full opacity-50 animate-spin-slow" style={{ animationDuration: '8s' }} />
               {/* Photo container */}
-              <div className="relative w-32 h-32 rounded-full overflow-hidden border-3 border-neutral-800 bg-neutral-900">
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-neutral-800 bg-neutral-900">
                 <img
                   src="/my-photo.png"
                   alt="Yash Gadia"
                   className="w-full h-full object-cover object-top scale-110"
                 />
               </div>
+
+              {/* Floating badges - Mobile */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -right-2 top-4 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+              >
+                <span className="text-emerald-400 font-semibold text-xs">Full-Stack Dev</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -left-2 bottom-6 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
+              >
+                <span className="text-violet-400 font-semibold text-xs">Co-Founder @ Qlaa</span>
+              </motion.div>
             </div>
           </motion.div>
 
