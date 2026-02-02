@@ -133,7 +133,7 @@ const Hero = () => {
                 <img
                   src="/my-photo.png"
                   alt="Yash Gadia"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top scale-110"
                 />
               </div>
 
