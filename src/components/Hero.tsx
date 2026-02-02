@@ -131,7 +131,7 @@ const Hero = () => {
               {/* Photo container */}
               <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden border-4 border-neutral-800 bg-neutral-900">
                 <img
-                  src="/my-photo.png"
+                  src="/my-photo.jpg"
                   alt="Yash Gadia"
                   className="w-full h-full object-cover object-top scale-110"
                 />
