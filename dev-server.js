@@ -28,7 +28,8 @@ const baseKnowledge = `
 **Backend:** Node.js, Express.js, FastAPI, Spring Boot, Firebase Cloud Functions, Socket.io
 **Databases:** PostgreSQL, MongoDB, SQLite, Firebase Firestore
 **Cloud & DevOps:** Firebase, Netlify, Vercel, Docker, Git, GitHub Actions
-**APIs & Integrations:** Razorpay, Stripe, Google Gemini AI API, Google OAuth, JWT
+**APIs & Integrations:** Razorpay, Stripe, Groq/Llama API, Gemini AI API, Google OAuth, JWT
+**AI/LLM:** Built AI-powered chatbots with Groq, Llama 3.3, and Gemini APIs using serverless functions
 
 ## Professional Experience
 ### Qlaa (qlaa.in) | Co-Founder & Lead Developer | 2024 - Present
@@ -45,11 +46,12 @@ A LIVE hyper-local marketplace platform connecting clients with creative profess
 
 ## Featured Projects
 1. **Qlaa (qlaa.in)** - Live marketplace with payments & real-time chat
-2. **WhatsMyScore** - Quiz platform with clinical assessments & viral quizzes
-3. **FitTrack** - AI nutrition app with Gemini AI (React Native, Expo)
-4. **DevAge** - Agency dashboard (FastAPI, Docker, React)
-5. **AttendEase** - Attendance system (Spring Boot, PostgreSQL, JWT)
-6. **OmniAi** - SaaS AI platform with Stripe subscriptions
+2. **Portfolio AI Chatbot** - AI assistant with 4 personality modes (Groq/Llama 3.3, Vercel serverless)
+3. **WhatsMyScore** - Quiz platform with clinical assessments & viral quizzes
+4. **FitTrack** - AI nutrition app with Gemini AI (React Native, Expo)
+5. **DevAge** - Agency dashboard (FastAPI, Docker, React)
+6. **AttendEase** - Attendance system (Spring Boot, PostgreSQL, JWT)
+7. **OmniAi** - SaaS AI platform with Stripe subscriptions
 
 ## Achievements
 - Rank 6/150+ Teams - Techvanya 2.0 Promptathon, GLA University (2025)
