@@ -15,10 +15,11 @@ const About = () => {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          {/* Main Bio Card - Large */}
+
+          {/* Row 1: Bio + Chatbot */}
+          {/* Main Bio Card */}
           <div
-            className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 animate-fade-in-up"
+            className="bento-card md:col-span-2 lg:col-span-2 animate-fade-in-up"
             style={{ animationDelay: '0.1s' }}
           >
             <div className="h-full flex flex-col justify-between">
@@ -27,11 +28,11 @@ const About = () => {
                   Crafting modern<br />
                   <span className="text-emerald-400">web experiences</span>
                 </h3>
-                <ScrollTextReveal 
+                <ScrollTextReveal
                   text="I'm a full-stack developer passionate about creating products that solve real problems. I've built multiple marketplace platforms, enterprise applications, and AI-powered tools from the ground up."
                   className="text-neutral-400 leading-relaxed mb-4"
                 />
-                <ScrollTextReveal 
+                <ScrollTextReveal
                   text="My expertise lies in designing scalable architectures, normalized database schemas, and intuitive user experiences. I believe in writing clean, maintainable code that stands the test of time."
                   className="text-neutral-500 leading-relaxed"
                 />
@@ -45,10 +46,19 @@ const About = () => {
             </div>
           </div>
 
+          {/* AI Chatbot */}
+          <div
+            className="md:col-span-2 lg:col-span-2 animate-fade-in-up"
+            style={{ animationDelay: '0.2s' }}
+          >
+            <ChatbotInline />
+          </div>
+
+          {/* Row 2: Small cards */}
           {/* Education Card */}
           <div
             className="bento-card accent-violet animate-fade-in-up"
-            style={{ animationDelay: '0.2s' }}
+            style={{ animationDelay: '0.3s' }}
           >
             <GraduationCap className="w-8 h-8 text-violet-400 mb-4" />
             <h4 className="text-white font-semibold mb-1">B.Tech + M.Tech</h4>
@@ -59,7 +69,7 @@ const About = () => {
           {/* Projects Card */}
           <div
             className="bento-card accent-emerald animate-fade-in-up"
-            style={{ animationDelay: '0.3s' }}
+            style={{ animationDelay: '0.4s' }}
           >
             <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
             <h4 className="text-white font-semibold mb-1">10+ Projects</h4>
@@ -67,19 +77,19 @@ const About = () => {
             <p className="text-xs text-neutral-500 mt-2">Marketplaces, AI Tools, Apps</p>
           </div>
 
-          {/* Achievement Card */}
+          {/* Achievement Card - spans 2 cols */}
           <div
-            className="bento-card accent-amber animate-fade-in-up"
-            style={{ animationDelay: '0.4s' }}
+            className="bento-card accent-amber md:col-span-2 lg:col-span-2 animate-fade-in-up"
+            style={{ animationDelay: '0.5s' }}
           >
             <Trophy className="w-8 h-8 text-amber-400 mb-4" />
-            <div className="space-y-3">
+            <div className="flex flex-wrap gap-6">
               <div>
                 <h4 className="text-white font-semibold mb-0.5">Rank 6 / 150+</h4>
                 <p className="text-xs text-neutral-400">Techvanya 2.0 Promptathon</p>
                 <p className="text-xs text-neutral-500">GLA University, Mathura</p>
               </div>
-              <div className="border-t border-neutral-700/50 pt-2">
+              <div className="lg:border-l lg:border-neutral-700/50 lg:pl-6">
                 <h4 className="text-white font-semibold mb-0.5">Top 43 / 500+</h4>
                 <p className="text-xs text-neutral-400">MIT Pune Startup Event</p>
                 <p className="text-xs text-neutral-500">Impact Career Solution</p>
@@ -87,15 +97,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* AI Chatbot */}
-          <div
-            className="md:col-span-2 lg:col-span-2 lg:row-span-2 animate-fade-in-up"
-            style={{ animationDelay: '0.5s' }}
-          >
-            <ChatbotInline />
-          </div>
-
-          {/* Tech Stack Marquee */}
+          {/* Row 3: Tech Stack Marquee */}
           <div
             className="bento-card md:col-span-2 lg:col-span-4 animate-fade-in-up overflow-hidden relative"
             style={{ animationDelay: '0.6s' }}
