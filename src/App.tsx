@@ -12,7 +12,6 @@ import GrainOverlay from './components/GrainOverlay';
 import Marquee from './components/Marquee';
 import Navigation from './components/Navigation';
 import ScrollToTop from './components/ScrollToTop';
-import SmoothScroll from './components/SmoothScroll';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +20,7 @@ function App() {
     <>
       {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}
       {!isLoading && (
-        <SmoothScroll>
+        <>
           <CustomCursor />
           <ScrollProgress />
           <Navigation />
@@ -37,7 +36,7 @@ function App() {
             <Marquee text="LET'S WORK TOGETHER" speed={20} className="py-12 opacity-50" />
             <Contact />
           </div>
-        </SmoothScroll>
+        </>
       )}
     </>
   );
