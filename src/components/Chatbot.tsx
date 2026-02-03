@@ -295,7 +295,7 @@ const Chatbot = () => {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-400 rounded-full shadow-lg flex items-center justify-center transition-all ${isOpen ? 'scale-0' : 'scale-100'}`}
+        className={`fixed bottom-6 left-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-400 rounded-full shadow-lg flex items-center justify-center transition-all ${isOpen ? 'scale-0' : 'scale-100'}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0 }}
@@ -314,7 +314,7 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] h-[550px] bg-neutral-900 border border-neutral-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-6 left-6 z-50 w-[380px] h-[550px] bg-neutral-900 border border-neutral-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-emerald-600 to-emerald-500 p-4 flex items-center justify-between">
