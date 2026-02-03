@@ -1,5 +1,6 @@
-import { MapPin, GraduationCap, Rocket, Trophy, Code2, Database, Server } from 'lucide-react';
+import { MapPin, GraduationCap, Rocket, Trophy, Code2 } from 'lucide-react';
 import { ScrollTextReveal } from './TextReveal';
+import TechMarquee from './TechMarquee';
 
 const About = () => {
   return (
@@ -99,30 +100,16 @@ const About = () => {
             </div>
           </div>
 
-          {/* Tech Stack Visual */}
+          {/* Tech Stack Marquee */}
           <div
-            className="bento-card md:col-span-2 lg:col-span-2 animate-fade-in-up"
+            className="bento-card md:col-span-2 lg:col-span-2 animate-fade-in-up overflow-hidden relative"
             style={{ animationDelay: '0.6s' }}
           >
-            <div className="flex items-center justify-between mb-6">
-              <h4 className="text-white font-semibold">Core Technologies</h4>
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-white font-semibold">Tech Stack</h4>
               <span className="text-xs text-neutral-500">What I work with</span>
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                { name: 'Next.js', icon: Code2, color: 'text-white' },
-                { name: 'Node.js', icon: Server, color: 'text-emerald-400' },
-                { name: 'PostgreSQL', icon: Database, color: 'text-sky-400' },
-              ].map((tech) => (
-                <div 
-                  key={tech.name}
-                  className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-neutral-800/50 hover:bg-neutral-800 transition-colors"
-                >
-                  <tech.icon className={`w-6 h-6 ${tech.color}`} />
-                  <span className="text-sm text-neutral-300">{tech.name}</span>
-                </div>
-              ))}
-            </div>
+            <TechMarquee />
           </div>
 
         </div>
