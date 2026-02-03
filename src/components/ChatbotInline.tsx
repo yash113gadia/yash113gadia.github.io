@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Bot, User, Sparkles, ChevronDown } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -8,123 +8,25 @@ interface Message {
   isBot: boolean;
 }
 
-// Knowledge base about Yash
-const knowledgeBase = {
-  greeting: [
-    "Hi! I'm Yash's AI assistant. Ask me anything about his skills, projects, or experience! 🚀",
-    "Hello! I can tell you about Yash's work, skills, and achievements. What would you like to know?"
-  ],
+type Personality = 'professional' | 'genz' | 'boomer' | 'stoned';
 
-  skills: `Yash is a Full-Stack Developer with expertise in:
+const personalities: { id: Personality; label: string; emoji: string }[] = [
+  { id: 'professional', label: 'Professional', emoji: '💼' },
+  { id: 'genz', label: 'GenZ', emoji: '✨' },
+  { id: 'boomer', label: 'Boomer', emoji: '👴' },
+  { id: 'stoned', label: 'Stoned', emoji: '🌿' },
+];
 
-**Frontend:** React, Next.js, React Native, TypeScript, Tailwind CSS
-**Backend:** Node.js, Express, FastAPI, Firebase, Spring Boot
-**Databases:** PostgreSQL, MongoDB, SQLite, Firestore
-**Tools:** Docker, Git, Razorpay, Stripe, Gemini AI
-
-He builds production-ready applications from scratch!`,
-
-  projects: `Yash has built several impressive projects:
-
-🚀 **Qlaa (qlaa.in)** - Live marketplace with payments & real-time chat
-📊 **WhatsMyScore** - Quiz platform with clinical & viral modes
-🍎 **FitTrack** - AI nutrition app with Gemini AI
-🏢 **DevAge** - Agency dashboard with FastAPI + Docker
-📋 **AttendEase** - Attendance system with Spring Boot`,
-
-  qlaa: `**Qlaa (qlaa.in)** is Yash's flagship project - a live marketplace platform.
-
-**Features:** Razorpay payments, real-time chat, Google OAuth, reviews & ratings, artist onboarding
-
-**Tech:** React + TypeScript + Firebase + Zustand
-
-It's LIVE with real users and transactions!`,
-
-  experience: `**Qlaa** - Co-Founder & Lead Developer (Present)
-• Built entire platform from scratch
-• Real payments, real users
-
-**Impact Career Solution** - Co-Founder
-• Top 43/500+ at MIT Pune Startup Event
-• AI-powered career guidance platform`,
-
-  achievements: `🏆 **Rank 6/150+** - Techvanya 2.0 Promptathon (2025)
-🏆 **Top 43/500+** - MIT Pune Startup Event
-🥇 **Winner** - Voice & Verdict Debate (1st/54 teams)
-🥇 **Winner** - Le Discourse 2
-🌍 **Delegate (Sweden)** - UNHRC MUN 2025
-🏓 **Winner** - Inter-District Table Tennis`,
-
-  contact: `📧 **Email:** yash113gadia@gmail.com
-📱 **Phone:** +91-9950094483
-💼 **LinkedIn:** linkedin.com/in/yashgadia
-🐙 **GitHub:** github.com/yash113gadia
-
-He's **available immediately** for opportunities!`,
-
-  availability: `Yes! Yash is actively seeking opportunities and can join **immediately**.
-
-Open to Full-Stack, Frontend, Backend roles - remote or hybrid.
-
-Contact: yash113gadia@gmail.com`,
-
-  why_hire: `Why hire Yash?
-
-✅ **Ships Real Products** - Qlaa.in is live with real users
-✅ **True Full-Stack** - Database to deployment
-✅ **Modern Stack** - TypeScript, React, Firebase
-✅ **Great Communicator** - Multiple debate winner
-✅ **Quick Learner** - Self-taught most of his stack`,
-
-  default: "I can tell you about Yash's skills, projects (like Qlaa), experience, achievements, or contact info. What interests you?"
+const greetings: Record<Personality, string> = {
+  professional: "Hello! I'm here to help you learn about Yash's qualifications, experience, and skills. How may I assist you?",
+  genz: "yooo what's good!! 💀✨ ask me anything about yash, he's literally so goated no cap frfr",
+  boomer: "Well hello there! Welcome to Yash's cyber page. I'm here to tell you about this talented young man. What would you like to know?",
+  stoned: "heyyy... duuude... welcome... 🌿 so like... yash is pretty cool maaaan... ask me whatever... i got time...",
 };
 
-const getResponse = (input: string): string => {
-  const lowered = input.toLowerCase();
-
-  if (lowered.match(/^(hi|hello|hey|hii+)/)) {
-    return knowledgeBase.greeting[Math.floor(Math.random() * knowledgeBase.greeting.length)];
-  }
-  if (lowered.match(/skill|tech|stack|language|framework|proficient/)) {
-    return knowledgeBase.skills;
-  }
-  if (lowered.match(/project|built|portfolio|work|created/) && !lowered.match(/qlaa/)) {
-    return knowledgeBase.projects;
-  }
-  if (lowered.match(/qlaa|marketplace|flagship/)) {
-    return knowledgeBase.qlaa;
-  }
-  if (lowered.match(/experience|job|entrepreneur|co-?founder/)) {
-    return knowledgeBase.experience;
-  }
-  if (lowered.match(/achievement|award|win|hackathon|competition|debate/)) {
-    return knowledgeBase.achievements;
-  }
-  if (lowered.match(/contact|email|phone|reach|linkedin|github|hire/)) {
-    return knowledgeBase.contact;
-  }
-  if (lowered.match(/available|hiring|intern|opportunity|join|open to/)) {
-    return knowledgeBase.availability;
-  }
-  if (lowered.match(/why|what makes|special|different|value/)) {
-    return knowledgeBase.why_hire;
-  }
-  if (lowered.match(/who is|about|tell me about|introduce/)) {
-    return `**Yash Gadia** - Full-Stack Developer & Co-founder of Qlaa (qlaa.in).
-
-B.Tech + M.Tech CS at NIET (2024-2029).
-Tech: React, TypeScript, Node.js, Firebase, PostgreSQL
-
-What would you like to know more about?`;
-  }
-  if (lowered.match(/thank|thanks/)) {
-    return "You're welcome! Feel free to reach out to Yash at yash113gadia@gmail.com 😊";
-  }
-  if (lowered.match(/bye|goodbye/)) {
-    return "Thanks for chatting! Check out qlaa.in and reach out at yash113gadia@gmail.com 👋";
-  }
-
-  return knowledgeBase.default;
+// Fallback responses if API fails
+const getFallbackResponse = (): string => {
+  return "Hmm, I'm having trouble connecting right now. Feel free to reach out to Yash directly at yash113gadia@gmail.com!";
 };
 
 const suggestedQuestions = [
@@ -134,37 +36,61 @@ const suggestedQuestions = [
 ];
 
 const ChatbotInline = () => {
+  const [personality, setPersonality] = useState<Personality>('professional');
+  const [showPersonalityMenu, setShowPersonalityMenu] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hi! Ask me anything about Yash - his skills, projects, or experience! 🚀", isBot: true }
+    { id: 1, text: greetings.professional, isBot: true }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
+  const handlePersonalityChange = (newPersonality: Personality) => {
+    setPersonality(newPersonality);
+    setShowPersonalityMenu(false);
+    setMessages([{ id: Date.now(), text: greetings[newPersonality], isBot: true }]);
+  };
+
   const handleSend = async (text?: string) => {
     const messageText = text || input;
-    if (!messageText.trim()) return;
+    if (!messageText.trim() || isTyping) return;
 
     const userMessage: Message = { id: Date.now(), text: messageText, isBot: false };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
 
-    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: messageText, personality }),
+      });
 
-    const response = getResponse(messageText);
-    const botMessage: Message = { id: Date.now() + 1, text: response, isBot: true };
+      if (!response.ok) throw new Error('API error');
 
-    setIsTyping(false);
-    setMessages(prev => [...prev, botMessage]);
+      const data = await response.json();
+      const botMessage: Message = { id: Date.now() + 1, text: data.response, isBot: true };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      const fallback = getFallbackResponse();
+      const botMessage: Message = { id: Date.now() + 1, text: fallback, isBot: true };
+      setMessages(prev => [...prev, botMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const formatMessage = (text: string) => {
@@ -174,21 +100,61 @@ const ChatbotInline = () => {
     });
   };
 
+  const currentPersonality = personalities.find(p => p.id === personality)!;
+
   return (
     <div className="bento-card h-[400px] flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 pb-4 border-b border-neutral-800">
-        <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-emerald-400" />
+      <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
+            <Sparkles className="w-5 h-5 text-emerald-400" />
+          </div>
+          <div>
+            <h4 className="text-white font-semibold">Ask about Yash</h4>
+            <p className="text-xs text-neutral-500">Powered by Gemini AI</p>
+          </div>
         </div>
-        <div>
-          <h4 className="text-white font-semibold">Ask about Yash</h4>
-          <p className="text-xs text-neutral-500">AI-powered assistant</p>
+
+        {/* Personality Selector */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPersonalityMenu(!showPersonalityMenu)}
+            className="flex items-center gap-2 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg text-sm text-neutral-300 transition-colors"
+          >
+            <span>{currentPersonality.emoji}</span>
+            <span className="hidden sm:inline">{currentPersonality.label}</span>
+            <ChevronDown className="w-3 h-3" />
+          </button>
+
+          <AnimatePresence>
+            {showPersonalityMenu && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute right-0 top-full mt-2 bg-neutral-800 rounded-lg overflow-hidden shadow-xl border border-neutral-700 z-10"
+              >
+                {personalities.map((p) => (
+                  <button
+                    key={p.id}
+                    onClick={() => handlePersonalityChange(p.id)}
+                    className={`flex items-center gap-2 w-full px-4 py-2 text-sm text-left hover:bg-neutral-700 transition-colors ${
+                      personality === p.id ? 'bg-neutral-700 text-emerald-400' : 'text-neutral-300'
+                    }`}
+                  >
+                    <span>{p.emoji}</span>
+                    <span>{p.label}</span>
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto py-4 space-y-3">
+      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto py-4 space-y-3">
         {messages.map((message) => (
           <motion.div
             key={message.id}
@@ -249,7 +215,7 @@ const ChatbotInline = () => {
         />
         <button
           onClick={() => handleSend()}
-          disabled={!input.trim()}
+          disabled={!input.trim() || isTyping}
           className="w-9 h-9 bg-emerald-500 hover:bg-emerald-400 disabled:bg-neutral-700 rounded-xl flex items-center justify-center transition-colors"
         >
           <Send className="w-4 h-4 text-black" />
