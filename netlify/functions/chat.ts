@@ -9,6 +9,7 @@ const baseKnowledge = `
 - Phone: +91-9950094483
 - LinkedIn: linkedin.com/in/yashgadia
 - GitHub: github.com/yash113gadia
+- Portfolio: yashgadia.vercel.app
 - Status: Available for immediate joining | Open to internships and full-time opportunities
 
 ## Technical Skills
