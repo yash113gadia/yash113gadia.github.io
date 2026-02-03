@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { X, Send, Bot, User, Sparkles } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -295,15 +295,15 @@ const Chatbot = () => {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 left-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-400 rounded-full shadow-lg flex items-center justify-center transition-all ${isOpen ? 'scale-0' : 'scale-100'}`}
+        className={`fixed bottom-24 left-6 z-50 w-14 h-14 bg-violet-500 hover:bg-violet-400 rounded-full shadow-lg shadow-violet-500/25 flex items-center justify-center transition-all ${isOpen ? 'scale-0' : 'scale-100'}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0 }}
         animate={{ scale: isOpen ? 0 : 1 }}
       >
-        <MessageCircle className="w-6 h-6 text-black" />
+        <Sparkles className="w-6 h-6 text-white" />
         {/* Pulse animation */}
-        <span className="absolute w-full h-full rounded-full bg-emerald-500 animate-ping opacity-30" />
+        <span className="absolute w-full h-full rounded-full bg-violet-500 animate-ping opacity-30" />
       </motion.button>
 
       {/* Chat Window */}
