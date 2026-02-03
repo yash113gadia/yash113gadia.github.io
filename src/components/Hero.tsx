@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, FileDown } from 'lucide-react';
 import { FloatingCodeSymbols, FloatingOrbs, ParticleField, AnimatedGrid } from './FloatingElements';
 import Typewriter from './Typewriter';
 
@@ -126,6 +126,14 @@ const Hero = () => {
             className="px-6 sm:px-8 py-3 sm:py-4 border border-neutral-700 text-white font-semibold rounded-full hover:border-neutral-500 hover:bg-neutral-900 transition-all duration-300 text-center"
           >
             Get In Touch
+          </a>
+          <a
+            href="/Yash_Gadia_Resume.pdf"
+            download
+            className="px-6 sm:px-8 py-3 sm:py-4 border border-emerald-500/50 text-emerald-400 font-semibold rounded-full hover:border-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 text-center flex items-center justify-center gap-2"
+          >
+            <FileDown className="w-4 h-4" />
+            Resume
           </a>
         </motion.div>
 
