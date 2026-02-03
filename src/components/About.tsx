@@ -1,6 +1,7 @@
-import { MapPin, GraduationCap, Rocket, Trophy, Code2 } from 'lucide-react';
+import { MapPin, GraduationCap, Rocket, Trophy } from 'lucide-react';
 import { ScrollTextReveal } from './TextReveal';
 import TechMarquee from './TechMarquee';
+import ChatbotInline from './ChatbotInline';
 
 const About = () => {
   return (
@@ -86,18 +87,12 @@ const About = () => {
             </div>
           </div>
 
-          {/* Skills Overview Card */}
+          {/* AI Chatbot */}
           <div
-            className="bento-card accent-sky animate-fade-in-up"
+            className="md:col-span-2 lg:col-span-2 lg:row-span-2 animate-fade-in-up"
             style={{ animationDelay: '0.5s' }}
           >
-            <Code2 className="w-8 h-8 text-sky-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">Full Stack</h4>
-            <p className="text-sm text-neutral-400">Frontend to Backend</p>
-            <div className="flex gap-2 mt-3 flex-wrap">
-              <span className="text-xs px-2 py-1 bg-neutral-800 rounded text-neutral-400">React</span>
-              <span className="text-xs px-2 py-1 bg-neutral-800 rounded text-neutral-400">Node</span>
-            </div>
+            <ChatbotInline />
           </div>
 
           {/* Tech Stack Marquee */}

@@ -12,7 +12,6 @@ import GrainOverlay from './components/GrainOverlay';
 import Marquee from './components/Marquee';
 import Navigation from './components/Navigation';
 import ScrollToTop from './components/ScrollToTop';
-import Chatbot from './components/Chatbot';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +26,6 @@ function App() {
           <Navigation />
           <FloatingContactButton />
           <ScrollToTop />
-          <Chatbot />
           <GrainOverlay />
           <div className="min-h-screen bg-bg text-white">
             <Hero />
