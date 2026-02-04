@@ -54,7 +54,7 @@ const Navigation = () => {
             {/* Resume Button */}
             <div className="hidden md:block">
               <a
-                href="/resume.pdf"
+                href="/Yash_Gadia_Resume.pdf"
                 download="Yash_Gadia_Resume.pdf"
                 className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black text-sm font-semibold rounded-full transition-colors"
               >
@@ -98,7 +98,7 @@ const Navigation = () => {
                 </motion.a>
               ))}
               <motion.a
-                href="/resume.pdf"
+                href="/Yash_Gadia_Resume.pdf"
                 download="Yash_Gadia_Resume.pdf"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
