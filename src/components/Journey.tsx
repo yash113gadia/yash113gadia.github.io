@@ -1,8 +1,44 @@
 import { motion, useInView } from 'framer-motion';
-import { Calendar, Trophy, GraduationCap, Rocket } from 'lucide-react';
+import { Calendar, Trophy, GraduationCap, Rocket, Code, Briefcase, Shield, Gamepad2 } from 'lucide-react';
 import { useRef } from 'react';
 
 const experiences = [
+  {
+    title: "Innovate Bharat Hackathon",
+    company: "Team Ctrl+Alt+Diablo",
+    date: "2026",
+    description: "Built Attestr — a decentralized media authenticator with Solidity smart contracts, AI deepfake detection, Error Level Analysis, perceptual hashing, a Chrome extension, and a REST API.",
+    tags: ["Solidity", "Web3", "AI Detection", "Chrome Extension"],
+    icon: Shield,
+    color: "from-emerald-500 to-green-500"
+  },
+  {
+    title: "Web Developer Intern",
+    company: "SpeedoExpress",
+    date: "2026 - Present",
+    description: "Building the production marketing website and internal tools for a logistics startup using Next.js 16, React 19, and Tailwind CSS v4. Live at speedoexpress.org.",
+    tags: ["Next.js", "React 19", "Tailwind v4", "Internship"],
+    icon: Briefcase,
+    color: "from-orange-500 to-amber-500"
+  },
+  {
+    title: "Creator — CodePilot CLI",
+    company: "Open Source",
+    date: "2025 - Present",
+    description: "Built and published an AI coding agent CLI on NPM with multi-provider LLM support (Anthropic, OpenAI, Google, Ollama), parallel sub-agents, plan mode, and file tracking.",
+    tags: ["TypeScript", "AI SDK", "CLI", "Open Source"],
+    icon: Code,
+    color: "from-sky-500 to-cyan-500"
+  },
+  {
+    title: "Freelance Game Developer",
+    company: "Roblox Platform",
+    date: "",
+    description: "Freelance game development on Roblox — built game mechanics, scripted gameplay systems in Lua, and worked with clients on commissions and custom game projects.",
+    tags: ["Lua", "Roblox", "Game Dev", "Freelance"],
+    icon: Gamepad2,
+    color: "from-red-500 to-pink-500"
+  },
   {
     title: "Co-Founder & Lead Developer",
     company: "Qlaa (ArtistConnect)",

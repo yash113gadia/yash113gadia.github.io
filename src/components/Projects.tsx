@@ -17,68 +17,98 @@ interface Project {
 const projects: Project[] = [
   // === FEATURED PROJECTS (ordered by impact) ===
   {
-    title: "Qlaa",
-    subtitle: "Live Production Marketplace",
-    description: "Full-stack marketplace with Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews & ratings, and multi-step artist onboarding. Deployed on custom domain with CI/CD pipeline.",
-    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
-    image: "/qlaa-preview.jpg",
+    title: "Attestr",
+    subtitle: "Decentralized Media Authenticator",
+    description: "Blockchain-powered media verification platform with Solidity smart contracts, AI deepfake detection, Error Level Analysis, perceptual hashing, and a Chrome extension. Built at Innovate Bharat Hackathon 2026.",
+    tech: ["React", "Solidity", "Hardhat", "Firebase", "Three.js", "Ethers.js"],
+    image: "/attestr-preview.webp",
     github: "https://github.com/yash113gadia",
-    demo: "https://qlaa.in",
+    demo: "https://hackathon-six-eosin.vercel.app",
     featured: true,
     color: "emerald"
   },
   {
-    title: "AttendEase",
-    subtitle: "Enterprise Attendance System",
-    description: "End-to-end attendance platform with Spring Boot REST API (13+ endpoints), JWT authentication, normalized PostgreSQL schema, and React dashboard. Containerized with Docker.",
-    tech: ["Spring Boot", "React", "PostgreSQL", "JWT", "Docker"],
-    image: "/attendease-preview.jpg",
-    github: "https://github.com/yash113gadia/AttendEase-Web",
-    demo: "https://attendease-web-eight.vercel.app",
+    title: "CodePilot",
+    subtitle: "AI Coding Agent CLI",
+    description: "Multi-provider AI coding assistant published on NPM with parallel sub-agent system, file tracking, plan mode, and model switching. Supports Anthropic, OpenAI, Google, and Ollama.",
+    tech: ["TypeScript", "Node.js", "AI SDK", "Ink", "Zod"],
+    image: "/codepilot-preview.svg",
+    github: "https://github.com/yash113gadia/CodePilot",
+    demo: "#",
     featured: true,
     color: "violet"
   },
   {
-    title: "WhatsMyScore",
-    subtitle: "Dual-Mode Quiz Platform",
-    description: "Full-featured quiz platform with Clinical Mode (ADHD, Anxiety/Depression, Personality, Career tests using ASRS, PHQ-9, GAD-7, RIASEC) and Viral Mode (Rice Purity, Red Flag, Political Compass, Gen Z vs Boomer). 9+ tests with shareable results.",
-    tech: ["React", "TypeScript", "Tailwind", "Recharts", "Framer Motion"],
-    image: "/whatsmyscore-preview.jpg",
-    github: "https://github.com/yash113gadia/WhatsMyScore",
-    demo: "https://adhd-web-dun.vercel.app",
+    title: "Qlaa",
+    subtitle: "Live Production Marketplace",
+    description: "Full-stack marketplace with Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews & ratings, and multi-step artist onboarding. Deployed on custom domain with CI/CD pipeline.",
+    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
+    image: "/qlaa-preview.webp",
+    github: "https://github.com/yash113gadia",
+    demo: "https://qlaa.in",
     featured: true,
     color: "sky"
   },
   // === OTHER NOTEWORTHY PROJECTS ===
   {
-    title: "DevAge Platform",
-    subtitle: "Agency Management Dashboard",
-    description: "High-performance admin dashboard with Python FastAPI backend, React frontend, and Docker containerization for consistent deployments.",
-    tech: ["FastAPI", "React", "Docker", "Python"],
-    github: "https://github.com/yash113gadia/devage-platform",
-    demo: "https://frontend-puce-ten-d1v383fm36.vercel.app",
-    featured: false,
-    color: "rose"
-  },
-  {
-    title: "Syllabus AI",
-    subtitle: "Educational Platform",
-    description: "AI-integrated learning platform with Node.js/TypeScript backend and PostgreSQL database using Sequelize ORM.",
-    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize"],
-    github: "https://github.com/yash113gadia/SyllabusAI",
-    demo: "https://client-theta-woad.vercel.app",
-    featured: false,
-    color: "amber"
-  },
-  {
     title: "FitTrack",
     subtitle: "AI Nutrition Assistant",
-    description: "Cross-platform mobile app using Gemini AI to analyze natural language food logs. Offline-first architecture with SQLite.",
+    description: "Cross-platform mobile app (v1.0) with Gemini AI food recognition, barcode scanning, and nutritional analysis. Offline-first with SQLite and Zustand state management.",
     tech: ["React Native", "Gemini AI", "SQLite", "Expo"],
     github: "https://github.com/yash113gadia/FitTrack",
     demo: "#",
     featured: false,
     color: "violet"
+  },
+  {
+    title: "OmniAi",
+    subtitle: "AI Content Generator",
+    description: "SaaS platform for AI-powered content generation with multiple templates, Stripe payments, and Firebase backend. Fast generation with customizable outputs.",
+    tech: ["React", "Firebase", "Stripe", "Vite"],
+    github: "https://github.com/yash113gadia/OmniAi",
+    demo: "#",
+    featured: false,
+    color: "rose"
+  },
+  {
+    title: "Poker Game",
+    subtitle: "Real-time Multiplayer",
+    description: "Live multiplayer poker game with WebSocket-powered real-time gameplay, smooth animations, and an Express.js backend handling game state.",
+    tech: ["React", "Socket.io", "Express", "Tailwind"],
+    github: "https://github.com/yash113gadia/poker-game",
+    demo: "#",
+    featured: false,
+    color: "amber"
+  },
+  {
+    title: "LabForge",
+    subtitle: "Automated Documentation",
+    description: "Full-stack tool that auto-generates personalized lab .docx files with Playwright screenshot capture and real-time progress tracking via WebSockets.",
+    tech: ["React", "FastAPI", "Socket.io", "Playwright"],
+    github: "https://github.com/yash113gadia",
+    demo: "#",
+    featured: false,
+    color: "sky"
+  },
+  {
+    title: "AttendEase",
+    subtitle: "Enterprise Attendance System",
+    description: "Full-stack attendance platform with JWT authentication, normalized PostgreSQL schema (Neon), serverless API, and a React analytics dashboard.",
+    tech: ["React", "PostgreSQL", "JWT", "Vercel"],
+    github: "https://github.com/yash113gadia/AttendEase-Web",
+    demo: "https://attendease-web-eight.vercel.app",
+    featured: false,
+    color: "emerald"
+  },
+  {
+    title: "SpeedoExpress",
+    subtitle: "Logistics Startup Website",
+    description: "Production marketing site for a delivery startup built during internship. Features pricing calculator, service showcase, WhatsApp CTA, and SEO optimization with Next.js 16.",
+    tech: ["Next.js 16", "React 19", "Tailwind v4", "TypeScript"],
+    github: "#",
+    demo: "https://www.speedoexpress.org",
+    featured: false,
+    color: "cyan"
   }
 ];
 

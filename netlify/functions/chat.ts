@@ -2,7 +2,7 @@ const baseKnowledge = `
 ## About Yash Gadia
 
 **Quick Facts:**
-- Full-Stack Developer & Co-Founder
+- Full-Stack Developer, Web3 Builder & Co-Founder
 - Location: Greater Noida, Uttar Pradesh, India
 - Education: Integrated B.Tech + M.Tech in Computer Science, NIET (2024-2029)
 - Email: yash113gadia@gmail.com
@@ -10,17 +10,30 @@ const baseKnowledge = `
 - LinkedIn: linkedin.com/in/yashgadia
 - GitHub: github.com/yash113gadia
 - Portfolio: yashgadia.vercel.app
-- Status: Available for immediate joining | Open to internships and full-time opportunities
+- Status: Currently interning at SpeedoExpress | Open to opportunities
 
 ## Technical Skills
-**Languages:** TypeScript, JavaScript (ES6+), Python, Java, C++, C, SQL
-**Frontend:** React.js, Next.js, React Native (Expo), Tailwind CSS, Framer Motion, Zustand
-**Backend:** Node.js, Express.js, FastAPI, Spring Boot, Firebase Cloud Functions, Socket.io
-**Databases:** PostgreSQL, MongoDB, SQLite, Firebase Firestore
-**Cloud & DevOps:** Firebase, Netlify, Vercel, Docker, Git, GitHub Actions
-**APIs & Integrations:** Razorpay, Stripe, Google Gemini AI API, Google OAuth, JWT
+**Languages:** TypeScript, JavaScript (ES6+), Python, Java, C++, Solidity, SQL
+**Frontend:** React.js, Next.js 16, React Native (Expo), Tailwind CSS v4, Three.js, Framer Motion
+**Backend:** Node.js, Express.js, FastAPI, Firebase Cloud Functions, Socket.io
+**Web3:** Solidity smart contracts, Hardhat 3, Ethers.js, on-chain media verification
+**Databases:** PostgreSQL, MongoDB, SQLite, Firebase Firestore, Neon
+**Cloud & DevOps:** Firebase, Vercel, Netlify, Docker, Git, Playwright
+**APIs & Integrations:** Razorpay, Stripe, Groq/Llama API, Gemini AI API, Google OAuth, JWT
+**AI/LLM:** Multi-provider AI integration (Anthropic, OpenAI, Google, Ollama), built AI coding agents and chatbots
 
 ## Professional Experience
+### SpeedoExpress | Web Developer Intern | 2025 - Present
+Building the production marketing website for a logistics startup.
+- Next.js 16 with React 19 and Tailwind CSS v4
+- Pricing calculator, service showcase, SEO optimization
+- Live at speedoexpress.org
+
+### Freelance Game Developer | Roblox | 2024 - 2025
+Freelance game development work on the Roblox platform.
+- Built game mechanics and scripted gameplay systems in Lua
+- Worked with clients on commissions and custom game development
+
 ### Qlaa (qlaa.in) | Co-Founder & Lead Developer | 2024 - Present
 A LIVE hyper-local marketplace platform connecting clients with creative professionals.
 - Built complete platform from scratch: React + TypeScript + Firebase + Zustand
@@ -34,27 +47,31 @@ A LIVE hyper-local marketplace platform connecting clients with creative profess
 - AI-powered career guidance platform for Tier-2/3 city students
 
 ## Featured Projects
-1. **Qlaa (qlaa.in)** - Live marketplace with payments & real-time chat
-2. **WhatsMyScore** - Quiz platform with clinical assessments & viral quizzes
-3. **FitTrack** - AI nutrition app with Gemini AI (React Native, Expo)
-4. **DevAge** - Agency dashboard (FastAPI, Docker, React)
-5. **AttendEase** - Attendance system (Spring Boot, PostgreSQL, JWT)
-6. **OmniAi** - SaaS AI platform with Stripe subscriptions
+1. **Attestr** - Decentralized media authenticator with Solidity smart contracts, AI deepfake detection, ELA forensics, perceptual hashing, Chrome extension, and REST API. Built at Innovate Bharat Hackathon 2026.
+2. **CodePilot** - Multi-provider AI coding agent CLI published on NPM. Supports Anthropic, OpenAI, Google, Ollama with parallel sub-agents, plan mode, and file tracking.
+3. **Qlaa (qlaa.in)** - Live marketplace with Razorpay payments, real-time chat, and OAuth
+4. **FitTrack** - AI nutrition app v1.0 with Gemini AI food recognition and barcode scanning (React Native, Expo)
+5. **OmniAi** - SaaS AI content generator with Stripe subscriptions
+6. **Poker Game** - Real-time multiplayer poker with Socket.io and Express
+7. **LabForge** - Automated lab document generator with FastAPI, Playwright, and WebSockets
+8. **AttendEase** - Full-stack attendance system with JWT, PostgreSQL, and analytics dashboard
+9. **SpeedoExpress** - Production logistics website (internship work)
 
 ## Achievements
+- Innovate Bharat Hackathon 2026 - Built Attestr (Team Ctrl+Alt+Diablo)
 - Rank 6/150+ Teams - Techvanya 2.0 Promptathon, GLA University (2025)
 - Top 43/500+ - MIT Pune Startup Event (2024)
 - Winner - Voice & Verdict Debate, 1st/54 teams (2025)
 - Winner - Le Discourse 2, Socio-political Debate (2025)
 - Delegate (Sweden) - UNHRC MUN 2025
-- Winner - Inter-District Table Tennis (2021)
 
 ## Why Hire Yash?
-1. Ships Real Products - Qlaa.in is live with real users and payments
-2. True Full-Stack - Database to deployment
-3. Modern Tech Stack - TypeScript, React, Firebase, PostgreSQL, Docker
-4. Excellent Communicator - Multiple debate competition winner
-5. Available Immediately
+1. Ships Real Products - Qlaa.in is live, SpeedoExpress.org is in production, CodePilot is on NPM
+2. True Full-Stack - Frontend, backend, mobile, Web3, AI, and DevOps
+3. Modern Tech Stack - TypeScript, React, Next.js, Solidity, Firebase, PostgreSQL, Docker
+4. Web3 Capable - Built smart contracts and on-chain verification systems
+5. AI Integration Expert - Multi-provider LLM support, AI agents, deepfake detection
+6. Excellent Communicator - Multiple debate competition winner
 `;
 
 const personalityPrompts: Record<string, string> = {

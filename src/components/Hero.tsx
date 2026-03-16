@@ -32,7 +32,7 @@ const Hero = () => {
               {/* Photo container */}
               <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-neutral-800 bg-neutral-900">
                 <img
-                  src="/my-photo.png"
+                  src="/my-photo.webp"
                   alt="Yash Gadia"
                   className="w-full h-full object-cover object-top scale-110"
                 />
@@ -44,7 +44,7 @@ const Hero = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-16 sm:-right-20 top-2 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-emerald-400 font-semibold text-xs">Full-Stack Dev</span>
+                <span className="text-emerald-400 font-semibold text-xs">Full-Stack & Web3 Dev</span>
               </motion.div>
 
               <motion.div
@@ -91,9 +91,9 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-400 max-w-3xl mx-auto lg:mx-0 mb-6 lg:mb-8 leading-relaxed"
             >
-          Full-Stack Developer building{' '}
+          Full-Stack & Web3 Developer building{' '}
           <Typewriter
-            words={['marketplace platforms', 'scalable applications', 'AI-powered tools', 'seamless user experiences']}
+            words={['Web3 applications', 'AI-powered tools', 'marketplace platforms', 'CLI developer tools', 'real-time experiences']}
             className="text-white"
           />
         </motion.p>
@@ -179,7 +179,7 @@ const Hero = () => {
               {/* Photo container */}
               <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden border-4 border-neutral-800 bg-neutral-900">
                 <img
-                  src="/my-photo.png"
+                  src="/my-photo.webp"
                   alt="Yash Gadia"
                   className="w-full h-full object-cover object-top scale-110"
                 />
@@ -191,7 +191,7 @@ const Hero = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-4 top-8 px-4 py-2 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-emerald-400 font-semibold text-sm">Full-Stack Dev</span>
+                <span className="text-emerald-400 font-semibold text-sm">Full-Stack & Web3 Dev</span>
               </motion.div>
 
               <motion.div

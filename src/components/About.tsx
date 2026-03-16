@@ -72,9 +72,9 @@ const About = () => {
             style={{ animationDelay: '0.4s' }}
           >
             <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">10+ Projects</h4>
+            <h4 className="text-white font-semibold mb-1">15+ Projects</h4>
             <p className="text-sm text-neutral-400">Full-Stack Applications</p>
-            <p className="text-xs text-neutral-500 mt-2">Marketplaces, AI Tools, Apps</p>
+            <p className="text-xs text-neutral-500 mt-2">Marketplaces, AI Tools, CLIs, Mobile</p>
           </div>
 
           {/* Achievement Card - spans 2 cols */}

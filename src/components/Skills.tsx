@@ -1,60 +1,43 @@
 const skillCategories = [
   {
     title: "Frontend",
-    skills: [
-      { name: "React", level: 95 },
-      { name: "Next.js", level: 90 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 95 },
-      { name: "React Native", level: 80 },
-    ],
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Three.js", "Framer Motion"],
     dotColor: "bg-emerald-400",
-    barColor: "bg-gradient-to-r from-emerald-500 to-emerald-400"
+    hoverColor: "hover:border-emerald-400/50 hover:text-emerald-400 hover:bg-emerald-400/10",
   },
   {
     title: "Backend",
-    skills: [
-      { name: "Node.js", level: 90 },
-      { name: "Express", level: 85 },
-      { name: "FastAPI", level: 75 },
-      { name: "REST APIs", level: 90 },
-      { name: "Socket.io", level: 80 },
-    ],
+    skills: ["Node.js", "Express", "FastAPI", "REST APIs", "Socket.io", "Firebase"],
     dotColor: "bg-violet-400",
-    barColor: "bg-gradient-to-r from-violet-500 to-violet-400"
+    hoverColor: "hover:border-violet-400/50 hover:text-violet-400 hover:bg-violet-400/10",
   },
   {
-    title: "Database",
-    skills: [
-      { name: "PostgreSQL", level: 85 },
-      { name: "MongoDB", level: 85 },
-      { name: "MySQL", level: 80 },
-      { name: "SQLite", level: 75 },
-      { name: "Redis", level: 70 },
-    ],
+    title: "Database & Cloud",
+    skills: ["PostgreSQL", "MongoDB", "SQLite", "Firebase Firestore", "Neon", "Vercel"],
     dotColor: "bg-amber-400",
-    barColor: "bg-gradient-to-r from-amber-500 to-amber-400"
+    hoverColor: "hover:border-amber-400/50 hover:text-amber-400 hover:bg-amber-400/10",
+  },
+  {
+    title: "Web3 & AI",
+    skills: ["Solidity", "Hardhat", "Ethers.js", "Gemini AI", "Groq/Llama", "AI SDK"],
+    dotColor: "bg-cyan-400",
+    hoverColor: "hover:border-cyan-400/50 hover:text-cyan-400 hover:bg-cyan-400/10",
   },
   {
     title: "DevOps & Tools",
-    skills: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 80 },
-      { name: "Linux", level: 85 },
-      { name: "SEO/GEO", level: 75 },
-      { name: "CI/CD", level: 70 },
-    ],
+    skills: ["Git", "Docker", "Linux", "Playwright", "CI/CD", "Expo"],
     dotColor: "bg-rose-400",
-    barColor: "bg-gradient-to-r from-rose-500 to-rose-400"
+    hoverColor: "hover:border-rose-400/50 hover:text-rose-400 hover:bg-rose-400/10",
   }
 ];
 
 const technologies = [
-  "JavaScript", "TypeScript", "Python", "Java", "C++", "SQL",
+  "JavaScript", "TypeScript", "Python", "Java", "C++", "SQL", "Solidity",
   "React", "Next.js", "Node.js", "Express", "FastAPI", "Socket.io",
-  "PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite",
-  "Docker", "Git", "Linux", "AWS", "Vercel", "Netlify",
-  "Tailwind", "Framer Motion", "Three.js", "Prisma", "Sequelize"
+  "PostgreSQL", "MongoDB", "SQLite", "Firebase", "Neon",
+  "Docker", "Git", "Linux", "Vercel", "Netlify",
+  "Tailwind", "Framer Motion", "Three.js", "Zustand", "Stripe",
+  "Expo", "React Native", "Gemini AI", "Hardhat", "Ethers.js", "Playwright"
 ];
 
 const Skills = () => {
@@ -68,35 +51,26 @@ const Skills = () => {
         </div>
 
         {/* Skill Categories Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={category.title}
               className="bento-card animate-fade-in-up"
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-5">
                 <div className={`w-2 h-2 rounded-full ${category.dotColor}`} />
                 <h3 className="text-lg font-semibold text-white">{category.title}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-neutral-300">{skill.name}</span>
-                      <span className="text-neutral-500 font-mono">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 bg-neutral-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${category.barColor} animate-grow-width`}
-                        style={{ 
-                          width: `${skill.level}%`,
-                          animationDelay: `${categoryIndex * 0.1}s`
-                        }}
-                      />
-                    </div>
-                  </div>
+                  <span
+                    key={skill}
+                    className={`px-3 py-1.5 bg-neutral-800/50 border border-neutral-700/50 rounded-lg text-sm text-neutral-300 ${category.hoverColor} transition-colors cursor-default`}
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
@@ -106,7 +80,7 @@ const Skills = () => {
         {/* Technology Cloud */}
         <div className="bento-card animate-fade-in-up">
           <h3 className="text-lg font-semibold text-white mb-6">Technologies I Work With</h3>
-          
+
           <div className="flex flex-wrap gap-3">
             {technologies.map((tech, index) => (
               <span
@@ -124,9 +98,9 @@ const Skills = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {[
             { number: "2+", label: "Years Experience" },
-            { number: "10+", label: "Projects Built" },
-            { number: "5+", label: "Technologies" },
-            { number: "500+", label: "Hours of Code" },
+            { number: "15+", label: "Projects Built" },
+            { number: "30+", label: "Technologies" },
+            { number: "1000+", label: "Hours of Code" },
           ].map((stat, index) => (
             <div
               key={stat.label}

@@ -30,8 +30,8 @@ const getFallbackResponse = (): string => {
 };
 
 const suggestedQuestions = [
-  "What are his skills?",
-  "Tell me about Qlaa",
+  "Tell me about Attestr",
+  "What's CodePilot?",
   "Why hire Yash?",
 ];
 
