@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Journey from './components/Journey';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import PageLoader from './components/PageLoader';
@@ -33,6 +34,7 @@ function App() {
             <About />
             <Projects />
             <Skills />
+            <Journey />
             <Marquee text="LET'S WORK TOGETHER" speed={20} className="py-12 opacity-50" />
             <Contact />
           </div>
