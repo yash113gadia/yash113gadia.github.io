@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Github, Code, Globe, Layers, TrendingUp, Shield, Zap, Database, Smartphone, Layout, ShoppingCart, MessageSquare } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Globe, Layers, TrendingUp, Zap, Database, Layout } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Contact from '../components/Contact';
 
