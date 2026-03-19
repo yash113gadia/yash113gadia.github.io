@@ -51,7 +51,10 @@ const About = () => {
             className="md:col-span-2 lg:col-span-2 animate-fade-in-up"
             style={{ animationDelay: '0.2s' }}
           >
-            <ChatbotInline />
+            <ChatbotInline 
+              title="Ask about Yash"
+              placeholder="Ask about Yash's experience..."
+            />
           </div>
 
           {/* Row 2: Small cards */}

@@ -101,7 +101,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { message, personality = 'professional' } = req.body;
+    const { message, personality = 'professional', specializedContext = '' } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: 'No message provided' });
@@ -114,12 +114,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const personalityPrompt = personalityPrompts[personality] || personalityPrompts.professional;
-    const systemPrompt = `${personalityPrompt}
-
-Here is all the information about Yash:
-${baseKnowledge}
-
-Keep responses concise (2-4 sentences for simple questions). If asked something not about Yash, politely redirect. Always encourage them to reach out: yash113gadia@gmail.com`;
+    const systemPrompt = specializedContext 
+      ? `${personalityPrompt}\n\nYou are a HIGHLY DETAILED PROJECT EXPERT. Your goal is to answer technical and strategic questions about the following projects with extreme precision. Use the following specialized project documentation as your primary source of truth:\n\n${specializedContext}\n\nIf the information is not in the specialized context, you can refer to Yash's general info below, but prioritize the project details:\n${baseKnowledge}`
+      : `${personalityPrompt}\n\nHere is all the information about Yash:\n${baseKnowledge}\n\nKeep responses concise (2-4 sentences for simple questions). If asked something not about Yash, politely redirect. Always encourage them to reach out: yash113gadia@gmail.com`;
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',

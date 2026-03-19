@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Github, Globe, Layers, TrendingUp, Zap, Database, Layout } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Contact from '../components/Contact';
+import ChatbotInline from '../components/ChatbotInline';
 
 const projectDetails = [
   {
@@ -70,6 +71,58 @@ const projectDetails = [
 ];
 
 const ProjectDescription = () => {
+  const specializedProjectContext = `
+# SYSTEM ARCHITECTURE & PROJECT DEEP DIVE
+
+## 1. ATTESTR (Decentralized Media Authenticator)
+- **Objective:** Eliminate media misinformation via blockchain + AI forensics.
+- **Detailed Tech:** React, Solidity (Smart Contracts), Hardhat, Firebase, Three.js, Ethers.js, Python (Inference), Chrome Extension API.
+- **Architecture Layers:**
+  1. AI Inference: Uses Deepfake detection models to analyze pixel-level inconsistencies.
+  2. Perceptual Hashing: Generates a unique fingerprint of media that survives resizing/compression.
+  3. Image Forensics: Error Level Analysis (ELA) to detect manipulated regions.
+  4. Blockchain Layer: Anchors hashes on-chain for immutable timestamping and origin proof.
+- **Business Value:** Prevents brand damage for high-profile figures and news agencies.
+- **Roadmap:** Real-time browser verification & Trust Protocol for journalists.
+
+## 2. CODEPILOT CLI (AI Coding Agent)
+- **Objective:** Autonomous codebase manipulation via CLI.
+- **Detailed Tech:** TypeScript, Node.js, AI SDK (Vercel), Ink (React for CLI), Zod, Anthropic/OpenAI/Ollama.
+- **Architecture:** 
+  - Planner-Executor model: Planner creates a multi-step execution strategy.
+  - Parallel sub-agents for high-volume file processing.
+  - File tracking & self-healing mode.
+- **Productivity:** Targeted 40% boost in developer speed.
+- **Roadmap:** Local-only LLM support for enterprise privacy.
+
+## 3. QLAA / ArtistConnect (Marketplace)
+- **Objective:** Gig economy for creative professionals.
+- **Detailed Tech:** MERN-Firebase Hybrid, Razorpay, Socket.io, Zustand.
+- **Key Features:** Real-time chat, automated artist onboarding, Razorpay webhook pipeline, SEO optimization.
+- **Business Value:** Disrupts traditional high-commission talent agencies.
+- **Roadmap:** AI-driven artist-client matching & NFT contract generation.
+
+## 4. SPEEDOEXPRESS (Logistics Startup)
+- **Objective:** High-conversion production marketing site.
+- **Detailed Tech:** Next.js 16, React 19, Tailwind CSS v4.
+- **Engineering:** Focus on Core Web Vitals, SSR for SEO, custom pricing algorithms.
+
+## 5. FITTRACK (AI Nutrition Assistant)
+- **Objective:** Frictionless calorie tracking.
+- **Detailed Tech:** React Native, Gemini AI (Computer Vision), SQLite.
+- **System:** Multi-modal analysis of food images to extract nutritional data automatically.
+
+## 6. ATTENDEASE (Enterprise Attendance)
+- **Objective:** Scalable workforce management.
+- **Detailed Tech:** React, PostgreSQL (Neon), JWT, Serverless.
+- **Database:** Highly normalized schema for complex reporting & audit trails.
+
+## 7. OMNIAI (SaaS Content Gen)
+- **Objective:** Automated content production.
+- **Detailed Tech:** React, Stripe, OpenAI API.
+- **Business:** Subscription model with credit-based usage tracking.
+`;
+
   return (
     <div className="min-h-screen bg-bg text-white pt-32 pb-20">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -104,6 +157,27 @@ const ProjectDescription = () => {
               {project.title}
             </a>
           ))}
+        </div>
+
+        {/* AI Chatbot Section - New */}
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold">Project <span className="text-emerald-400">Expert AI</span></h2>
+            <div className="flex-1 h-px bg-white/10" />
+          </div>
+          <div className="max-w-4xl">
+            <ChatbotInline 
+              title="Project Architecture Expert"
+              placeholder="Ask me anything about the technical architecture..."
+              specializedContext={specializedProjectContext}
+              suggestedQuestions={[
+                "How does CodePilot's Planner-Executor model work?",
+                "Explain Attestr's 4-layer verification process",
+                "What is the business model for Qlaa?",
+                "Tell me about the AttendEase database schema"
+              ]}
+            />
+          </div>
         </div>
 
         {/* Desktop Table Layout */}

@@ -29,13 +29,19 @@ const getFallbackResponse = (): string => {
   return "Hmm, I'm having trouble connecting right now. Feel free to reach out to Yash directly at yash113gadia@gmail.com!";
 };
 
-const suggestedQuestions = [
-  "Tell me about Attestr",
-  "What's CodePilot?",
-  "Why hire Yash?",
-];
+interface ChatbotProps {
+  specializedContext?: string;
+  title?: string;
+  placeholder?: string;
+  suggestedQuestions?: string[];
+}
 
-const ChatbotInline = () => {
+const ChatbotInline = ({ 
+  specializedContext = '', 
+  title = "Ask about Yash", 
+  placeholder = "Ask about Yash...",
+  suggestedQuestions = ["Tell me about Attestr", "What's CodePilot?", "Why hire Yash?"]
+}: ChatbotProps) => {
   const [personality, setPersonality] = useState<Personality>('professional');
   const [showPersonalityMenu, setShowPersonalityMenu] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -75,7 +81,11 @@ const ChatbotInline = () => {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: messageText, personality }),
+        body: JSON.stringify({ 
+          message: messageText, 
+          personality,
+          specializedContext 
+        }),
       });
 
       if (!response.ok) throw new Error('API error');
@@ -111,7 +121,7 @@ const ChatbotInline = () => {
             <Sparkles className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <h4 className="text-white font-semibold">Ask about Yash</h4>
+            <h4 className="text-white font-semibold">{title}</h4>
             <p className="text-xs text-neutral-500">Powered by Gemini AI</p>
           </div>
         </div>
@@ -210,7 +220,7 @@ const ChatbotInline = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-          placeholder="Ask about Yash..."
+          placeholder={placeholder}
           className="flex-1 bg-neutral-800 border border-neutral-700 rounded-xl px-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-500/50"
         />
         <button
