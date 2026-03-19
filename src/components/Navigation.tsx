@@ -1,45 +1,52 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X, FileText } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '/#about' },
+  { name: 'Projects', href: '/#projects' },
+  { name: 'Skills', href: '/#skills' },
+  { name: 'Journey', href: '/#journey' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Show nav if scrolled or if not on home page
+  const shouldShowNav = isScrolled || !isHomePage;
+
   return (
     <>
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: isScrolled ? 0 : -100 }}
+        animate={{ y: shouldShowNav ? 0 : -100 }}
         transition={{ duration: 0.3 }}
         className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
       >
         <div className="max-w-7xl mx-auto">
           <div className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-2xl px-6 py-3 flex items-center justify-between">
             {/* Logo */}
-            <a href="#" className="text-xl font-bold">
+            <Link to="/" className="text-xl font-bold">
               <span className="text-white">Y</span>
               <span className="text-emerald-400">G</span>
-            </a>
+            </Link>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -52,7 +59,7 @@ const Navigation = () => {
             </div>
 
             {/* Resume Button */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-4">
               <a
                 href="/Yash_Gadia_Resume.pdf"
                 download="Yash_Gadia_Resume.pdf"

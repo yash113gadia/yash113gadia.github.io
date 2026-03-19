@@ -82,7 +82,7 @@ const Journey = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="journey" className="min-h-screen py-20 overflow-hidden relative">
+    <section id="journey" className="py-12 overflow-hidden relative">
       {/* Background */}
       <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-violet-500/5 rounded-full blur-[200px] -translate-x-1/2" />
       
@@ -91,14 +91,14 @@ const Journey = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <span className="text-cyan-400 font-mono text-sm tracking-wider">{'// My Journey'}</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">
             <span className="text-white">Experience & </span>
             <span className="text-gradient-accent">Milestones</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto font-light">
+          <p className="text-slate-400 max-w-2xl mx-auto font-light text-sm">
             My professional path in software development and entrepreneurship.
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ const Journey = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
-              className={`relative flex items-center justify-between mb-16 last:mb-0 ${
+              className={`relative flex items-center justify-between mb-10 last:mb-0 ${
                 index % 2 === 0 ? 'flex-row-reverse' : ''
               }`}
             >
@@ -131,12 +131,12 @@ const Journey = () => {
               {/* Center Icon */}
               <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
                 <motion.div 
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${exp.color} p-0.5 shadow-lg`}
+                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${exp.color} p-0.5 shadow-lg`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <div className="w-full h-full rounded-[10px] bg-slate-900 flex items-center justify-center">
-                    <exp.icon className="w-5 h-5 text-white" />
+                    <exp.icon className="w-4 h-4 text-white" />
                   </div>
                 </motion.div>
                 {/* Pulse Ring */}
@@ -146,35 +146,35 @@ const Journey = () => {
               {/* Content Card */}
               <div className="w-full md:w-5/12">
                 <motion.div 
-                  className="group glass-scifi p-6 rounded-2xl hover:border-cyan-500/30 transition-all duration-500"
+                  className="group glass-scifi p-5 rounded-2xl hover:border-cyan-500/30 transition-all duration-500"
                   whileHover={{ y: -5 }}
                 >
                   {/* Header */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className={`h-1 w-8 rounded-full bg-gradient-to-r ${exp.color}`} />
-                    <span className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`h-1 w-6 rounded-full bg-gradient-to-r ${exp.color}`} />
+                    <span className="text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
                       {exp.company}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors">
+                  <h3 className="text-lg font-bold mb-1 text-white group-hover:text-cyan-400 transition-colors">
                     {exp.title}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-slate-500 text-sm mb-4">
-                    <Calendar size={14} />
+                  <div className="flex items-center gap-2 text-slate-500 text-[10px] mb-3 uppercase tracking-wider font-medium">
+                    <Calendar size={12} />
                     <span>{exp.date}</span>
                   </div>
                   
-                  <p className="text-slate-400 text-sm mb-4 leading-relaxed font-light">
+                  <p className="text-slate-400 text-xs mb-3 leading-relaxed font-light">
                     {exp.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {exp.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="text-xs px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 group-hover:border-cyan-500/20 transition-colors"
+                        className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 group-hover:border-cyan-500/20 transition-colors"
                       >
                         {tag}
                       </span>

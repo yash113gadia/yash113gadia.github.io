@@ -27,6 +27,7 @@
     "matter-js": "^0.20.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1",
     "tailwind-merge": "^3.4.0",
     "three": "^0.182.0"
   },
@@ -37,6 +38,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
+    "@types/react-router-dom": "^5.3.3",
     "@vercel/node": "^5.5.28",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.23",

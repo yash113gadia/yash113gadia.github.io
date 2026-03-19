@@ -44,7 +44,7 @@ const Hero = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-16 sm:-right-20 top-2 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-emerald-400 font-semibold text-xs">Full-Stack & Web3 Dev</span>
+                <span className="text-emerald-400 font-semibold text-xs">AI Automation & Development</span>
               </motion.div>
 
               <motion.div
@@ -91,9 +91,9 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-400 max-w-3xl mx-auto lg:mx-0 mb-6 lg:mb-8 leading-relaxed"
             >
-          Full-Stack & Web3 Developer building{' '}
+          AI Automation & Development building{' '}
           <Typewriter
-            words={['Web3 applications', 'AI-powered tools', 'marketplace platforms', 'CLI developer tools', 'real-time experiences']}
+            words={['Autonomous Agents', 'AI-powered tools', 'Scalable systems', 'CLI developer tools', 'Full-Stack experiences']}
             className="text-white"
           />
         </motion.p>
@@ -105,7 +105,7 @@ const Hero = () => {
           className="text-base lg:text-lg text-neutral-500 max-w-2xl mx-auto lg:mx-0 mb-8 lg:mb-12 hidden sm:block"
         >
           Passionate about building products that solve real problems.
-          I specialize in <span className="text-emerald-400 font-medium">Next.js</span>, <span className="text-emerald-400 font-medium">Node.js</span>, and <span className="text-emerald-400 font-medium">PostgreSQL</span>.
+          I specialize in <span className="text-emerald-400 font-medium">LLM Integration</span>, <span className="text-emerald-400 font-medium">Next.js</span>, and <span className="text-emerald-400 font-medium">Autonomous Systems</span>.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -191,7 +191,7 @@ const Hero = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-4 top-8 px-4 py-2 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-emerald-400 font-semibold text-sm">Full-Stack & Web3 Dev</span>
+                <span className="text-emerald-400 font-semibold text-sm">AI Automation & Development</span>
               </motion.div>
 
               <motion.div

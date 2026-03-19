@@ -25,15 +25,15 @@ const About = () => {
             <div className="h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  Crafting modern<br />
-                  <span className="text-emerald-400">web experiences</span>
+                  Building the future with<br />
+                  <span className="text-emerald-400">AI Automation</span>
                 </h3>
                 <ScrollTextReveal
-                  text="I'm a full-stack developer passionate about creating products that solve real problems. I've built multiple marketplace platforms, enterprise applications, and AI-powered tools from the ground up."
+                  text="I'm a developer passionate about AI automation and building intelligent products that solve real problems. I've built multiple marketplace platforms, AI-powered agents, and enterprise applications from the ground up."
                   className="text-neutral-400 leading-relaxed mb-4"
                 />
                 <ScrollTextReveal
-                  text="My expertise lies in designing scalable architectures, normalized database schemas, and intuitive user experiences. I believe in writing clean, maintainable code that stands the test of time."
+                  text="My expertise lies in integrating LLMs, designing autonomous workflows, and building scalable architectures. I believe in leveraging AI to create seamless, efficient, and maintainable solutions."
                   className="text-neutral-500 leading-relaxed"
                 />
               </div>
@@ -73,8 +73,8 @@ const About = () => {
           >
             <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
             <h4 className="text-white font-semibold mb-1">15+ Projects</h4>
-            <p className="text-sm text-neutral-400">Full-Stack Applications</p>
-            <p className="text-xs text-neutral-500 mt-2">Marketplaces, AI Tools, CLIs, Mobile</p>
+            <p className="text-sm text-neutral-400">AI & Full-Stack Apps</p>
+            <p className="text-xs text-neutral-500 mt-2">AI Agents, CLIs, Marketplaces, Mobile</p>
           </div>
 
           {/* Achievement Card - spans 2 cols */}

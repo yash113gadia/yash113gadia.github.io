@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /contacts/{doc} {
+      allow create: if true;
+    }
+
+    match /projectViews/{doc} {
+      allow read, write: if true;
+    }
+
+    match /pageViews/{doc} {
+      allow read, write: if true;
+    }
+  }
+}

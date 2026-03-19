@@ -1,4 +1,4 @@
-import { Mail, MapPin, Send, Github, Linkedin, ArrowUpRight, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin, ArrowUpRight, CheckCircle, AlertCircle, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
 import { submitContactMessage } from '../services/firestore';
 
@@ -146,7 +146,7 @@ const Contact = () => {
             {/* Quick Contact Cards */}
             <div className="grid gap-4">
               <a
-                href="mailto:yash@example.com"
+                href="mailto:yash113gadia@gmail.com"
                 className="bento-card group flex items-center gap-4"
               >
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
@@ -155,6 +155,22 @@ const Contact = () => {
                 <div className="flex-1">
                   <p className="text-sm text-neutral-500">Email</p>
                   <p className="text-white group-hover:text-emerald-400 transition-colors">yash113gadia@gmail.com</p>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </a>
+
+              <a
+                href="https://wa.me/919950094483"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bento-card group flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                  <MessageSquare className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-neutral-500">WhatsApp</p>
+                  <p className="text-white group-hover:text-emerald-400 transition-colors">+91-9950094483</p>
                 </div>
                 <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
               </a>
