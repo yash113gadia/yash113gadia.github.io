@@ -146,177 +146,187 @@ const ProjectDescription = () => {
           </p>
         </motion.div>
 
-        {/* Project Navigation (Quick Scroll) */}
-        <div className="flex flex-wrap gap-3 mb-12">
-          {projectDetails.map((project, i) => (
-            <a 
-              key={i} 
-              href={`#${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-              className="px-4 py-2 rounded-full glass-scifi text-xs font-medium hover:border-emerald-500/50 transition-all"
-            >
-              {project.title}
-            </a>
-          ))}
-        </div>
-
-        {/* AI Chatbot Section - New */}
-        <div className="mb-20">
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Project <span className="text-emerald-400">Expert AI</span></h2>
-            <div className="flex-1 h-px bg-white/10" />
-          </div>
-          <div className="max-w-4xl">
-            <ChatbotInline 
-              title="Project Architecture Expert"
-              placeholder="Ask me anything about the technical architecture..."
-              specializedContext={specializedProjectContext}
-              suggestedQuestions={[
-                "How does CodePilot's Planner-Executor model work?",
-                "Explain Attestr's 4-layer verification process",
-                "What is the business model for Qlaa?",
-                "Tell me about the AttendEase database schema"
-              ]}
-            />
-          </div>
-        </div>
-
-        {/* Desktop Table Layout */}
-        <div className="hidden lg:block overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl bg-white/[0.02] backdrop-blur-3xl mb-32">
-          <table className="w-full text-left border-collapse table-fixed">
-            <thead>
-              <tr className="bg-white/[0.03] border-b border-white/10">
-                <th className="p-8 text-sm font-bold uppercase tracking-[0.2em] text-emerald-400 w-[20%]">Engineering Project</th>
-                <th className="p-8 text-sm font-bold uppercase tracking-[0.2em] text-slate-300 w-[40%]">Technical Architecture</th>
-                <th className="p-8 text-sm font-bold uppercase tracking-[0.2em] text-slate-300 w-[40%]">Strategy & Future</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Side: Project Navigation & Table (8 cols) */}
+          <div className="lg:col-span-8 space-y-12">
+            {/* Project Navigation (Quick Scroll) */}
+            <div className="flex flex-wrap gap-3">
               {projectDetails.map((project, i) => (
-                <tr 
+                <a 
                   key={i} 
-                  id={project.title.toLowerCase().replace(/\s+/g, '-')}
-                  className="hover:bg-white/[0.01] transition-all group"
+                  href={`#${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="px-4 py-2 rounded-full glass-scifi text-xs font-medium hover:border-emerald-500/50 transition-all"
                 >
-                  <td className="p-8 align-top">
-                    <div className="sticky top-40 space-y-4">
-                      <div className={`text-2xl font-black text-white group-hover:text-${project.color}-400 transition-colors`}>
-                        {project.title}
-                      </div>
-                      <div className="flex gap-2">
-                        <button className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all">
-                          <Github size={18} className="text-slate-400" />
-                        </button>
-                        <button className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all">
-                          <ExternalLink size={18} className="text-slate-400" />
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="p-8 align-top">
-                    <div className="space-y-8">
-                      <div>
-                        <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
-                          <Globe size={14} /> The Objective
-                        </div>
-                        <p className="text-slate-300 text-base leading-relaxed font-light">{project.objective}</p>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
-                          <Database size={14} /> Core Tech Stack
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.techStack.split(', ').map((tech, tid) => (
-                            <span key={tid} className="px-3 py-1 bg-emerald-500/5 border border-emerald-500/10 rounded-md text-emerald-400 font-mono text-[10px]">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
-                          <Layout size={14} /> System Architecture
-                        </div>
-                        <p className="text-slate-400 text-sm leading-relaxed font-light bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                          {project.detailedArchitecture}
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="p-8 align-top">
-                    <div className="space-y-8">
-                      <div>
-                        <div className="flex items-center gap-3 text-[10px] font-black text-violet-500 uppercase tracking-widest mb-3">
-                          <TrendingUp size={14} /> Business & Strategic Value
-                        </div>
-                        <p className="text-slate-300 text-base leading-relaxed font-light">{project.businessPerspective}</p>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 text-[10px] font-black text-violet-500 uppercase tracking-widest mb-3">
-                          <Layers size={14} /> Roadmap & Scaling
-                        </div>
-                        <div className="relative p-4 rounded-xl bg-violet-500/5 border border-violet-500/10 overflow-hidden">
-                           <div className="absolute top-0 right-0 p-2 opacity-10"><Zap size={40} /></div>
-                           <p className="text-slate-400 text-sm leading-relaxed font-light italic relative z-10">
-                            {project.futureScope}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                  {project.title}
+                </a>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
 
-        {/* Mobile/Tablet Card Layout */}
-        <div className="lg:hidden space-y-12">
-          {projectDetails.map((project, i) => (
-            <motion.div 
-              key={i}
-              id={project.title.toLowerCase().replace(/\s+/g, '-')}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass-scifi rounded-3xl border border-white/5 p-8 relative overflow-hidden"
-            >
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-${project.color}-500/5 rounded-full blur-3xl`} />
-              
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-3xl font-black text-white">{project.title}</h3>
-                <div className="flex gap-2">
-                  <Github size={20} className="text-slate-500" />
-                  <ExternalLink size={20} className="text-slate-500" />
-                </div>
-              </div>
-              
-              <div className="space-y-10">
-                <section>
-                  <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-3">The Objective</h4>
-                  <p className="text-slate-300 text-base leading-relaxed font-light">{project.objective}</p>
-                </section>
-                
-                <section>
-                  <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-3">Architecture</h4>
-                  <p className="text-slate-400 text-sm leading-relaxed font-light bg-white/5 p-4 rounded-xl italic">
-                    {project.detailedArchitecture}
-                  </p>
-                </section>
+            {/* Desktop Table Layout */}
+            <div className="hidden lg:block overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl bg-white/[0.02] backdrop-blur-3xl">
+              <table className="w-full text-left border-collapse table-fixed">
+                <thead>
+                  <tr className="bg-white/[0.03] border-b border-white/10">
+                    <th className="p-6 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 w-[25%]">Engineering Project</th>
+                    <th className="p-6 text-xs font-bold uppercase tracking-[0.2em] text-slate-300 w-[75%]">Detailed Architecture & Strategy</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {projectDetails.map((project, i) => (
+                    <tr 
+                      key={i} 
+                      id={project.title.toLowerCase().replace(/\s+/g, '-')}
+                      className="hover:bg-white/[0.01] transition-all group"
+                    >
+                      <td className="p-6 align-top">
+                        <div className="sticky top-40 space-y-4">
+                          <div className={`text-xl font-black text-white group-hover:text-${project.color}-400 transition-colors`}>
+                            {project.title}
+                          </div>
+                          <div className="flex gap-2">
+                            <button className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all">
+                              <Github size={16} className="text-slate-400" />
+                            </button>
+                            <button className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all">
+                              <ExternalLink size={16} className="text-slate-400" />
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-6 align-top">
+                        <div className="grid grid-cols-1 gap-8">
+                          <div>
+                            <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
+                              <Globe size={14} /> The Objective
+                            </div>
+                            <p className="text-slate-300 text-sm leading-relaxed font-light">{project.objective}</p>
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
+                              <Database size={14} /> Tech Stack
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {project.techStack.split(', ').map((tech, tid) => (
+                                <span key={tid} className="px-2 py-0.5 bg-emerald-500/5 border border-emerald-500/10 rounded-md text-emerald-400 font-mono text-[9px]">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-3 text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-3">
+                              <Layout size={14} /> System Architecture
+                            </div>
+                            <p className="text-slate-400 text-xs leading-relaxed font-light bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                              {project.detailedArchitecture}
+                            </p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-6">
+                            <div>
+                              <div className="flex items-center gap-3 text-[10px] font-black text-violet-500 uppercase tracking-widest mb-3">
+                                <TrendingUp size={14} /> Business Value
+                              </div>
+                              <p className="text-slate-300 text-xs leading-relaxed font-light">{project.businessPerspective}</p>
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-3 text-[10px] font-black text-violet-500 uppercase tracking-widest mb-3">
+                                <Layers size={14} /> Roadmap
+                              </div>
+                              <p className="text-slate-400 text-xs leading-relaxed font-light italic">{project.futureScope}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-                <section>
-                  <h4 className="text-[10px] font-black text-violet-500 uppercase tracking-[0.2em] mb-3">Business Value</h4>
-                  <p className="text-slate-300 text-base leading-relaxed font-light">{project.businessPerspective}</p>
-                </section>
-                
-                <section>
-                  <h4 className="text-[10px] font-black text-violet-500 uppercase tracking-[0.2em] mb-3">Next Steps</h4>
-                  <p className="text-slate-400 text-sm leading-relaxed font-light border-l-2 border-violet-500/30 pl-4">
-                    {project.futureScope}
-                  </p>
-                </section>
-              </div>
-            </motion.div>
-          ))}
+            {/* Mobile/Tablet Card Layout */}
+            <div className="lg:hidden space-y-12">
+              {projectDetails.map((project, i) => (
+                <motion.div 
+                  key={i}
+                  id={project.title.toLowerCase().replace(/\s+/g, '-')}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="glass-scifi rounded-3xl border border-white/5 p-8 relative overflow-hidden"
+                >
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-${project.color}-500/5 rounded-full blur-3xl`} />
+                  
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-3xl font-black text-white">{project.title}</h3>
+                    <div className="flex gap-2">
+                      <Github size={20} className="text-slate-500" />
+                      <ExternalLink size={20} className="text-slate-500" />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-10">
+                    <section>
+                      <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-3">The Objective</h4>
+                      <p className="text-slate-300 text-base leading-relaxed font-light">{project.objective}</p>
+                    </section>
+                    <section>
+                      <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-3">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.techStack.split(', ').map((tech, tid) => (
+                          <span key={tid} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-emerald-400 font-mono text-[10px]">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </section>
+                    <section>
+                      <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-3">Architecture</h4>
+                      <p className="text-slate-400 text-sm leading-relaxed font-light bg-white/5 p-4 rounded-xl italic">
+                        {project.detailedArchitecture}
+                      </p>
+                    </section>
+                    <section>
+                      <h4 className="text-[10px] font-black text-violet-500 uppercase tracking-[0.2em] mb-3">Business Value</h4>
+                      <p className="text-slate-300 text-base leading-relaxed font-light">{project.businessPerspective}</p>
+                    </section>
+                    <section>
+                      <h4 className="text-[10px] font-black text-violet-500 uppercase tracking-[0.2em] mb-3">Next Steps</h4>
+                      <p className="text-slate-400 text-sm leading-relaxed font-light border-l-2 border-violet-500/30 pl-4">
+                        {project.futureScope}
+                      </p>
+                    </section>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side: Sticky Chatbot (4 cols) */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-6">
+            <div className="flex items-center gap-4 mb-2">
+              <h2 className="text-xl md:text-2xl font-bold">Project <span className="text-emerald-400">Expert AI</span></h2>
+              <div className="flex-1 h-px bg-white/10" />
+            </div>
+            <div className="glass-scifi rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
+              <ChatbotInline 
+                title="Architecture Consultant"
+                placeholder="Ask technical questions..."
+                specializedContext={specializedProjectContext}
+                suggestedQuestions={[
+                  "How does CodePilot orchestrate agents?",
+                  "Explain Attestr's forensic layer",
+                  "Tell me about Qlaa's payment pipeline",
+                  "What makes AttendEase scalable?"
+                ]}
+              />
+            </div>
+            <p className="text-[10px] text-slate-500 text-center uppercase tracking-widest px-4">
+              Direct technical access to my system design decisions.
+            </p>
+          </div>
+
         </div>
 
         <div className="mt-32">
