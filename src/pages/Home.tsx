@@ -8,7 +8,7 @@ import Marquee from '../components/Marquee';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-bg text-white pt-20">
+    <div className="min-h-screen bg-bg text-white">
       <Hero />
       <Marquee text="AI AUTOMATION & DEVELOPMENT" speed={25} className="py-12 opacity-50" />
       <About />
