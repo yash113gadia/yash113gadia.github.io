@@ -106,7 +106,7 @@ const Journey = () => {
         <div className="relative max-w-4xl mx-auto">
           {/* Central Animated Line */}
           <motion.div 
-            className="absolute left-1/2 transform -translate-x-1/2 w-px h-full"
+            className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-px h-full"
             style={{
               background: 'linear-gradient(180deg, transparent 0%, rgba(6,182,212,0.5) 10%, rgba(139,92,246,0.5) 50%, rgba(236,72,153,0.5) 90%, transparent 100%)',
             }}
@@ -118,25 +118,25 @@ const Journey = () => {
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
-              className={`relative flex items-center justify-between mb-10 last:mb-0 ${
-                index % 2 === 0 ? 'flex-row-reverse' : ''
+              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              className={`relative flex items-center justify-between mb-8 md:mb-12 last:mb-0 ${
+                index % 2 === 0 ? 'md:flex-row-reverse' : ''
               }`}
             >
               {/* Spacer */}
               <div className="w-5/12 hidden md:block" />
 
               {/* Center Icon */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+              <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 z-20">
                 <motion.div 
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${exp.color} p-0.5 shadow-lg`}
+                  className={`w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-br ${exp.color} p-0.5 shadow-lg`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <div className="w-full h-full rounded-[10px] bg-slate-900 flex items-center justify-center">
-                    <exp.icon className="w-4 h-4 text-white" />
+                    <exp.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
                   </div>
                 </motion.div>
                 {/* Pulse Ring */}
@@ -144,29 +144,29 @@ const Journey = () => {
               </div>
 
               {/* Content Card */}
-              <div className="w-full md:w-5/12">
+              <div className="w-full md:w-5/12 pl-12 md:pl-0">
                 <motion.div 
-                  className="group glass-scifi p-5 rounded-2xl hover:border-cyan-500/30 transition-all duration-500"
+                  className="group glass-scifi p-4 md:p-5 rounded-2xl hover:border-cyan-500/30 transition-all duration-500"
                   whileHover={{ y: -5 }}
                 >
                   {/* Header */}
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`h-1 w-6 rounded-full bg-gradient-to-r ${exp.color}`} />
-                    <span className="text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
+                    <span className="text-[10px] md:text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
                       {exp.company}
                     </span>
                   </div>
                   
-                  <h3 className="text-lg font-bold mb-1 text-white group-hover:text-cyan-400 transition-colors">
+                  <h3 className="text-base md:text-lg font-bold mb-1 text-white group-hover:text-cyan-400 transition-colors">
                     {exp.title}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-slate-500 text-[10px] mb-3 uppercase tracking-wider font-medium">
-                    <Calendar size={12} />
+                  <div className="flex items-center gap-2 text-slate-500 text-[9px] md:text-[10px] mb-3 uppercase tracking-wider font-medium">
+                    <Calendar size={12} className="w-3 h-3 md:w-3.5 md:h-3.5" />
                     <span>{exp.date}</span>
                   </div>
                   
-                  <p className="text-slate-400 text-xs mb-3 leading-relaxed font-light">
+                  <p className="text-slate-400 text-[11px] md:text-xs mb-3 leading-relaxed font-light">
                     {exp.description}
                   </p>
                   
@@ -174,7 +174,7 @@ const Journey = () => {
                     {exp.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 group-hover:border-cyan-500/20 transition-colors"
+                        className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 group-hover:border-cyan-500/20 transition-colors"
                       >
                         {tag}
                       </span>
