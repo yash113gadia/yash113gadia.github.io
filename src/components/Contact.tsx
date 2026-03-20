@@ -53,7 +53,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <span className="text-emerald-400 font-mono text-sm">04.</span>
+          <span className="text-emerald-400 font-mono text-sm">05.</span>
           <h2 className="text-3xl md:text-5xl font-bold text-white mt-2 mb-4">Get In Touch</h2>
           <p className="text-neutral-400 max-w-lg mx-auto">
             I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
