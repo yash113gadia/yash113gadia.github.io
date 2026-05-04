@@ -5,172 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yash Gadia - Resume</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  @page { margin: 0; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Inter', sans-serif;
     background: white;
-    color: #1a1a1a;
+    color: #111;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    font-size: 10px;
+    line-height: 1.4;
   }
 
   .page {
     width: 210mm;
     min-height: 297mm;
+    max-height: 297mm;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 200px 1fr;
+    padding: 22px 30px 18px;
+    overflow: hidden;
   }
 
-  /* Sidebar */
-  .sidebar {
-    background: #0f7b6f;
-    color: white;
-    padding: 36px 20px 30px;
+  /* Header */
+  .header {
     display: flex;
-    flex-direction: column;
-    gap: 22px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #111;
   }
 
-  .name {
-    text-align: center;
-    margin-bottom: 4px;
-  }
-
-  .name h1 {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 2px;
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     line-height: 1.1;
   }
 
-  .name .subtitle {
+  .header .subtitle {
     font-size: 11px;
     font-weight: 400;
-    opacity: 0.85;
-    margin-top: 6px;
-    letter-spacing: 0.5px;
+    color: #444;
+    margin-top: 2px;
   }
 
-  .divider {
-    width: 60px;
-    height: 2px;
-    background: rgba(255,255,255,0.4);
-    margin: 0 auto;
+  .header-right {
+    text-align: right;
+    font-size: 9.5px;
+    line-height: 1.5;
+    color: #333;
   }
 
-  .sidebar-section h3 {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
-    color: #b8f0e8;
-  }
-
-  .sidebar-section p,
-  .sidebar-section a {
-    font-size: 10.5px;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.9);
+  .header-right a {
+    color: #111;
     text-decoration: none;
   }
 
-  .sidebar-section a:hover { text-decoration: underline; }
-
-  .skill-category {
-    margin-bottom: 8px;
-  }
-
-  .skill-category h4 {
-    font-size: 10px;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: #b8f0e8;
-  }
-
-  .skill-category p {
-    font-size: 9.5px;
-    line-height: 1.5;
-  }
-
-  /* Main content */
-  .main {
-    padding: 36px 30px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  /* Section */
+  .section {
+    margin-bottom: 7px;
   }
 
   .section-title {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #0f7b6f;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #0f7b6f;
-    margin-bottom: 8px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
   }
 
   /* Profile */
   .profile p {
-    font-size: 10.5px;
-    line-height: 1.65;
+    font-size: 9.5px;
+    color: #333;
+  }
+
+  /* Two column layout for skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 24px;
+  }
+
+  .skill-row {
+    font-size: 9.5px;
+    display: flex;
+    gap: 4px;
+  }
+
+  .skill-row strong {
+    min-width: 70px;
+    font-weight: 600;
+    color: #111;
+  }
+
+  .skill-row span {
     color: #333;
   }
 
   /* Experience */
   .exp-item {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .exp-item:last-child { margin-bottom: 0; }
 
   .exp-header {
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    gap: 6px;
-    margin-bottom: 3px;
-    flex-wrap: wrap;
+    margin-bottom: 2px;
   }
 
   .exp-header h4 {
-    font-size: 12px;
-    font-weight: 700;
-    color: #1a1a1a;
+    font-size: 10.5px;
+    font-weight: 600;
   }
 
   .exp-header .role {
-    font-size: 10.5px;
-    color: #555;
+    font-size: 10px;
+    font-weight: 400;
+    color: #444;
   }
 
-  .exp-header .link {
-    font-size: 10px;
-    color: #0f7b6f;
-    text-decoration: none;
+  .exp-header .date {
+    font-size: 9px;
+    color: #555;
+    font-style: italic;
   }
 
   .exp-bullets {
     list-style: disc;
-    padding-left: 16px;
-    margin-top: 3px;
+    padding-left: 14px;
   }
 
   .exp-bullets li {
-    font-size: 10px;
-    line-height: 1.55;
-    color: #444;
-    margin-bottom: 2px;
+    font-size: 9.5px;
+    color: #333;
+    margin-bottom: 1px;
   }
 
   /* Projects */
   .project-item {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
   }
 
   .project-item:last-child { margin-bottom: 0; }
@@ -178,54 +162,71 @@
   .project-header {
     display: flex;
     align-items: baseline;
-    gap: 8px;
-    margin-bottom: 2px;
+    gap: 6px;
+    margin-bottom: 1px;
   }
 
   .project-header h4 {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 10.5px;
+    font-weight: 600;
   }
 
   .project-header .type {
-    font-size: 10px;
-    color: #666;
+    font-size: 9.5px;
+    color: #555;
   }
 
   .project-tech {
-    font-size: 9.5px;
-    color: #777;
+    font-size: 9px;
+    color: #555;
     font-style: italic;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
   }
 
   .project-bullets {
     list-style: disc;
-    padding-left: 16px;
+    padding-left: 14px;
   }
 
   .project-bullets li {
-    font-size: 10px;
-    line-height: 1.5;
-    color: #444;
-    margin-bottom: 1px;
+    font-size: 9.5px;
+    color: #333;
+    margin-bottom: 0;
   }
 
   /* Achievements */
-  .achievements-list {
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px 20px;
+  }
+
+  .achievements-grid li {
+    font-size: 9px;
+    color: #333;
     list-style: disc;
-    padding-left: 16px;
+    margin-left: 14px;
   }
 
-  .achievements-list li {
+  .achievements-grid strong {
+    color: #111;
+  }
+
+  /* Education row */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     font-size: 10px;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 2px;
   }
 
-  .achievements-list strong {
-    color: #1a1a1a;
+  .edu-row .degree {
+    font-weight: 600;
+  }
+
+  .edu-row .details {
+    color: #444;
+    font-size: 9.5px;
   }
 
   @media print {
@@ -233,218 +234,212 @@
     .page {
       width: 100%;
       min-height: 100vh;
+      max-height: 100vh;
+      padding: 18px 24px 14px;
     }
   }
 </style>
 </head>
 <body>
 <div class="page">
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="name">
-      <h1>YASH<br>GADIA</h1>
-      <p class="subtitle">Full-Stack & Web3 Developer</p>
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>Yash Gadia</h1>
+      <p class="subtitle">Full-Stack Developer &amp; Entrepreneur</p>
     </div>
-
-    <div class="divider"></div>
-
-    <div class="sidebar-section">
-      <h3>Contact</h3>
-      <p>+91-9950094483</p>
-      <p>yash113gadia@gmail.com</p>
-      <p>Greater Noida, UP</p>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Online</h3>
-      <p><a href="https://linkedin.com/in/yashgadia">linkedin.com/in/yashgadia</a></p>
-      <p><a href="https://github.com/yash113gadia">github.com/yash113gadia</a></p>
-      <p><a href="https://yashgadia.vercel.app">yashgadia.vercel.app</a></p>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Skills</h3>
-      <div class="skill-category">
-        <h4>Languages</h4>
-        <p>TypeScript, JavaScript, Python, Solidity, Java, C++, SQL</p>
+    <div class="header-right">
+      <div>+91-9950094483 · <a href="mailto:yash113gadia@gmail.com">yash113gadia@gmail.com</a> · Greater Noida, UP</div>
+      <div>
+        <a href="https://linkedin.com/in/yashgadia">linkedin.com/in/yashgadia</a> ·
+        <a href="https://github.com/yash113gadia">github.com/yash113gadia</a> ·
+        <a href="https://yash113gadia.is-a.dev">yash113gadia.is-a.dev</a>
       </div>
-      <div class="skill-category">
-        <h4>Frontend</h4>
-        <p>React, Next.js, React Native, Tailwind, Three.js, Framer Motion</p>
-      </div>
-      <div class="skill-category">
-        <h4>Backend</h4>
-        <p>Node.js, Express, FastAPI, Firebase, Socket.io</p>
-      </div>
-      <div class="skill-category">
-        <h4>Web3</h4>
-        <p>Solidity, Hardhat, Ethers.js</p>
-      </div>
-      <div class="skill-category">
-        <h4>Databases</h4>
-        <p>PostgreSQL, MongoDB, SQLite, Firestore</p>
-      </div>
-      <div class="skill-category">
-        <h4>Tools</h4>
-        <p>Docker, Git, Razorpay, Stripe, Groq/Llama, Gemini AI</p>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Education</h3>
-      <p><strong style="color:white">B.Tech + M.Tech</strong></p>
-      <p>Computer Science</p>
-      <p>NIET, Greater Noida</p>
-      <p>2024 - 2029</p>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Languages</h3>
-      <p>Hindi — Native</p>
-      <p>English — C1 Advanced</p>
-      <p>Japanese — A2 Elementary</p>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="main">
-    <!-- Profile -->
-    <div class="profile">
-      <div class="section-title">Profile</div>
-      <p>
-        Full-Stack & Web3 Developer. Co-founder of Qlaa (qlaa.in), a live marketplace platform. Currently interning at SpeedoExpress building production web applications. Experienced in blockchain smart contracts, AI integration, payment systems, real-time features, and scalable architectures. Passionate about shipping products that solve real problems.
-      </p>
+  <!-- Profile -->
+  <div class="section">
+    <div class="section-title">Profile</div>
+    <p class="profile">
+      <p>Full-Stack &amp; Web3 Developer. Co-founder of Qlaa (qlaa.in), a live marketplace platform. Interning at SpeedoExpress building production web applications. Experienced in blockchain smart contracts, AI integration, payment systems, real-time features, and scalable architectures.</p>
+    </p>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-row"><strong>Languages:</strong> <span>TypeScript, JavaScript, Python, Solidity, Java, C++, SQL</span></div>
+      <div class="skill-row"><strong>Frontend:</strong> <span>React, Next.js, React Native, Tailwind, Three.js, Framer Motion</span></div>
+      <div class="skill-row"><strong>Backend:</strong> <span>Node.js, Express, FastAPI, Firebase, Socket.io</span></div>
+      <div class="skill-row"><strong>Databases:</strong> <span>PostgreSQL, MongoDB, SQLite, Firestore, Neon</span></div>
+      <div class="skill-row"><strong>Web3 &amp; AI:</strong> <span>Solidity, Hardhat, Ethers.js, Gemini AI, Groq/Llama, AI SDK</span></div>
+      <div class="skill-row"><strong>Tools:</strong> <span>Docker, Git, Linux, Razorpay, Stripe, Playwright, Puppeteer</span></div>
+    </div>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>SpeedoExpress</h4> <span class="role">— Web Developer Intern</span></div>
+        <span class="date">2026 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Building production marketing website using Next.js 16, React 19, Tailwind CSS v4. Deployed at speedoexpress.org</li>
+        <li>Implemented pricing calculator, service showcase, SEO optimization, and WhatsApp CTA integration</li>
+      </ul>
     </div>
 
-    <!-- Experience -->
-    <div>
-      <div class="section-title">Experience</div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <h4>SpeedoExpress</h4>
-          <span class="role">| Web Developer Intern | 2026 - Present</span>
-        </div>
-        <ul class="exp-bullets">
-          <li>Building the production marketing website using Next.js 16, React 19, and Tailwind CSS v4</li>
-          <li>Implemented pricing calculator, service showcase, SEO optimization, and WhatsApp CTA</li>
-          <li>Deployed to production at speedoexpress.org</li>
-        </ul>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>Qlaa</h4> <span class="role">— Co-Founder &amp; Lead Developer</span></div>
+        <span class="date">2024 – Present</span>
       </div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <h4>Freelance Game Developer</h4>
-          <span class="role">| Roblox Platform</span>
-        </div>
-        <ul class="exp-bullets">
-          <li>Built game mechanics and scripted gameplay systems in Lua for client commissions</li>
-          <li>Delivered custom game development projects on the Roblox platform</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <h4>Qlaa</h4>
-          <span class="role">| Co-Founder & Lead Developer | 2024 - Present</span>
-          <a class="link" href="https://qlaa.in">qlaa.in</a>
-        </div>
-        <ul class="exp-bullets">
-          <li>Built full-stack marketplace with React + TypeScript + Vite + Firebase</li>
-          <li>Implemented Razorpay payments, real-time chat, Google OAuth authentication</li>
-          <li>Reviews & ratings, artist onboarding, role-based access, CI/CD on Netlify</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <h4>Impact Career Solution</h4>
-          <span class="role">| Co-Founder</span>
-        </div>
-        <ul class="exp-bullets">
-          <li>Top 43 Finalist out of 500+ entries at MIT Pune Startup Event</li>
-          <li>AI-powered career guidance; validated market for 100K+ Tier-2 students</li>
-        </ul>
-      </div>
+      <ul class="exp-bullets">
+        <li>Built full-stack marketplace (React + TypeScript + Firebase) with Razorpay payments, real-time chat, Google OAuth</li>
+        <li>Reviews &amp; ratings, artist onboarding, role-based access, CI/CD on Netlify. Live at qlaa.in</li>
+      </ul>
     </div>
 
-    <!-- Projects -->
-    <div>
-      <div class="section-title">Projects</div>
-
-      <div class="project-item">
-        <div class="project-header">
-          <h4>Attestr</h4>
-          <span class="type">| Decentralized Media Authenticator</span>
-        </div>
-        <p class="project-tech">React + Solidity + Hardhat + Ethers.js + Firebase + Three.js</p>
-        <ul class="project-bullets">
-          <li>Blockchain-powered media verification with smart contracts, AI deepfake detection, ELA forensics, and perceptual hashing</li>
-          <li>Built Chrome extension (Manifest V3) and REST API. Innovate Bharat Hackathon 2026</li>
-        </ul>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>Impact Career Solution</h4> <span class="role">— Co-Founder</span></div>
+        <span class="date">2024</span>
       </div>
-
-      <div class="project-item">
-        <div class="project-header">
-          <h4>CodePilot</h4>
-          <span class="type">| AI Coding Agent CLI</span>
-        </div>
-        <p class="project-tech">TypeScript + Node.js + AI SDK + Ink + Zod</p>
-        <ul class="project-bullets">
-          <li>Multi-provider AI coding assistant (Anthropic, OpenAI, Google, Ollama) published on NPM</li>
-          <li>Parallel sub-agent system, plan mode, file tracking, model switching, image/PDF input</li>
-        </ul>
-      </div>
-
-      <div class="project-item">
-        <div class="project-header">
-          <h4>FitTrack</h4>
-          <span class="type">| AI Nutrition Assistant</span>
-        </div>
-        <p class="project-tech">React Native + Expo + Gemini AI + SQLite + Zustand</p>
-        <ul class="project-bullets">
-          <li>Cross-platform mobile app (v1.0) with AI food recognition, barcode scanning, offline-first architecture</li>
-        </ul>
-      </div>
-
-      <div class="project-item">
-        <div class="project-header">
-          <h4>AttendEase</h4>
-          <span class="type">| Enterprise Attendance System</span>
-        </div>
-        <p class="project-tech">React + PostgreSQL + JWT + Vercel Serverless</p>
-        <ul class="project-bullets">
-          <li>Full-stack attendance platform with JWT auth, normalized schema, analytics dashboard</li>
-        </ul>
-      </div>
-
-      <div class="project-item">
-        <div class="project-header">
-          <h4>OmniAi</h4>
-          <span class="type">| AI Content Generator SaaS</span>
-        </div>
-        <p class="project-tech">React + Firebase + Stripe + Vite</p>
-        <ul class="project-bullets">
-          <li>AI-powered content generation platform with Stripe payments and multiple templates</li>
-        </ul>
-      </div>
+      <ul class="exp-bullets">
+        <li>Top 43 Finalist out of 500+ entries at MIT Pune Startup Event. AI-powered career guidance platform</li>
+      </ul>
     </div>
 
-    <!-- Achievements -->
-    <div>
-      <div class="section-title">Achievements & Leadership</div>
-      <ul class="achievements-list">
-        <li><strong>Innovate Bharat Hackathon 2026</strong> — Built Attestr (Team Ctrl+Alt+Diablo)</li>
-        <li><strong>Rank 6/150+</strong> — Techvanya 2.0 Promptathon, GLA University Mathura (2025)</li>
-        <li><strong>Top 43/500+</strong> — MIT Pune Startup Event (Impact Career Solution)</li>
-        <li><strong>Winner</strong> — Voice & Verdict Debate, 1st among 54 teams (2025)</li>
-        <li><strong>Winner</strong> — Le Discourse 2, Socio-political Debate (2025)</li>
-        <li><strong>Delegate (Sweden)</strong> — UNHRC MUN 2025</li>
-        <li><strong>Winner</strong> — Intra-College Debate on AI Ethics (2024)</li>
-        <li><strong>Winner</strong> — Inter-District Table Tennis Championship (2021)</li>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>Freelance Game Developer</h4> <span class="role">— Roblox Platform</span></div>
+        <span class="date">2025</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Built game mechanics and scripted gameplay systems in Lua for client commissions on Roblox</li>
       </ul>
     </div>
   </div>
+
+  <!-- Projects -->
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>Attestr</h4>
+        <span class="type">— Decentralized Media Authenticator</span>
+      </div>
+      <p class="project-tech">React, Solidity, Hardhat, Ethers.js, Firebase, Three.js, Chrome Extension</p>
+      <ul class="project-bullets">
+        <li>Blockchain-powered media verification with smart contracts, AI deepfake detection, ELA forensics, and perceptual hashing. Innovate Bharat Hackathon 2026</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>CodePilot</h4>
+        <span class="type">— AI Coding Agent CLI</span>
+      </div>
+      <p class="project-tech">TypeScript, Node.js, AI SDK, Ink, Zod — Published on NPM</p>
+      <ul class="project-bullets">
+        <li>Multi-provider AI coding assistant (Anthropic, OpenAI, Google, Ollama) with parallel sub-agents, plan mode, file tracking</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>CrackNIET</h4>
+        <span class="type">— AI Exam Assistant Extension</span>
+      </div>
+      <p class="project-tech">Chrome Extension, Manifest V3, OpenRouter AI, Content Scripts</p>
+      <ul class="project-bullets">
+        <li>Chrome extension with AI exam assistance for Iamneo, HackerRank, NPTEL. Multi-layer architecture with stealth injection and BYOK model</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>FitTrack</h4>
+        <span class="type">— AI Nutrition Assistant</span>
+      </div>
+      <p class="project-tech">React Native, Expo, Gemini AI, SQLite, Zustand</p>
+      <ul class="project-bullets">
+        <li>Cross-platform mobile app with AI food recognition, barcode scanning, offline-first architecture</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>Amazon Scraper</h4>
+        <span class="type">— Product Data Scraper</span>
+      </div>
+      <p class="project-tech">Node.js, Puppeteer, Express, Stealth Plugin</p>
+      <ul class="project-bullets">
+        <li>Web scraper with anti-detection stealth plugins, resilient selector fallbacks, real-time progress UI, and CSV export</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>AttendEase</h4>
+        <span class="type">— Enterprise Attendance System</span>
+      </div>
+      <p class="project-tech">React, PostgreSQL (Neon), JWT, Vercel Serverless</p>
+      <ul class="project-bullets">
+        <li>Full-stack attendance platform with JWT auth, normalized schema, analytics dashboard. Deployed on Vercel</li>
+      </ul>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <h4>OmniAi</h4>
+        <span class="type">— AI Content Generator SaaS</span>
+      </div>
+      <p class="project-tech">React, Firebase, Stripe, Vite</p>
+      <ul class="project-bullets">
+        <li>AI-powered content generation platform with Stripe subscription payments and multiple templates</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Education + Achievements side by side -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-row">
+      <div>
+        <span class="degree">B.Tech + M.Tech, Computer Science</span>
+        <span class="details"> — NIET, Greater Noida</span>
+      </div>
+      <span class="date">2024 – 2029</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Languages</div>
+    <div style="font-size: 9.5px; color: #333;">Hindi — Native &nbsp;·&nbsp; English — C1 Advanced &nbsp;·&nbsp; Japanese — A2 Elementary</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Achievements &amp; Leadership</div>
+    <div class="achievements-grid">
+      <li><strong>Innovate Bharat Hackathon 2026</strong> — Built Attestr (Team Ctrl+Alt+Diablo)</li>
+      <li><strong>Rank 6/150+</strong> — Techvanya 2.0 Promptathon, GLA University (2025)</li>
+      <li><strong>Top 43/500+</strong> — MIT Pune Startup Event</li>
+      <li><strong>Winner</strong> — Voice &amp; Verdict Debate, 1st among 54 teams (2025)</li>
+      <li><strong>Winner</strong> — Le Discourse 2, Socio-political Debate (2025)</li>
+      <li><strong>Delegate (Sweden)</strong> — UNHRC MUN 2025</li>
+      <li><strong>Winner</strong> — Intra-College Debate on AI Ethics (2024)</li>
+      <li><strong>Winner</strong> — Inter-District Table Tennis Championship (2021)</li>
+    </div>
+  </div>
+
 </div>
 </body>
 </html>

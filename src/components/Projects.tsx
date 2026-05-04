@@ -22,7 +22,7 @@ const projects: Project[] = [
     description: "Blockchain-powered media verification platform with Solidity smart contracts, AI deepfake detection, Error Level Analysis, perceptual hashing, and a Chrome extension. Built at Innovate Bharat Hackathon 2026.",
     tech: ["React", "Solidity", "Hardhat", "Firebase", "Three.js", "Ethers.js"],
     image: "/attestr-preview.webp",
-    github: "https://github.com/yash113gadia",
+    github: "https://github.com/yash113gadia/attestr",
     demo: "https://hackathon-six-eosin.vercel.app",
     featured: true,
     color: "emerald"
@@ -85,7 +85,7 @@ const projects: Project[] = [
     subtitle: "Automated Documentation",
     description: "Full-stack tool that auto-generates personalized lab .docx files with Playwright screenshot capture and real-time progress tracking via WebSockets.",
     tech: ["React", "FastAPI", "Socket.io", "Playwright"],
-    github: "https://github.com/yash113gadia",
+    github: "#",
     demo: "#",
     featured: false,
     color: "sky"
@@ -99,6 +99,46 @@ const projects: Project[] = [
     demo: "https://attendease-web-eight.vercel.app",
     featured: false,
     color: "emerald"
+  },
+  {
+    title: "CrackNIET",
+    subtitle: "AI Exam Assistant Extension",
+    description: "Chrome Manifest V3 extension with AI-powered exam assistance for Iamneo, HackerRank, and NPTEL. Features free OpenRouter models, auto-paste, MCQ extraction, and stealth injection.",
+    tech: ["Chrome Extension", "JavaScript", "AI/LLM", "Manifest V3"],
+    github: "https://github.com/yash113gadia/crackniet",
+    demo: "#",
+    featured: false,
+    color: "rose"
+  },
+  {
+    title: "Amazon Scraper",
+    subtitle: "Product Data Scraper",
+    description: "Web-based tool for scraping Amazon product data (name, category, price, description) with advanced anti-detection, stealth plugins, and CSV export.",
+    tech: ["Node.js", "Puppeteer", "Express", "JavaScript"],
+    github: "https://github.com/yash113gadia/amazon-scraper",
+    demo: "#",
+    featured: false,
+    color: "amber"
+  },
+  {
+    title: "CampusQuest",
+    subtitle: "Campus Exploration Game",
+    description: "Interactive gamified campus exploration app for new students to discover their university through challenges, quests, and achievements.",
+    tech: ["TypeScript", "React", "Gamification"],
+    github: "https://github.com/yash113gadia/CampusQuest",
+    demo: "#",
+    featured: false,
+    color: "violet"
+  },
+  {
+    title: "SyllabusAI",
+    subtitle: "AI Study Planner",
+    description: "AI-integrated learning platform that auto-generates syllabi and study schedules. Node.js/TypeScript backend with PostgreSQL and Sequelize ORM.",
+    tech: ["Node.js", "TypeScript", "PostgreSQL", "Sequelize"],
+    github: "https://github.com/yash113gadia/SyllabusAI",
+    demo: "https://client-theta-woad.vercel.app",
+    featured: false,
+    color: "sky"
   },
   {
     title: "SpeedoExpress",

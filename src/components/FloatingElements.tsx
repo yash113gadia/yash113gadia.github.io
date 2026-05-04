@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 // Floating code symbols and tech icons
 const floatingItems = [
@@ -119,14 +120,19 @@ export const AnimatedGrid = () => {
 
 // Particle field effect - reduced count for performance
 export const ParticleField = () => {
-  const particles = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    duration: Math.random() * 10 + 10,
-    delay: Math.random() * 5,
-  }));
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; duration: number; delay: number }>>([]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setParticles(Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      duration: Math.random() * 10 + 10,
+      delay: Math.random() * 5,
+    })));
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

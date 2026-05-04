@@ -35,7 +35,7 @@ const experiences = [
   {
     title: "Freelance Game Developer",
     company: "Roblox Platform",
-    date: "",
+    date: "2025",
     description: "Freelance game development on Roblox — built game mechanics, scripted gameplay systems in Lua, and worked with clients on commissions and custom game projects.",
     tech: ["Lua", "Roblox", "Game Dev", "Freelance"],
     icon: Gamepad2,

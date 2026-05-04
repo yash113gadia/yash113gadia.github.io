@@ -1,13 +1,13 @@
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Three.js", "Framer Motion"],
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native", "Three.js", "Chrome Extensions"],
     dotColor: "bg-emerald-400",
     hoverColor: "hover:border-emerald-400/50 hover:text-emerald-400 hover:bg-emerald-400/10",
   },
   {
     title: "Backend",
-    skills: ["Node.js", "Express", "FastAPI", "REST APIs", "Socket.io", "Firebase"],
+    skills: ["Node.js", "Express", "FastAPI", "REST APIs", "Sequelize", "Firebase"],
     dotColor: "bg-violet-400",
     hoverColor: "hover:border-violet-400/50 hover:text-violet-400 hover:bg-violet-400/10",
   },
@@ -25,7 +25,7 @@ const skillCategories = [
   },
   {
     title: "DevOps & Tools",
-    skills: ["Git", "Docker", "Linux", "Playwright", "CI/CD", "Expo"],
+    skills: ["Git", "Docker", "Linux", "Playwright", "Puppeteer", "Expo"],
     dotColor: "bg-rose-400",
     hoverColor: "hover:border-rose-400/50 hover:text-rose-400 hover:bg-rose-400/10",
   }
@@ -37,7 +37,8 @@ const technologies = [
   "PostgreSQL", "MongoDB", "SQLite", "Firebase", "Neon",
   "Docker", "Git", "Linux", "Vercel", "Netlify",
   "Tailwind", "Framer Motion", "Three.js", "Zustand", "Stripe",
-  "Expo", "React Native", "Gemini AI", "Hardhat", "Ethers.js", "Playwright"
+  "Expo", "React Native", "Gemini AI", "Hardhat", "Ethers.js", "Playwright",
+  "Puppeteer", "Sequelize", "Zod"
 ];
 
 const Skills = () => {
@@ -98,9 +99,9 @@ const Skills = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {[
             { number: "2+", label: "Years Experience" },
-            { number: "15+", label: "Projects Built" },
-            { number: "30+", label: "Technologies" },
-            { number: "1000+", label: "Hours of Code" },
+            { number: "20+", label: "Projects Built" },
+            { number: "35+", label: "Technologies" },
+            { number: "1500+", label: "Hours of Code" },
           ].map((stat, index) => (
             <div
               key={stat.label}

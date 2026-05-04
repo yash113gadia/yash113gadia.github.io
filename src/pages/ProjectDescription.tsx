@@ -67,6 +67,60 @@ const projectDetails = [
     businessPerspective: "Capitalizes on the generative AI boom by providing an easy-to-use interface for businesses to scale their content production. Low overhead with high scalability.",
     futureScope: "Custom model fine-tuning for enterprise clients, team collaboration features, and direct publishing integrations for WordPress/LinkedIn.",
     color: "orange"
+  },
+  {
+    title: "Poker Game",
+    objective: "To build a real-time, low-latency multiplayer poker experience with scalable backend logic and smooth UI interactions.",
+    techStack: "React, Socket.io, Express, Node.js, Tailwind CSS, Framer Motion",
+    detailedArchitecture: "Uses Socket.io for bi-directional event-driven communication. The Node.js backend manages the complete game state (blinds, pot, betting rounds, deck shuffling) in-memory for maximum speed. The React frontend uses Framer Motion for card animations and state-driven UI updates.",
+    businessPerspective: "Demonstrates high-level proficiency in real-time systems and complex state management, applicable to fintech, gaming, and collaborative enterprise tools.",
+    futureScope: "Database persistence for global player stats, multi-table tournament support, and a cross-platform mobile version via React Native.",
+    color: "amber"
+  },
+  {
+    title: "LabForge",
+    objective: "To automate laboratory documentation by programmatically capturing simulations and generating formatted academic reports.",
+    techStack: "React, FastAPI, Socket.io, Playwright, Python, docx-gen",
+    detailedArchitecture: "Employs a Python/FastAPI worker utilizing Playwright for browser automation and screen capture. Socket.io provides real-time feedback during the generation process. Reports are dynamically assembled into .docx format with standardized templates.",
+    businessPerspective: "Solves a significant administrative bottleneck in engineering education, reducing report generation time by 90% and ensuring consistency across documentation.",
+    futureScope: "Integration with major simulation platforms like MATLAB and Proteus, AI-powered analysis of simulation results, and cloud-based report archival.",
+    color: "sky"
+  },
+  {
+    title: "CrackNIET",
+    objective: "To build a stealth, AI-powered exam assistance Chrome extension that works across Iamneo, HackerRank, and NPTEL with zero configuration and free LLM models.",
+    techStack: "JavaScript, Chrome Extension API, Manifest V3, OpenRouter AI, Content Scripts, Injection Scripts",
+    detailedArchitecture: "Uses a multi-layer architecture: Service Worker handles API calls and message routing, Content Scripts inject into exam platforms with stealth DOM manipulation, and Injection Scripts spoof proctoring signals (NeoExamShield). Supports free/pro auth model with BYOK.",
+    businessPerspective: "Addresses a massive student pain point with a free-tier model that drives viral adoption. Pro tier with BYOK enables advanced features while keeping operational costs at zero.",
+    futureScope: "Support for more exam platforms, local LLM integration for offline use, and collaborative answer sharing with peer verification.",
+    color: "rose"
+  },
+  {
+    title: "Amazon Scraper",
+    objective: "To create a high-performance web scraper for Amazon product data with advanced anti-detection and a polished real-time UI.",
+    techStack: "Node.js, Express, Puppeteer, Puppeteer Stealth Plugin, JavaScript, HTML/CSS",
+    detailedArchitecture: "Puppeteer with stealth plugins for anti-detection, resilient CSS selector fallbacks for Amazon's dynamic DOM, Express backend for scraping orchestration, and a real-time progress UI with live data population and CSV export.",
+    businessPerspective: "Enables market research and competitive analysis for e-commerce businesses. Reduces manual data collection time from hours to minutes.",
+    futureScope: "Multi-marketplace support (Flipkart, eBay), scheduled scraping with email alerts, and price tracking dashboards.",
+    color: "amber"
+  },
+  {
+    title: "CampusQuest",
+    objective: "To gamify the campus orientation experience for new students through interactive quests, challenges, and achievements.",
+    techStack: "TypeScript, React, Gamification Engine, Location Services",
+    detailedArchitecture: "React-based SPA with a custom gamification engine handling quest progression, achievement unlocking, and leaderboard ranking. Location-aware challenges tied to campus landmarks.",
+    businessPerspective: "Solves the student orientation problem at scale. Can be white-labeled for any university, creating a B2B SaaS opportunity for educational institutions.",
+    futureScope: "AR-powered campus tours, social multiplayer quests, and integration with university LMS for credit-based participation.",
+    color: "violet"
+  },
+  {
+    title: "SyllabusAI",
+    objective: "To automate study planning by using AI to generate personalized syllabi, schedules, and progress tracking for students.",
+    techStack: "Node.js, TypeScript, PostgreSQL, Sequelize ORM, React, Vercel",
+    detailedArchitecture: "TypeScript backend with Sequelize ORM for data modeling and migrations on PostgreSQL. AI layer generates study plans based on course metadata and student preferences. React frontend with progress tracking dashboards.",
+    businessPerspective: "Targets the EdTech market by reducing the cognitive overhead of study planning. Can be integrated into existing LMS platforms as a plugin.",
+    futureScope: "Collaborative study groups, spaced-repetition integration, and AI-powered exam preparation with practice question generation.",
+    color: "sky"
   }
 ];
 
@@ -121,6 +175,41 @@ const ProjectDescription = () => {
 - **Objective:** Automated content production.
 - **Detailed Tech:** React, Stripe, OpenAI API.
 - **Business:** Subscription model with credit-based usage tracking.
+
+## 8. POKER GAME (Real-time Multiplayer)
+- **Objective:** Low-latency multiplayer poker experience.
+- **Detailed Tech:** React, Socket.io, Express, Node.js.
+- **Architecture:** Bi-directional event communication with in-memory state management.
+
+## 9. LABFORGE (Automated Documentation)
+- **Objective:** Programmatic laboratory report generation.
+- **Detailed Tech:** FastAPI, Playwright, Socket.io, Python.
+- **Architecture:** Browser automation for capturing simulation data and dynamic .docx assembly.
+
+## 10. CRACKNIET (AI Exam Assistant Extension)
+- **Objective:** Stealth AI-powered exam assistance across Iamneo, HackerRank, NPTEL.
+- **Detailed Tech:** Chrome Extension API, Manifest V3, OpenRouter AI, Content Scripts, Injection Scripts.
+- **Architecture:**
+  - Service Worker handles API calls and message routing.
+  - Content Scripts inject with stealth DOM manipulation.
+  - NeoExamShield spoofs proctoring signals.
+  - Free/Pro auth model with BYOK (Bring Your Own Key).
+- **Features:** Auto-paste, MCQ extraction, chatbot toggling, auto-typing.
+
+## 11. AMAZON SCRAPER (Product Data Scraper)
+- **Objective:** High-performance Amazon product data scraping with anti-detection.
+- **Detailed Tech:** Node.js, Puppeteer + Stealth Plugin, Express.
+- **Architecture:** Resilient CSS selector fallbacks, real-time progress UI, CSV export.
+
+## 12. CAMPUSQUEST (Campus Exploration Game)
+- **Objective:** Gamified campus orientation for new students.
+- **Detailed Tech:** TypeScript, React, Gamification Engine.
+- **Features:** Quest progression, achievements, leaderboards, location-aware challenges.
+
+## 13. SYLLABUSAI (AI Study Planner)
+- **Objective:** AI-powered syllabus generation and study scheduling.
+- **Detailed Tech:** Node.js, TypeScript, PostgreSQL, Sequelize ORM.
+- **Architecture:** AI generates personalized study plans, progress tracking dashboards.
 `;
 
   return (

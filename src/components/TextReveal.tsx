@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 
 interface TextRevealProps {
@@ -37,7 +37,7 @@ const Word = ({
   range,
 }: {
   children: string;
-  progress: any;
+  progress: MotionValue<number>;
   range: [number, number];
 }) => {
   const opacity = useTransform(progress, range, [0.2, 1]);
@@ -68,19 +68,33 @@ export const CharacterReveal = ({ text, className = '' }: TextRevealProps) => {
       {characters.map((char, i) => {
         const start = i / characters.length;
         const end = start + 1 / characters.length;
-        const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
         
         return (
-          <motion.span
-            key={i}
-            style={{ opacity }}
-            className="inline-block"
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+          <Character key={i} char={char} progress={scrollYProgress} range={[start, end]} />
         );
       })}
     </div>
+  );
+};
+
+const Character = ({ 
+  char, 
+  progress, 
+  range 
+}: { 
+  char: string; 
+  progress: MotionValue<number>; 
+  range: [number, number] 
+}) => {
+  const opacity = useTransform(progress, range, [0.1, 1]);
+  
+  return (
+    <motion.span
+      style={{ opacity }}
+      className="inline-block"
+    >
+      {char === ' ' ? '\u00A0' : char}
+    </motion.span>
   );
 };
 

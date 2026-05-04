@@ -75,7 +75,7 @@ const About = () => {
             style={{ animationDelay: '0.4s' }}
           >
             <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">15+ Projects</h4>
+            <h4 className="text-white font-semibold mb-1">20+ Projects</h4>
             <p className="text-sm text-neutral-400">AI & Full-Stack Apps</p>
             <p className="text-xs text-neutral-500 mt-2">AI Agents, CLIs, Marketplaces, Mobile</p>
           </div>

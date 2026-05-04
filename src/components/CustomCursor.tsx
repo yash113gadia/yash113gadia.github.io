@@ -55,12 +55,10 @@ const CustomCursor = () => {
   }, [cursorX, cursorY]);
 
   // Don't show custom cursor on touch devices
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice] = useState(() => 
+    typeof window !== 'undefined' ? ('ontouchstart' in window || navigator.maxTouchPoints > 0) : false
+  );
   
-  useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-  }, []);
-
   if (isTouchDevice) return null;
 
   return (
