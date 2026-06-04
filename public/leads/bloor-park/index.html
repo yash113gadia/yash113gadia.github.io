@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Redesign Proposal — Bloor Park Physiotherapy &amp; Rehab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..600&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6EC;
+    --paper-2:#F4ECDD;
+    --ink:#1A1A17;
+    --ink-soft:#4A463E;
+    --ink-faint:#8C8576;
+    --pine:#13503F;
+    --pine-2:#1C6B53;
+    --clay:#D6612F;
+    --line:#D9CFBC;
+    --card:#FFFDF8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+
+  /* ===== type ===== */
+  .display{font-family:'Fraunces',serif;font-weight:500;line-height:1.02;letter-spacing:-.015em}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--clay)}
+  .eyebrow.pine{color:var(--pine-2)}
+  p{color:var(--ink-soft);font-size:1.05rem}
+  a{color:inherit}
+
+  /* ===== cover ===== */
+  .cover{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:64px}
+  .mark{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .mark span{color:var(--clay)}
+  .cover-meta{text-align:right;font-size:.82rem;color:var(--ink-faint);line-height:1.5}
+  .cover h1{font-size:clamp(2.7rem,7vw,5rem);margin:0 0 28px}
+  .cover h1 em{font-style:italic;color:var(--pine)}
+  .cover-lead{max-width:560px;font-size:1.18rem;color:var(--ink-soft)}
+  .prepared{margin-top:40px;font-size:.85rem;color:var(--ink-faint);letter-spacing:.02em}
+  .prepared b{color:var(--ink);font-weight:600}
+
+  /* ===== stat band ===== */
+  .band{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:56px 0;background:var(--card)}
+  .stat{flex:1;min-width:150px;padding:26px 28px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:'Fraunces',serif;font-size:2.3rem;font-weight:600;color:var(--pine);line-height:1}
+  .stat .l{font-size:.8rem;color:var(--ink-faint);margin-top:8px;letter-spacing:.02em}
+
+  /* ===== sections ===== */
+  section{padding:60px 0;border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:36px}
+  .sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin-top:14px;max-width:680px}
+  .sec-head h2 em{font-style:italic;color:var(--pine)}
+  .lead-row{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:start}
+  @media(max-width:720px){.lead-row{grid-template-columns:1fr;gap:20px}}
+
+  /* working list */
+  .pills{display:flex;flex-direction:column;gap:14px}
+  .pill{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:11px}
+  .pill .tick{flex:none;width:22px;height:22px;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;font-size:.7rem;margin-top:2px}
+  .pill b{color:var(--ink);font-weight:600}
+  .pill p{font-size:.92rem;margin-top:2px}
+
+  /* problem cards */
+  .probs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:720px){.probs{grid-template-columns:1fr}}
+  .prob{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:24px;position:relative;overflow:hidden}
+  .prob::after{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--clay)}
+  .prob .num{font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--clay)}
+  .prob h3{font-size:1.12rem;margin:6px 0 10px;font-weight:600}
+  .prob p{font-size:.93rem}
+  .prob .cost{display:inline-block;margin-top:12px;font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--pine-2)}
+
+  /* solution */
+  .sol{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px}
+  @media(max-width:720px){.sol{grid-template-columns:1fr}}
+  .sol-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .sol-item .ico{flex:none;font-family:'Fraunces',serif;font-weight:600;color:var(--pine);font-size:1.05rem;width:26px}
+  .sol-item b{color:var(--ink);font-weight:600;display:block;margin-bottom:3px}
+  .sol-item span{font-size:.92rem;color:var(--ink-soft)}
+
+  /* process */
+  .steps{counter-reset:s;display:flex;flex-direction:column;gap:0}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+  .step:last-child{border-bottom:none}
+  .step .si{counter-increment:s;font-family:'Fraunces',serif;font-size:2.1rem;font-weight:500;color:var(--clay);line-height:1}
+  .step .si::before{content:"0" counter(s)}
+  .step h3{font-size:1.15rem;font-weight:600;margin-bottom:5px}
+  .step p{font-size:.95rem}
+
+  /* about / portfolio */
+  .about{background:var(--ink);color:var(--paper);border:none;border-radius:18px;padding:48px;margin:0;position:relative;overflow:hidden}
+  .about::before{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(28,107,83,.55),transparent 70%)}
+  .about .eyebrow{color:var(--clay)}
+  .about h2{font-size:clamp(1.7rem,3.6vw,2.5rem);color:var(--paper);margin:14px 0 18px}
+  .about h2 em{font-style:italic;color:#7FC9AF}
+  .about p{color:#D8D2C4}
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start;margin-top:8px}
+  @media(max-width:720px){.about-grid{grid-template-columns:1fr;gap:28px}}
+  .credlist{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:12px}
+  .credlist li{display:flex;gap:12px;font-size:.95rem;color:#E9E4D8;align-items:flex-start}
+  .credlist .d{flex:none;width:7px;height:7px;border-radius:50%;background:var(--clay);margin-top:8px}
+  .credlist b{color:#fff;font-weight:600}
+  .stack{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.74rem;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:30px;color:#CFC9BC;letter-spacing:.02em}
+
+  .work{margin-top:14px;display:flex;flex-direction:column;gap:2px}
+  .proj{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.13)}
+  .proj:first-child{border-top:1px solid rgba(255,255,255,.13)}
+  .proj .pt{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .proj .pn{font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem;color:#fff}
+  .proj .pk{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#7FC9AF;flex:none}
+  .proj .pd{font-size:.86rem;color:#BDB7A9;margin-top:3px}
+
+  /* cta */
+  .cta{text-align:center;padding:72px 0}
+  .cta h2{font-size:clamp(2rem,5vw,3.2rem);max-width:680px;margin:18px auto 20px}
+  .cta h2 em{font-style:italic;color:var(--pine)}
+  .cta p{max-width:520px;margin:0 auto 36px}
+  .contact{display:inline-flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:40px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+  .btn-primary{background:var(--pine);color:#fff;box-shadow:0 6px 0 #0c3a2c}
+  .btn-primary:hover{transform:translateY(2px);box-shadow:0 4px 0 #0c3a2c}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .footer{text-align:center;padding:36px 0 60px;font-size:.8rem;color:var(--ink-faint)}
+  .footer b{color:var(--ink-soft)}
+  .note{font-size:.75rem;color:var(--ink-faint);font-style:italic}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media print{
+    body{background:#fff}
+    .btn{box-shadow:none}
+    .rv{opacity:1;transform:none}
+    .about{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- COVER -->
+  <header class="cover">
+    <div class="cover-top">
+      <div class="mark">Yash Gadia<span>.</span></div>
+      <div class="cover-meta">
+        Website Redesign Proposal<br>
+        Prepared for Bloor Park Physiotherapy &amp; Rehab<br>
+        2026
+      </div>
+    </div>
+    <div class="eyebrow">A proposal for Bloor Park Physiotherapy &amp; Rehab</div>
+    <h1 class="display">The best-rated clinic in the neighbourhood<br>deserves a <em>website to match.</em></h1>
+    <p class="cover-lead">You've earned a five-star reputation across hundreds of patients. Right now, your website is the one thing standing between that reputation and the people searching for you.</p>
+    <div class="prepared">Prepared by <b>Yash Gadia</b> · Full-Stack Developer &amp; UI/UX Designer</div>
+  </header>
+
+  <!-- STAT BAND -->
+  <div class="band rv">
+    <div class="stat"><div class="n">5.0</div><div class="l">Google rating</div></div>
+    <div class="stat"><div class="n">428</div><div class="l">Patient reviews</div></div>
+    <div class="stat"><div class="n">2018</div><div class="l">Last redesigned</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Page doing all the work</div></div>
+  </div>
+
+  <!-- THE TENSION -->
+  <section class="rv">
+    <div class="lead-row">
+      <div>
+        <div class="eyebrow pine">The situation</div>
+        <h2 class="display" style="font-size:clamp(1.6rem,3.4vw,2.3rem);margin-top:14px">A reputation your site isn't <em>cashing in.</em></h2>
+      </div>
+      <div>
+        <p style="margin-bottom:16px">Bloor Park is, by the numbers, one of the most loved physiotherapy clinics in Toronto — a perfect 5.0 across 428 reviews. That kind of trust is rare and it's hard-won.</p>
+        <p>But your website tells a different story. It's a single, dated page last touched in 2018. So when someone in Koreatown searches "physiotherapy near me" or "pelvic floor physio Toronto," Google has almost nothing to show them — and the few who do land on the site see something that looks far less impressive than the clinic actually is. The gap between your reputation and your website is quietly costing you new patients every week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S WORKING -->
+  <section class="rv">
+    <div class="sec-head">
+      <div class="eyebrow pine">First, what's already working</div>
+      <h2 class="display">I'm not here to fix the clinic. I'm here to fix the <em>front door.</em></h2>
+    </div>
+    <div class="pills">
+      <div class="pill"><div class="tick">✓</div><div><b>A genuinely exceptional reputation.</b><p>428 reviews at a flawless 5.0 — patients consistently name your therapists and come back. This is your single biggest asset, and it's barely visible online.</p></div></div>
+      <div class="pill"><div class="tick">✓</div><div><b>A strong, specialised team.</b><p>Physiotherapy, pelvic health, massage, acupuncture, shockwave — real depth across services people actively search for.</p></div></div>
+      <div class="pill"><div class="tick">✓</div><div><b>An established, trusted brand since 2018.</b><p>The foundation is solid. The redesign isn't a rebuild of who you are — it's an upgrade to how you're seen.</p></div></div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="rv">
+    <div class="sec-head">
+      <div class="eyebrow">What's holding you back</div>
+      <h2 class="display">Five fixable problems — each one <em>costing you bookings.</em></h2>
+    </div>
+    <div class="probs">
+      <div class="prob">
+        <div class="num">i.</div>
+        <h3>It's a single page, so Google can't rank you</h3>
+        <p>Every service is crammed onto one page with anchor links — no dedicated pages for Physiotherapy, Pelvic Health, Massage, Shockwave, or the conditions people search by name. Search engines have almost nothing to index.</p>
+        <span class="cost">→ Invisible for high-intent local searches</span>
+      </div>
+      <div class="prob">
+        <div class="num">ii.</div>
+        <h3>The design doesn't match the reputation</h3>
+        <p>An eight-year-old theme, a 2018 copyright, and small, dated photos. A first-time visitor judges the clinic by the site — and right now it reads older and smaller than you are.</p>
+        <span class="cost">→ Trust lost before the first call</span>
+      </div>
+      <div class="prob">
+        <div class="num">iii.</div>
+        <h3>428 five-star reviews are buried</h3>
+        <p>Your strongest proof sits at the very bottom of the page. It should be the first thing a nervous, in-pain visitor sees.</p>
+        <span class="cost">→ Your best sales tool, hidden</span>
+      </div>
+      <div class="prob">
+        <div class="num">iv.</div>
+        <h3>Visible content slips hurt credibility</h3>
+        <p>A raw code snippet printing on the page, a mislabelled local park, and small typos. Tiny things — but visitors read carelessness as "are they careful with me?"</p>
+        <span class="cost">→ Doubt where there should be confidence</span>
+      </div>
+      <div class="prob">
+        <div class="num">v.</div>
+        <h3>One generic button does all the converting</h3>
+        <p>Every call-to-action is the same "Book Now." No service-specific paths, the free discovery call is hidden, and there's nothing for visitors who aren't ready to book yet. Likely weak on mobile, where most local searches happen.</p>
+        <span class="cost">→ Interested visitors leave without acting</span>
+      </div>
+      <div class="prob" style="background:var(--pine);color:#fff">
+        <div class="num" style="color:#7FC9AF">→</div>
+        <h3 style="color:#fff">The good news</h3>
+        <p style="color:#D8E8E1">None of this is about the clinic. It's all in the website — which means it's all fixable, fast, and entirely within your control.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="rv">
+    <div class="sec-head">
+      <div class="eyebrow pine">What I'll build</div>
+      <h2 class="display">A modern, fast site that <em>works as hard as your team does.</em></h2>
+    </div>
+    <div class="sol">
+      <div class="sol-item"><div class="ico">✦</div><div><b>A proper multi-page structure</b><span>Dedicated, search-optimised pages for every service and the conditions people actually search — so Google can finally find you.</span></div></div>
+      <div class="sol-item"><div class="ico">✦</div><div><b>A modern, mobile-first design</b><span>A clean, calm, trustworthy look that matches the quality of the clinic and feels effortless on a phone.</span></div></div>
+      <div class="sol-item"><div class="ico">✦</div><div><b>Reviews front and centre</b><span>Your 5.0 rating and best testimonials featured prominently, with structured data so they surface in Google results.</span></div></div>
+      <div class="sol-item"><div class="ico">✦</div><div><b>Booking paths that convert</b><span>Clear, service-specific routes into JaneApp, the free discovery call surfaced, plus simple lead capture for the not-yet-ready.</span></div></div>
+      <div class="sol-item"><div class="ico">✦</div><div><b>Local SEO foundations</b><span>Proper titles, local-business markup, fast load times, and a clean technical base built to rank in Toronto.</span></div></div>
+      <div class="sol-item"><div class="ico">✦</div><div><b>Clean, error-free content</b><span>Every typo and stray snippet gone, copy tightened, the whole experience polished end to end.</span></div></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="rv">
+    <div class="sec-head">
+      <div class="eyebrow">How we'll work</div>
+      <h2 class="display">You'll see it before you <em>commit to it.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="si"></div><div><h3>Design first, in Figma</h3><p>I design the look and layout before writing a line of code. You review and approve the direction — no surprises, no guesswork.</p></div></div>
+      <div class="step"><div class="si"></div><div><h3>Build, fast and clean</h3><p>I handle both the design and the development, so nothing gets lost between a designer and a separate coder. One person, one vision, built modern and quick.</p></div></div>
+      <div class="step"><div class="si"></div><div><h3>Launch &amp; hand over</h3><p>We go live, connect your booking and reviews, and I make sure you're comfortable running it. The site stays easy for your team to manage.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT / PORTFOLIO -->
+  <section style="border:none;padding-bottom:24px" class="rv">
+    <div class="about">
+      <div class="eyebrow">Who's building it</div>
+      <h2 class="display">Hi, I'm Yash — I design <em>and</em> I build.</h2>
+      <div class="about-grid">
+        <div>
+          <p>I'm a full-stack developer and UI/UX designer who builds production-grade websites and products — taking projects from a Figma design straight through to a fast, live site. I work across both the visual design and the engineering, so clients get a single point of contact and a cohesive result.</p>
+          <ul class="credlist">
+            <li><span class="d"></span><span><b>Frontend Developer Intern, SpeedoExpress</b> — building a Next.js / React platform for a B2B logistics company.</span></li>
+            <li><span class="d"></span><span><b>Co-founder, Qlaa</b> — a live B2B marketplace I helped design and build.</span></li>
+            <li><span class="d"></span><span><b>M.Tech (Integrated) Computer Science</b> — NIET, Greater Noida (AKTU).</span></li>
+            <li><span class="d"></span><span>Design-to-code specialist — <b>Figma → React/Next.js</b>, modern, responsive, fast.</span></li>
+          </ul>
+          <div class="stack">
+            <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">TypeScript</span>
+            <span class="chip">Tailwind CSS</span><span class="chip">Figma</span><span class="chip">UI/UX</span>
+            <span class="chip">SEO</span><span class="chip">Node.js</span>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Selected work</div>
+          <div class="work">
+            <div class="proj"><div class="pt"><span class="pn">SpeedoExpress</span><span class="pk">Platform</span></div><div class="pd">Full Next.js platform redesign &amp; multi-page restructure for a logistics company.</div></div>
+            <div class="proj"><div class="pt"><span class="pn">Qlaa</span><span class="pk">B2B · Live</span></div><div class="pd">Co-founded B2B marketplace — product design and full-stack build.</div></div>
+            <div class="proj"><div class="pt"><span class="pn">CodePilot</span><span class="pk">AI · TS</span></div><div class="pd">CLI multi-provider AI coding agent built in TypeScript.</div></div>
+            <div class="proj"><div class="pt"><span class="pn">Attestr</span><span class="pk">Blockchain</span></div><div class="pd">Media authentication with AI deepfake detection.</div></div>
+            <div class="proj"><div class="pt"><span class="pn">StudyNest AI</span><span class="pk">React</span></div><div class="pd">AI syllabus manager — React 18, Vite, OpenRouter.</div></div>
+          </div>
+          <div style="margin-top:18px;font-size:.85rem;color:#BDB7A9">
+            Portfolio → <b style="color:#7FC9AF">yashgadia.vercel.app</b><br>
+            LinkedIn → <b style="color:#7FC9AF">linkedin.com/in/yashgadia</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" style="border:none">
+    <div class="eyebrow pine">The next step</div>
+    <h2 class="display">Let me build you a free <em>before / after</em> of your homepage.</h2>
+    <p>No cost, no obligation. I'll mock up a redesigned version of your homepage so you can see exactly what's possible — then we decide together whether to take it further.</p>
+    <div class="contact">
+      <a class="btn btn-primary" href="mailto:yash113gadia@gmail.com?subject=Bloor%20Park%20Website%20Redesign">Email · yash113gadia@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/yashgadia/">Connect on LinkedIn</a>
+    </div>
+    <p class="note" style="margin-top:14px">Or call / WhatsApp · +91 99500 94483</p>
+    <p class="note" style="margin-top:24px">If you like the mockup, we talk scope and timeline. If not, you've lost nothing.</p>
+  </section>
+
+  <div class="footer">
+    <b>Yash Gadia</b> · Full-Stack Developer &amp; UI/UX Designer<br>
+    yash113gadia@gmail.com · yashgadia.vercel.app · linkedin.com/in/yashgadia · +91 99500 94483
+  </div>
+
+</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
