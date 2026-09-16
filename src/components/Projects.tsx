@@ -17,6 +17,28 @@ interface Project {
 const projects: Project[] = [
   // === FEATURED PROJECTS (ordered by impact) ===
   {
+    title: "SpeedoExpress",
+    subtitle: "B2B Last-Mile Logistics Platform",
+    description: "Founding engineer on a Delhi NCR last-mile logistics platform. Architected live driver GPS tracking end to end: Leaflet + OpenStreetMap on the client, Redis with TTL-based coordinate expiry, WebSocket/SSE push, and PostGIS spatial queries for dispatch. Built the driver app now live at driver.speedoexpress.org, shipped a full platform redesign across 182 files, added a WhatsApp B2B ordering flow on the WhatsApp Business API, and packaged the PWA to the Play Store with Bubblewrap. Traced and fixed a production Node.js heap-exhaustion crash.",
+    tech: ["Next.js", "Redis", "PostGIS", "WebSockets", "Leaflet", "Bubblewrap"],
+    image: "/speedoexpress-preview.webp",
+    github: "#",
+    demo: "https://www.speedoexpress.org",
+    featured: true,
+    color: "cyan"
+  },
+  {
+    title: "BiteSite",
+    subtitle: "Multi-Tenant Canteen SaaS",
+    description: "Live college-canteen pre-ordering platform — students order from class, pay online, and collect without queueing. Tenancy is resolved from the authenticated principal rather than the URL, so one college can never read another’s data; an isolation suite proves it against real MySQL. Spring Boot 3.5 on Java 21 with Flyway migrations, Razorpay, and two Android apps.",
+    tech: ["Java 21", "Spring Boot", "MySQL", "Flyway", "Razorpay", "Android"],
+    image: "/bitesite-preview.webp",
+    github: "https://github.com/yash113gadia/bitesite-web",
+    demo: "https://www.bitesite.in",
+    featured: true,
+    color: "amber"
+  },
+  {
     title: "Attestr",
     subtitle: "Decentralized Media Authenticator",
     description: "Blockchain-powered media verification platform with Solidity smart contracts, AI deepfake detection, Error Level Analysis, perceptual hashing, and a Chrome extension. Built at Innovate Bharat Hackathon 2026.",
@@ -38,18 +60,6 @@ const projects: Project[] = [
     featured: true,
     color: "violet"
   },
-  {
-    title: "Qlaa",
-    subtitle: "Live Production Marketplace",
-    description: "Full-stack marketplace with Razorpay payments, Firebase Auth (Google OAuth), real-time chat, reviews & ratings, and multi-step artist onboarding. Deployed on custom domain with CI/CD pipeline.",
-    tech: ["React", "TypeScript", "Firebase", "Razorpay", "Zustand", "Tailwind"],
-    image: "/qlaa-preview.webp",
-    github: "https://github.com/yash113gadia",
-    demo: "https://qlaa.in",
-    featured: true,
-    color: "sky"
-  },
-  // === OTHER NOTEWORTHY PROJECTS ===
   {
     title: "FitTrack",
     subtitle: "AI Nutrition Assistant",
@@ -141,14 +151,24 @@ const projects: Project[] = [
     color: "sky"
   },
   {
-    title: "SpeedoExpress",
-    subtitle: "Logistics Startup Website",
-    description: "Production marketing site for a delivery startup built during internship. Features pricing calculator, service showcase, WhatsApp CTA, and SEO optimization with Next.js 16.",
-    tech: ["Next.js 16", "React 19", "Tailwind v4", "TypeScript"],
+    title: "World Express Courier",
+    subtitle: "Courier & Cargo Tracking",
+    description: "Live courier platform running entirely on Cloudflare’s free tier. Staff book consignments or bulk-import them from Excel; customers track a WEC number or any of 9 partner couriers (Trackon, DTDC, Blue Dart, FedEx, DHL and more) without leaving the site. The homepage serves 6.6 KB of HTML with zero client JavaScript.",
+    tech: ["Astro 7", "Cloudflare Workers", "D1", "TypeScript"],
     github: "#",
-    demo: "https://www.speedoexpress.org",
+    demo: "https://worldexpress.in",
     featured: false,
-    color: "cyan"
+    color: "sky"
+  },
+  {
+    title: "Anvaya Coding Lab",
+    subtitle: "Self-Hosted Assessment Platform",
+    description: "CodeTantra-style assessment platform where Java submissions are graded against hidden test cases inside throwaway Docker containers — network off, read-only filesystem, non-root, all capabilities dropped. Locked scaffolds are reassembled server-side, so tampering with the editor changes nothing.",
+    tech: ["Next.js", "PostgreSQL", "Drizzle", "Docker"],
+    github: "#",
+    demo: "#",
+    featured: false,
+    color: "violet"
   }
 ];
 

@@ -12,8 +12,8 @@ const Mentor = () => {
       color: "from-emerald-500 to-green-500"
     },
     {
-      title: "Production Marketplaces",
-      description: "Insights from building Qlaa (ArtistConnect). Master complex onboarding flows, payment integrations with Razorpay, and real-time communication systems.",
+      title: "Real-Time Systems",
+      description: "Insights from building live driver tracking at SpeedoExpress. Redis TTLs for ephemeral state, WebSocket and SSE push, PostGIS spatial queries, and Razorpay payment integrations that survive a dropped connection.",
       icon: Rocket,
       color: "from-cyan-500 to-blue-500"
     },

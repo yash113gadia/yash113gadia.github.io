@@ -29,7 +29,7 @@ const About = () => {
                   <span className="text-emerald-400">AI Automation</span>
                 </h3>
                 <ScrollTextReveal
-                  text="I'm a developer passionate about AI automation and building intelligent products that solve real problems. I've built multiple marketplace platforms, AI-powered agents, and enterprise applications from the ground up."
+                  text="I'm a developer passionate about AI automation and building intelligent products that solve real problems. I've taken logistics, campus SaaS and courier platforms from an empty repository to live production, owning architecture, real-time systems, payments, security and deployment end to end."
                   className="text-neutral-400 leading-relaxed mb-4"
                 />
                 <ScrollTextReveal
@@ -76,8 +76,8 @@ const About = () => {
           >
             <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
             <h4 className="text-white font-semibold mb-1">20+ Projects</h4>
-            <p className="text-sm text-neutral-400">AI & Full-Stack Apps</p>
-            <p className="text-xs text-neutral-500 mt-2">AI Agents, CLIs, Marketplaces, Mobile</p>
+            <p className="text-sm text-neutral-400">3 Live in Production</p>
+            <p className="text-xs text-neutral-500 mt-2">Logistics, Campus SaaS, Courier</p>
           </div>
 
           {/* Achievement Card - spans 2 cols */}
@@ -96,6 +96,11 @@ const About = () => {
                 <h4 className="text-white font-semibold mb-0.5">Top 43 / 500+</h4>
                 <p className="text-xs text-neutral-400">MIT Pune Startup Event</p>
                 <p className="text-xs text-neutral-500">Impact Career Solution</p>
+              </div>
+              <div className="lg:border-l lg:border-neutral-700/50 lg:pl-6">
+                <h4 className="text-white font-semibold mb-0.5">Vice President</h4>
+                <p className="text-xs text-neutral-400">Conventus, NIET MUN &amp; Debate</p>
+                <p className="text-xs text-neutral-500">VARTALAB (~125 attendees) &middot; CMUN (5 committees)</p>
               </div>
             </div>
           </div>

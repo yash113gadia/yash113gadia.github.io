@@ -1,7 +1,47 @@
-import { Calendar, Trophy, GraduationCap, Rocket, Code, Briefcase, Shield, Gamepad2 } from 'lucide-react';
+import { Calendar, Trophy, GraduationCap, Code, Briefcase, Shield, Gamepad2, Utensils, Building2, Users } from 'lucide-react';
 import { useRef } from 'react';
 
 const experiences = [
+  {
+    title: "Founding Engineer",
+    company: "SpeedoExpress",
+    date: "2026 - Present",
+    description: "Founding engineer on a B2B last-mile logistics platform for Delhi NCR. Architected live driver GPS tracking with Leaflet + OSM, Redis TTL coordinate expiry, WebSocket/SSE push and PostGIS spatial queries. Built the driver app live at driver.speedoexpress.org, shipped a 182-file platform redesign, added WhatsApp B2B ordering, and resolved a production Node.js heap-exhaustion crash.",
+    tech: ["Next.js", "Redis", "PostGIS", "WebSockets"],
+    icon: Briefcase,
+    color: "cyan",
+    size: "md:col-span-2 lg:col-span-2",
+  },
+  {
+    title: "Lead Developer — BiteSite",
+    company: "Campus Canteen SaaS",
+    date: "2026",
+    description: "Built a multi-tenant canteen pre-ordering platform in Spring Boot and MySQL, live at bitesite.in with two Android apps. Tenant isolation is enforced from the authenticated principal, never the URL.",
+    tech: ["Java 21", "Spring Boot", "MySQL", "Razorpay"],
+    icon: Utensils,
+    color: "amber",
+    size: "md:col-span-1 lg:col-span-1",
+  },
+  {
+    title: "Founder",
+    company: "Anvaya Labs",
+    date: "2026 - Present",
+    description: "Founded and registered a software agency (Udyam registered) and ran client engagements end to end — scoping, DUNS/D&B verification for two registered entities, delivery and handover. Shipped World Express Courier, a live courier and cargo platform on Astro and Cloudflare Workers.",
+    tech: ["Agency", "Client Delivery", "Astro", "Cloudflare"],
+    icon: Building2,
+    color: "sky",
+    size: "md:col-span-2 lg:col-span-2",
+  },
+  {
+    title: "Vice President",
+    company: "Conventus — NIET MUN & Debate Society",
+    date: "2025 - 2026",
+    description: "Organised VARTALAB, a 6-day communication workshop for ~125 participants on a zero budget, and ran CMUN, an online conference across 5 committees (DISEC, UNHRC, UNCSW, AIPPM, IP). Negotiated a tiered-commission referral MOU between Conventus and The Education Tree.",
+    tech: ["Leadership", "Event Ops", "Negotiation"],
+    icon: Users,
+    color: "violet",
+    size: "md:col-span-1 lg:col-span-1",
+  },
   {
     title: "Innovate Bharat Hackathon",
     company: "Team Ctrl+Alt+Diablo",
@@ -13,16 +53,6 @@ const experiences = [
     size: "md:col-span-2 lg:col-span-2",
   },
   {
-    title: "Web Developer Intern",
-    company: "SpeedoExpress",
-    date: "2026 - Present",
-    description: "Building the production marketing website and internal tools for a logistics startup using Next.js 16, React 19, and Tailwind CSS v4. Live at speedoexpress.org.",
-    tech: ["Next.js", "React 19", "Tailwind v4", "Internship"],
-    icon: Briefcase,
-    color: "amber",
-    size: "md:col-span-1 lg:col-span-1",
-  },
-  {
     title: "Creator — CodePilot CLI",
     company: "Open Source",
     date: "2026",
@@ -30,7 +60,7 @@ const experiences = [
     tech: ["TypeScript", "AI SDK", "CLI", "Open Source"],
     icon: Code,
     color: "sky",
-    size: "md:col-span-2 lg:col-span-2",
+    size: "md:col-span-1 lg:col-span-1",
   },
   {
     title: "Freelance Game Developer",
@@ -40,16 +70,6 @@ const experiences = [
     tech: ["Lua", "Roblox", "Game Dev", "Freelance"],
     icon: Gamepad2,
     color: "rose",
-    size: "md:col-span-1 lg:col-span-1",
-  },
-  {
-    title: "Co-Founder & Lead Developer",
-    company: "Qlaa (ArtistConnect)",
-    date: "2024",
-    description: "Architecting a hyper-local marketplace with booking systems, real-time communication via Socket.io, GEO-based filtering, and secure JWT APIs. Building for scale.",
-    tech: ["MERN", "TypeScript", "Socket.io", "PostgreSQL"],
-    icon: Rocket,
-    color: "cyan",
     size: "md:col-span-1 lg:col-span-1",
   },
   {

@@ -52,7 +52,7 @@ const Hero = () => {
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="absolute -left-16 sm:-left-20 bottom-4 px-3 py-1.5 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-violet-400 font-semibold text-xs">Co-Founder @ Qlaa</span>
+                <span className="text-violet-400 font-semibold text-xs">Founding Engineer @ SpeedoExpress</span>
               </motion.div>
             </div>
           </motion.div>
@@ -199,7 +199,7 @@ const Hero = () => {
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="absolute -left-4 bottom-12 px-4 py-2 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 rounded-full shadow-xl"
               >
-                <span className="text-violet-400 font-semibold text-sm">Co-Founder @ Qlaa</span>
+                <span className="text-violet-400 font-semibold text-sm">Founding Engineer @ SpeedoExpress</span>
               </motion.div>
             </div>
           </motion.div>

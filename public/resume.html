@@ -263,7 +263,7 @@
   <div class="section">
     <div class="section-title">Profile</div>
     <p class="profile">
-      <p>Full-Stack &amp; Web3 Developer. Co-founder of Qlaa (qlaa.in), a live marketplace platform. Interning at SpeedoExpress building production web applications. Experienced in blockchain smart contracts, AI integration, payment systems, real-time features, and scalable architectures.</p>
+      <p>Full-Stack Developer and Founding Engineer at SpeedoExpress, where I architected the live driver GPS tracking system (Redis TTLs, WebSockets/SSE, Leaflet + OSM, PostGIS) for a B2B last-mile logistics platform and shipped its driver app to production. Founder of Anvaya Labs, a Udyam-registered software agency, and lead developer of BiteSite (bitesite.in). Experienced in real-time systems, payment integrations, multi-tenant architecture, blockchain smart contracts, AI integration, and production security.</p>
     </p>
   </div>
 
@@ -271,12 +271,12 @@
   <div class="section">
     <div class="section-title">Technical Skills</div>
     <div class="skills-grid">
-      <div class="skill-row"><strong>Languages:</strong> <span>TypeScript, JavaScript, Python, Solidity, Java, C++, SQL</span></div>
-      <div class="skill-row"><strong>Frontend:</strong> <span>React, Next.js, React Native, Tailwind, Three.js, Framer Motion</span></div>
-      <div class="skill-row"><strong>Backend:</strong> <span>Node.js, Express, FastAPI, Firebase, Socket.io</span></div>
-      <div class="skill-row"><strong>Databases:</strong> <span>PostgreSQL, MongoDB, SQLite, Firestore, Neon</span></div>
+      <div class="skill-row"><strong>Languages:</strong> <span>TypeScript, JavaScript, Java 21, Python, Solidity, C++, SQL</span></div>
+      <div class="skill-row"><strong>Frontend:</strong> <span>React, Next.js, React Native, Tailwind, Leaflet + OpenStreetMap, Three.js, Framer Motion</span></div>
+      <div class="skill-row"><strong>Backend:</strong> <span>Node.js, Express, Spring Boot 3.5, FastAPI, Cloudflare Workers, WebSockets/SSE, Socket.io</span></div>
+      <div class="skill-row"><strong>Databases:</strong> <span>PostgreSQL + PostGIS, MySQL 8, Redis, Supabase, Cloudflare D1, MongoDB, SQLite, Firestore</span></div>
       <div class="skill-row"><strong>Web3 &amp; AI:</strong> <span>Solidity, Hardhat, Ethers.js, Gemini AI, Groq/Llama, AI SDK</span></div>
-      <div class="skill-row"><strong>Tools:</strong> <span>Docker, Git, Linux, Razorpay, Stripe, Playwright, Puppeteer</span></div>
+      <div class="skill-row"><strong>Tools:</strong> <span>Docker, Git, Linux, GitHub Actions, Flyway, Razorpay, WhatsApp Business API, Bubblewrap, Playwright</span></div>
     </div>
   </div>
 
@@ -286,25 +286,56 @@
 
     <div class="exp-item">
       <div class="exp-header">
-        <div><h4>SpeedoExpress</h4> <span class="role">— Web Developer Intern</span></div>
+        <div><h4>SpeedoExpress</h4> <span class="role">— Founding Engineer</span></div>
         <span class="date">2026 – Present</span>
       </div>
       <ul class="exp-bullets">
-        <li>Building production marketing website using Next.js 16, React 19, Tailwind CSS v4. Deployed at speedoexpress.org</li>
-        <li>Implemented pricing calculator, service showcase, SEO optimization, and WhatsApp CTA integration</li>
+        <li>Architected and built live driver GPS tracking for a B2B last-mile logistics platform: Leaflet + OpenStreetMap rendering, Redis with TTL-based coordinate expiry so stale positions self-evict, WebSocket/SSE push to watching clients, and PostGIS spatial queries for dispatch and proximity</li>
+        <li>Built the driver app, now live in production at driver.speedoexpress.org</li>
+        <li>Shipped a full platform redesign touching 182 files</li>
+        <li>Built a WhatsApp-based B2B ordering flow on the WhatsApp Business API (AiSensy), and shipped the platform as an installable PWA to the Play Store via Bubblewrap</li>
+        <li>Diagnosed and resolved a production Node.js heap-exhaustion crash, tracing it from the crash signature back to the allocation responsible</li>
+        <li>5 applications, 104 API endpoints, 65 screens, 345 automated tests and 4 production environments from one codebase; row-level security default-deny, webhook-verified Razorpay payments, money stored as integer paise</li>
       </ul>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div><h4>Qlaa</h4> <span class="role">— Co-Founder &amp; Lead Developer</span></div>
-        <span class="date">2024 – Present</span>
+        <div><h4>BiteSite</h4> <span class="role">— Lead Developer</span></div>
+        <span class="date">2026</span>
       </div>
       <ul class="exp-bullets">
-        <li>Built full-stack marketplace (React + TypeScript + Firebase) with Razorpay payments, real-time chat, Google OAuth</li>
-        <li>Reviews &amp; ratings, artist onboarding, role-based access, CI/CD on Netlify. Live at qlaa.in</li>
+        <li>Built a multi-tenant SaaS for college canteen pre-ordering on Java 21, Spring Boot 3.5, MySQL 8 and Flyway; live at bitesite.in with two Android apps</li>
+        <li>Enforced tenant isolation from the authenticated principal rather than the URL, proven by an isolation test suite running against real MySQL in GitHub Actions CI</li>
+        <li>Made payment mandatory before order fulfilment, with client-callback and webhook paths converging on one idempotent, signature-verified confirmation</li>
       </ul>
     </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>Anvaya Labs</h4> <span class="role">— Founder</span></div>
+        <span class="date">2026 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Founded and registered a software agency (Udyam registered); ran client engagements end to end including scoping, DUNS/D&amp;B verification for two registered entities, delivery and handover</li>
+        <li>Delivered World Express Courier (worldexpress.in): live courier and cargo platform on Astro 7 + Cloudflare Workers + D1, with consignment booking, Excel bulk import, staff admin and tracking across 9 partner couriers</li>
+        <li>Built Anvaya Coding Lab: self-hosted assessment platform grading Java against hidden tests inside network-isolated, read-only Docker containers</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><h4>Conventus — NIET MUN &amp; Debate Society</h4> <span class="role">— Vice President</span></div>
+        <span class="date">2025 – 2026</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Organised VARTALAB, a 6-day communication workshop for ~125 participants, delivered on a zero budget</li>
+        <li>Ran CMUN, an online Model UN conference across 5 committees (DISEC, UNHRC, UNCSW, AIPPM, IP)</li>
+        <li>Negotiated a tiered-commission referral MOU between Conventus and The Education Tree</li>
+      </ul>
+    </div>
+
+    
 
     <div class="exp-item">
       <div class="exp-header">
@@ -429,6 +460,11 @@
   <div class="section">
     <div class="section-title">Achievements &amp; Leadership</div>
     <div class="achievements-grid">
+      <li><strong>Vice President</strong> &mdash; Conventus, NIET MUN &amp; Debate Society (2025&ndash;2026)</li>
+      <li><strong>Organised VARTALAB</strong> &mdash; 6-day communication workshop, ~125 participants, zero budget</li>
+      <li><strong>Ran CMUN</strong> &mdash; online Model UN across 5 committees (DISEC, UNHRC, UNCSW, AIPPM, IP)</li>
+      <li><strong>Negotiated referral MOU</strong> &mdash; tiered commission, Conventus &times; The Education Tree</li>
+      <li><strong>Founded Anvaya Labs</strong> &mdash; Udyam-registered software agency (2026)</li>
       <li><strong>Innovate Bharat Hackathon 2026</strong> — Built Attestr (Team Ctrl+Alt+Diablo)</li>
       <li><strong>Rank 6/150+</strong> — Techvanya 2.0 Promptathon, GLA University (2025)</li>
       <li><strong>Top 43/500+</strong> — MIT Pune Startup Event</li>

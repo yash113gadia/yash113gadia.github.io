@@ -6,6 +6,24 @@ import ChatbotInline from '../components/ChatbotInline';
 
 const projectDetails = [
   {
+    title: "SpeedoExpress",
+    objective: "To build and operate a B2B last-mile logistics platform for Delhi NCR as the founding engineer — from an empty repository to a live product with businesses, drivers and fleet owners on it.",
+    techStack: "Next.js, React, Supabase (PostgreSQL + PostGIS), Redis, WebSockets/SSE, Leaflet + OpenStreetMap, WhatsApp Business API (AiSensy), Bubblewrap, TypeScript",
+    detailedArchitecture: "The hard half is live driver tracking. Driver clients publish coordinates that land in Redis under short TTLs, so a stale position expires on its own rather than lingering as a phantom driver; updates are pushed to watching customers over WebSockets with an SSE fallback, and the map renders on Leaflet + OpenStreetMap instead of a metered tile provider. Dispatch and proximity run as PostGIS spatial queries against PostgreSQL. On top of that: a driver app live at driver.speedoexpress.org, a 182-file platform redesign, a WhatsApp-based B2B ordering flow on the WhatsApp Business API, and the whole thing packaged as an installable PWA and shipped to the Play Store via Bubblewrap. Booking state transitions run server-side through SECURITY DEFINER RPCs, row-level security is default-deny, and money is stored as integer paise with idempotent settlement. One production incident stands out: a Node.js heap-exhaustion crash traced from the crash signature back to the allocation that caused it, then fixed.",
+    businessPerspective: "Replaces phone-and-spreadsheet dispatch with a platform that quotes, assigns, tracks and settles on its own, so the operation scales without adding coordinators. Ordering over WhatsApp meets Indian B2B customers where they already are, with no app install required.",
+    futureScope: "Promotion from Play closed testing to a staged production rollout, demand-based surge pricing, and a partner API for campus-to-business delivery volume.",
+    color: "cyan"
+  },
+  {
+    title: "BiteSite",
+    objective: "To remove the lunch-break queue at college canteens by letting students order and pay from class, while staying multi-tenant enough to onboard any number of colleges without a redeploy.",
+    techStack: "Java 21, Spring Boot 3.5, Spring JDBC, MySQL 8, Flyway, Spring Security, Spring Session JDBC, Razorpay, Android",
+    detailedArchitecture: "Account-based multi-tenancy: every tenant-scoped table carries a tenant_id, and which college a request sees is derived from the authenticated principal, never from a URL, subdomain or client-supplied value. A TenantResolutionInterceptor sets the tenant context after authentication and every DAO method requires the tenant id as an argument, so guessing an internal ID gets a user nowhere — proven by an isolation suite that runs against a real MySQL instance in CI. Payment is mandatory before the kitchen sees an order: the Razorpay client callback and the server webhook both converge on one idempotent confirmPayment, and OrderStatus.canTransitionTo is the single source of truth for legal transitions. Sessions live in MySQL via Spring Session JDBC, so a restart or a second instance behind a load balancer does not log anyone out.",
+    businessPerspective: "Sells per college rather than per app install: one deployment serves many campuses, each with its own outlets, staff, menu and order queue. Canteens get a live kitchen queue and guaranteed-paid orders; students get their break back.",
+    futureScope: "Pre-scheduled orders for fixed break windows, demand forecasting from historical order data, and a canteen-side inventory module.",
+    color: "amber"
+  },
+  {
     title: "Attestr",
     objective: "To eliminate media misinformation by providing a decentralized, tamper-proof verification layer for digital content in the era of sophisticated AI deepfakes.",
     techStack: "Solidity, React, Hardhat, Firebase, Three.js, Ethers.js, Python (AI Models), Chrome Extension API",
@@ -22,24 +40,6 @@ const projectDetails = [
     businessPerspective: "Boosting developer productivity by 40% through automated boilerplate, refactoring, and plan-based execution. Can be integrated into corporate internal tools to maintain code quality and standards.",
     futureScope: "Support for local-only LLMs (Ollama) to ensure enterprise data privacy, self-healing CI/CD pipeline integration, and advanced IDE extensions.",
     color: "violet"
-  },
-  {
-    title: "Qlaa (ArtistConnect)",
-    objective: "To democratize the gig economy for local artists by providing a direct-to-consumer marketplace with secure booking and real-time management.",
-    techStack: "React, TypeScript, Firebase, Razorpay, Zustand, Tailwind CSS, Socket.io, Node.js, Express",
-    detailedArchitecture: "A robust MERN-inspired stack with Firebase as the primary backend. Implements a multi-role user system (Artists vs. Clients), real-time chat via WebSockets, GEO-based discovery, and a secure payment pipeline with Razorpay webhooks for transaction reliability.",
-    businessPerspective: "Disrupting traditional artist agencies by lowering commission fees and providing artists with data-driven insights into local demand. Scaling to a nationwide platform for independent performers.",
-    futureScope: "AI-driven matching algorithms to suggest artists to event planners based on historical engagement, automated contract generation, and NFT-based ticket sales.",
-    color: "sky"
-  },
-  {
-    title: "SpeedoExpress",
-    objective: "To build a high-performance, SEO-optimized production website for a logistics startup, focusing on user conversion and internal lead management.",
-    techStack: "Next.js 16, React 19, Tailwind CSS v4, TypeScript, Vercel Analytics",
-    detailedArchitecture: "Leverages the latest Next.js 16 features for server-side rendering and static site generation. Implements a custom pricing calculator, responsive service showcase, and optimized lead capture forms. Focuses on core web vitals and fast performance.",
-    businessPerspective: "Increases online visibility and lead generation for the startup. The professional UI builds trust with potential B2B logistics clients, reducing the sales cycle.",
-    futureScope: "Internal tracking dashboard integration, real-time delivery status updates for customers, and a driver management portal.",
-    color: "cyan"
   },
   {
     title: "FitTrack",
@@ -121,6 +121,24 @@ const projectDetails = [
     businessPerspective: "Targets the EdTech market by reducing the cognitive overhead of study planning. Can be integrated into existing LMS platforms as a plugin.",
     futureScope: "Collaborative study groups, spaced-repetition integration, and AI-powered exam preparation with practice question generation.",
     color: "sky"
+  },
+  {
+    title: "World Express Courier",
+    objective: "To give a courier and cargo business its own tracking page instead of sending customers off to nine different partner websites, on infrastructure that costs nothing to run.",
+    techStack: "Astro 7 (server output), Cloudflare Workers, Cloudflare D1, Web Crypto, read-excel-file, TypeScript",
+    detailedArchitecture: "Marketing pages prerender to static HTML with zero client JavaScript; only tracking, contact and admin run on demand at the edge. Staff create bookings or bulk-import an Excel sheet, the system assigns a structured WEC consignment number, and status updates drive a customer-facing timeline. A partner number for Trackon, DTDC, Blue Dart, Maruti, Shree Tirupati, Ondot, XpressBees, FedEx or DHL is identified by shape and resolved through the official API first, then an authorized public endpoint, falling back to a labelled hand-off button; ambiguous numbers get a chooser and nothing ever auto-redirects. Auth is PBKDF2 hashes plus an HMAC-signed cookie, so no session store is needed. The homepage is 6.6 KB of HTML and 12 KB of CSS.",
+    businessPerspective: "Keeps the customer on the company's own domain for the one interaction they repeat most, which is where trust and repeat bookings are won. Running on free-tier Workers and D1 means the platform carries no monthly hosting cost as volume grows.",
+    futureScope: "Automated status polling with customer notifications, rate-card quoting, and a pickup-request flow for business accounts.",
+    color: "sky"
+  },
+  {
+    title: "Anvaya Coding Lab",
+    objective: "To give a college a self-hosted alternative to CodeTantra: locked-scaffold programming questions auto-graded against hidden test cases, without shipping student code to a third party.",
+    techStack: "Next.js, PostgreSQL, Drizzle ORM, Docker, Java 21 (Temurin), TypeScript",
+    detailedArchitecture: "Student code is treated as hostile by assumption. Every submission runs in a throwaway container with the network off, a read-only filesystem, memory, CPU and PID caps, a non-root user and all Linux capabilities dropped. The locked template lives in Postgres with slot markers; the browser renders it but only ever sends slot contents back, and the server reassembles the source from its own copy — so editing locked code client-side or injecting extra slot keys changes nothing. Test-case delimiters carry a per-run random nonce, so student output cannot forge case boundaries or leak hidden cases. Multi-tenant per college.",
+    businessPerspective: "Colleges pay per seat for hosted assessment platforms and still hand over student data. Self-hosting removes the recurring licence cost and keeps submissions inside the institution.",
+    futureScope: "SQL grading against the MySQL container already in the compose file, a proctored test mode, and support for languages beyond Java.",
+    color: "violet"
   }
 ];
 
@@ -149,44 +167,47 @@ const ProjectDescription = () => {
 - **Productivity:** Targeted 40% boost in developer speed.
 - **Roadmap:** Local-only LLM support for enterprise privacy.
 
-## 3. QLAA / ArtistConnect (Marketplace)
-- **Objective:** Gig economy for creative professionals.
-- **Detailed Tech:** MERN-Firebase Hybrid, Razorpay, Socket.io, Zustand.
-- **Key Features:** Real-time chat, automated artist onboarding, Razorpay webhook pipeline, SEO optimization.
-- **Business Value:** Disrupts traditional high-commission talent agencies.
-- **Roadmap:** AI-driven artist-client matching & NFT contract generation.
+## 3. SPEEDOEXPRESS (B2B Last-Mile Logistics Platform)
+- **Objective:** Build and operate a Delhi NCR last-mile logistics platform as the founding engineer.
+- **Role:** Founding Engineer — every architectural decision and every line that shipped.
+- **Detailed Tech:** Next.js, React, Supabase (PostgreSQL + PostGIS), Redis, WebSockets/SSE, Leaflet + OpenStreetMap, WhatsApp Business API (AiSensy), Bubblewrap, Razorpay, TypeScript.
+- **Live driver GPS tracking (the core systems work):**
+  1. Driver coordinates are written to Redis under short TTLs, so a stale position expires by itself instead of lingering as a phantom driver.
+  2. Position updates are pushed to watching clients over WebSockets, with SSE as the fallback transport.
+  3. Maps render on Leaflet + OpenStreetMap rather than a metered tile provider.
+  4. Dispatch and proximity run as PostGIS spatial queries against PostgreSQL.
+- **Also shipped:** the driver app now live at driver.speedoexpress.org; a full platform redesign touching 182 files; a WhatsApp-based B2B ordering flow on the WhatsApp Business API; and the platform packaged as an installable PWA and published to the Play Store via Bubblewrap.
+- **Production incident:** diagnosed and resolved a Node.js heap-exhaustion crash in production, tracing it from the crash signature back to the allocation responsible.
+- **Correctness & security:** server-authoritative state transitions through SECURITY DEFINER RPCs, row-level security default-deny, money stored as integer paise with idempotent settlement, webhook-verified Razorpay payments, and a build-time guard that fails the deploy if a secret reaches the browser bundle.
+- **Scale:** 5 applications · 104 API endpoints · 65 screens · 345 automated tests · 4 production environments.
+- **Live:** speedoexpress.org, app.speedoexpress.org, driver.speedoexpress.org.
 
-## 4. SPEEDOEXPRESS (Logistics Startup)
-- **Objective:** High-conversion production marketing site.
-- **Detailed Tech:** Next.js 16, React 19, Tailwind CSS v4.
-- **Engineering:** Focus on Core Web Vitals, SSR for SEO, custom pricing algorithms.
-
-## 5. FITTRACK (AI Nutrition Assistant)
+## 4. FITTRACK (AI Nutrition Assistant)
 - **Objective:** Frictionless calorie tracking.
 - **Detailed Tech:** React Native, Gemini AI (Computer Vision), SQLite.
 - **System:** Multi-modal analysis of food images to extract nutritional data automatically.
 
-## 6. ATTENDEASE (Enterprise Attendance)
+## 5. ATTENDEASE (Enterprise Attendance)
 - **Objective:** Scalable workforce management.
 - **Detailed Tech:** React, PostgreSQL (Neon), JWT, Serverless.
 - **Database:** Highly normalized schema for complex reporting & audit trails.
 
-## 7. OMNIAI (SaaS Content Gen)
+## 6. OMNIAI (SaaS Content Gen)
 - **Objective:** Automated content production.
 - **Detailed Tech:** React, Stripe, OpenAI API.
 - **Business:** Subscription model with credit-based usage tracking.
 
-## 8. POKER GAME (Real-time Multiplayer)
+## 7. POKER GAME (Real-time Multiplayer)
 - **Objective:** Low-latency multiplayer poker experience.
 - **Detailed Tech:** React, Socket.io, Express, Node.js.
 - **Architecture:** Bi-directional event communication with in-memory state management.
 
-## 9. LABFORGE (Automated Documentation)
+## 8. LABFORGE (Automated Documentation)
 - **Objective:** Programmatic laboratory report generation.
 - **Detailed Tech:** FastAPI, Playwright, Socket.io, Python.
 - **Architecture:** Browser automation for capturing simulation data and dynamic .docx assembly.
 
-## 10. CRACKNIET (AI Exam Assistant Extension)
+## 9. CRACKNIET (AI Exam Assistant Extension)
 - **Objective:** Stealth AI-powered exam assistance across Iamneo, HackerRank, NPTEL.
 - **Detailed Tech:** Chrome Extension API, Manifest V3, OpenRouter AI, Content Scripts, Injection Scripts.
 - **Architecture:**
@@ -196,20 +217,48 @@ const ProjectDescription = () => {
   - Free/Pro auth model with BYOK (Bring Your Own Key).
 - **Features:** Auto-paste, MCQ extraction, chatbot toggling, auto-typing.
 
-## 11. AMAZON SCRAPER (Product Data Scraper)
+## 10. AMAZON SCRAPER (Product Data Scraper)
 - **Objective:** High-performance Amazon product data scraping with anti-detection.
 - **Detailed Tech:** Node.js, Puppeteer + Stealth Plugin, Express.
 - **Architecture:** Resilient CSS selector fallbacks, real-time progress UI, CSV export.
 
-## 12. CAMPUSQUEST (Campus Exploration Game)
+## 11. CAMPUSQUEST (Campus Exploration Game)
 - **Objective:** Gamified campus orientation for new students.
 - **Detailed Tech:** TypeScript, React, Gamification Engine.
 - **Features:** Quest progression, achievements, leaderboards, location-aware challenges.
 
-## 13. SYLLABUSAI (AI Study Planner)
+## 12. SYLLABUSAI (AI Study Planner)
 - **Objective:** AI-powered syllabus generation and study scheduling.
 - **Detailed Tech:** Node.js, TypeScript, PostgreSQL, Sequelize ORM.
 - **Architecture:** AI generates personalized study plans, progress tracking dashboards.
+
+## 13. BITESITE (Multi-Tenant Campus Canteen SaaS)
+- **Objective:** Let students pre-order and pay for canteen food from class instead of queueing.
+- **Detailed Tech:** Java 21, Spring Boot 3.5, Spring JDBC (not JPA, by design), MySQL 8, Flyway, Spring Security, Spring Session JDBC, Razorpay Java SDK, two Android apps.
+- **Architecture:**
+  1. Account-based multi-tenancy — the tenant is read from the authenticated principal, never from a URL, subdomain or client value.
+  2. Every tenant-scoped table carries tenant_id and every DAO method requires it as an argument.
+  3. Tenant isolation is proven by a test suite running against a real MySQL instance in CI.
+  4. Payment is mandatory before the kitchen sees an order; client callback and server webhook converge on one idempotent confirmPayment.
+  5. OrderStatus.canTransitionTo is the single source of truth for legal order transitions.
+  6. Sessions live in MySQL, so restarts and horizontal scaling do not log users out.
+- **Live:** bitesite.in (marketing), app.bitesite.in (students), outlet.bitesite.in (canteen staff).
+
+## 14. WORLD EXPRESS COURIER (Courier & Cargo Tracking)
+- **Objective:** Give a courier business its own tracking page instead of sending customers to nine partner websites.
+- **Detailed Tech:** Astro 7 (server output), Cloudflare Workers, Cloudflare D1, Web Crypto (PBKDF2 + HMAC cookies), Excel import/export.
+- **Architecture:** Marketing pages prerender with zero client JS; only tracking, contact and admin run at the edge. Staff book or bulk-import consignments and post status updates; partner numbers for Trackon, DTDC, Blue Dart, Maruti, Shree Tirupati, Ondot, XpressBees, FedEx and DHL are identified and resolved in-page, with a labelled hand-off when an API is unavailable. No session store needed.
+- **Performance:** 6.6 KB homepage HTML + 12 KB CSS, no JavaScript. Runs entirely on Cloudflare free tier.
+- **Live:** worldexpress.in
+
+## 15. ANVAYA CODING LAB (Self-Hosted Assessment Platform)
+- **Objective:** A self-hosted CodeTantra alternative for a college — locked-scaffold questions graded against hidden test cases.
+- **Detailed Tech:** Next.js, PostgreSQL, Drizzle ORM, Docker sandboxing, Java 21 runner.
+- **Security model (student code is hostile by assumption):**
+  1. Every submission runs in a throwaway container: network off, read-only filesystem, memory/CPU/PID caps, non-root, all capabilities dropped.
+  2. Locked templates live server-side with slot markers; the client only sends slot contents and the server reassembles the source, so client-side tampering is inert.
+  3. Test-case delimiters carry a per-run random nonce, so student output cannot forge case boundaries or leak hidden cases.
+- **Tenancy:** Multi-tenant per college.
 `;
 
   return (
@@ -404,10 +453,10 @@ const ProjectDescription = () => {
                 placeholder="Ask technical questions..."
                 specializedContext={specializedProjectContext}
                 suggestedQuestions={[
-                  "How does CodePilot orchestrate agents?",
+                  "How does SpeedoExpress track drivers live?",
+                  "How is BiteSite's tenant isolation enforced?",
                   "Explain Attestr's forensic layer",
-                  "Tell me about Qlaa's payment pipeline",
-                  "What makes AttendEase scalable?"
+                  "How does CodePilot orchestrate agents?"
                 ]}
               />
             </div>
