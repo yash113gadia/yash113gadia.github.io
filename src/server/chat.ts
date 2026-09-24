@@ -1,6 +1,6 @@
 // Shared by the Vercel function (api/chat.ts) and the Netlify function.
 // All prompt text lives here on the server; clients only choose a mode.
-import { architectureContext } from '../data/architecture';
+import { architectureContext } from '../data/architecture.js';
 
 export const baseKnowledge = `
 ## About Yash Gadia

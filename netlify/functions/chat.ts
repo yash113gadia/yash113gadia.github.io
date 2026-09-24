@@ -1,4 +1,4 @@
-import { handleChat } from '../../src/server/chat';
+import { handleChat } from '../../src/server/chat.js';
 
 export async function handler(event: { httpMethod?: string; body: string | null }) {
   if (event.httpMethod && event.httpMethod !== 'POST') {

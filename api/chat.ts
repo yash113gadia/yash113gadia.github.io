@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { handleChat } from '../src/server/chat';
+// Explicit .js extensions: Vercel runs functions as unbundled ES modules, where Node needs them.
+import { handleChat } from '../src/server/chat.js';
 
 // Same-origin only: no CORS headers, so other sites can't call this from a browser.
 export default async function handler(req: VercelRequest, res: VercelResponse) {
