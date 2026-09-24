@@ -1,139 +1,242 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+/*
+  Shape rules: cards and images 12px (rounded-xl), inputs 8px (rounded-lg),
+  buttons and chips fully rounded. One accent (signal yellow), used everywhere.
+  --accent is for fills; --accent-fg is the same hue darkened where it sits on light backgrounds as text.
+*/
+@layer base {
+  :root {
+    color-scheme: light;
+    --canvas: 243 243 240;
+    --surface: 255 255 255;
+    --sunken: 232 232 228;
+    --line: 216 216 210;
+    --ink: 17 17 15;
+    --muted: 80 80 74;
+    --faint: 106 106 100;
+    --accent: 255 196 46;
+    --accent-fg: 138 96 0;
+    --accent-ink: 22 17 3;
+    --accent-soft: 255 236 179;
+  }
 
-:root {
-  color-scheme: dark;
-}
+  .dark {
+    color-scheme: dark;
+    --canvas: 10 10 9;
+    --surface: 18 18 16;
+    --sunken: 25 25 22;
+    --line: 40 40 36;
+    --ink: 242 241 234;
+    --muted: 166 165 156;
+    --faint: 128 127 120;
+    --accent: 255 200 61;
+    --accent-fg: 255 200 61;
+    --accent-ink: 22 17 3;
+    --accent-soft: 52 41 12;
+  }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: #0a0a0a;
-  color: #fafafa;
-  font-family: 'Space Grotesk', sans-serif;
-  cursor: none;
-}
+  /* The city game's blue night, so its panels sit in the scene instead of on top of it. */
+  .dark.city {
+    --canvas: 5 7 14;
+    --surface: 13 16 28;
+    --sunken: 21 25 42;
+    --line: 42 49 74;
+    --muted: 162 170 192;
+    --faint: 122 130 154;
+  }
 
-/* Hide cursor on all interactive elements too */
-a, button, input, textarea, select {
-  cursor: none;
-}
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    margin: 0;
+    min-height: 100dvh;
+    font-feature-settings: 'ss01';
+  }
+
+  p, li, dd {
+    text-wrap: pretty;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-accent/25;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-fg;
+    outline-style: solid;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {
-  /* Bento Card Base */
-  .bento-card {
-    @apply bg-neutral-900/80 rounded-3xl border border-neutral-800 p-6 
-           transition-all duration-500 ease-out overflow-hidden relative;
-  }
-  
-  .bento-card:hover {
-    @apply border-neutral-700 bg-neutral-900;
-    transform: translateY(-4px);
-  }
-  
-  /* Accent Variations */
-  .accent-emerald {
-    --accent: #10b981;
-    --accent-dim: rgba(16, 185, 129, 0.1);
-  }
-  
-  .accent-violet {
-    --accent: #8b5cf6;
-    --accent-dim: rgba(139, 92, 246, 0.1);
-  }
-  
-  .accent-amber {
-    --accent: #f59e0b;
-    --accent-dim: rgba(245, 158, 11, 0.1);
-  }
-  
-  .accent-rose {
-    --accent: #f43f5e;
-    --accent-dim: rgba(244, 63, 94, 0.1);
-  }
-  
-  .accent-sky {
-    --accent: #0ea5e9;
-    --accent-dim: rgba(14, 165, 233, 0.1);
+  .page-x {
+    @apply mx-auto w-full max-w-page px-5 md:px-8;
   }
 
-  /* Fade in up animation */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-medium
+           transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-accent-ink hover:bg-accent/90;
+  }
+
+  .btn-ghost {
+    @apply btn border border-line text-ink hover:border-ink/30 hover:bg-sunken;
+  }
+
+  .link-underline {
+    @apply underline decoration-line decoration-1 underline-offset-4 transition-colors hover:decoration-accent-fg;
+  }
+
+  .display {
+    font-family: 'Bricolage Grotesque Variable', 'Geist Variable', sans-serif;
+    letter-spacing: -0.045em;
+  }
+
+  .chip {
+    @apply rounded-full border border-line px-2.5 py-0.5 font-mono text-[12px] text-muted;
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
   }
+}
+
+/* CodePilot card: each provider name lights up in turn. */
+@keyframes provider-cycle {
+  0%, 22% { color: rgb(var(--accent-fg)); }
+  28%, 100% { color: rgb(var(--faint) / 0.55); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .provider-cycle {
+    animation: provider-cycle 4.8s ease-in-out infinite;
+    color: rgb(var(--faint) / 0.55);
+  }
+}
+
+/* Lenis drives scrolling itself; native smooth scrolling would fight it. */
+html.lenis {
+  scroll-behavior: auto;
+}
+
+/* Film grain over everything. Fixed and non-interactive, so it never repaints on scroll. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:root:not(.dark) body::after {
+  opacity: 0.03;
+}
+
+/* Soft light that follows the pointer across project cards (set via --mx / --my). */
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.1), transparent 45%);
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+.spotlight.is-accent::before {
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.35), transparent 45%);
+}
+
+/* Pixel Swarm (the /play game): chunky retro UI to match the pixel art. */
+@layer components {
+  .px-font {
+    font-family: 'Press Start 2P', ui-monospace, monospace;
+    letter-spacing: 0;
+  }
+  .px-panel {
+    background: #fff4d6;
+    color: #2a170b;
+    border: 4px solid #2a170b;
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 #2a170b;
+  }
+  .px-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Press Start 2P', ui-monospace, monospace;
+    border: 4px solid #2a170b;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 #2a170b;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .px-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 #2a170b;
+  }
+  .px-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #2a170b;
+  }
+  .px-btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+  }
+  .px-outline {
+    text-shadow: 3px 0 0 #2a170b, -3px 0 0 #2a170b, 0 3px 0 #2a170b, 0 -3px 0 #2a170b, 3px 3px 0 #2a170b, -3px -3px 0 #2a170b, 3px -3px 0 #2a170b, -3px 3px 0 #2a170b;
+  }
+  .px-outline-sm {
+    text-shadow: 2px 0 0 #2a170b, -2px 0 0 #2a170b, 0 2px 0 #2a170b, 0 -2px 0 #2a170b, 2px 2px 0 #2a170b, -2px -2px 0 #2a170b, 2px -2px 0 #2a170b, -2px 2px 0 #2a170b;
+  }
+  .px-sprite {
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+  }
+  .px-walk {
+    animation: px-walk 0.6s steps(4) infinite;
+  }
+}
+
+@keyframes px-walk {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    background-position-y: calc(var(--frame) * -4);
   }
 }
 
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
+@media (prefers-reduced-motion: reduce) {
+  .px-walk {
+    animation: none;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-@keyframes growWidth {
-  from {
-    width: 0;
-  }
-}
-
-.animate-grow-width {
-  animation: growWidth 0.8s ease-out forwards;
-}
-
-/* Smooth Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #404040;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #262626 #0a0a0a;
-}
-
-::selection {
-  background: rgba(16, 185, 129, 0.3);
-  color: #fff;
 }

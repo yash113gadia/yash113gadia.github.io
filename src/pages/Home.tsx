@@ -1,24 +1,21 @@
 import Hero from '../components/Hero';
+import Work from '../components/Work';
+import StackMarquee from '../components/StackMarquee';
+import Experience from '../components/Experience';
 import About from '../components/About';
-import Projects from '../components/Projects';
-import Skills from '../components/Skills';
-import Journey from '../components/Journey';
 import Contact from '../components/Contact';
-import Marquee from '../components/Marquee';
 
-const Home = () => {
-  return (
-    <div className="min-h-screen bg-bg text-white">
-      <Hero />
-      <Marquee text="AI AUTOMATION & DEVELOPMENT" speed={25} className="py-12 opacity-50" />
-      <About />
-      <Projects />
-      <Skills />
-      <Journey />
-      <Marquee text="LET'S WORK TOGETHER" speed={20} className="py-12 opacity-50" />
-      <Contact />
+const Home = () => (
+  <>
+    <Hero />
+    <Work />
+    <div className="mt-24 md:mt-32">
+      <StackMarquee />
     </div>
-  );
-};
+    <Experience />
+    <About />
+    <Contact />
+  </>
+);
 
 export default Home;

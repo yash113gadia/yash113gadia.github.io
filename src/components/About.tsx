@@ -1,126 +1,68 @@
-import { MapPin, GraduationCap, Rocket, Trophy } from 'lucide-react';
-import { ScrollTextReveal } from './TextReveal';
-import TechMarquee from './TechMarquee';
+import Reveal from './Reveal';
+import RevealText from './RevealText';
 import ChatbotInline from './ChatbotInline';
+import { education, profile, recognition } from '../data/site';
 
-const About = () => {
-  return (
-    <section id="about" className="py-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 animate-fade-in-up">
-          <span className="text-emerald-400 font-mono text-sm">01.</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">About Me</h2>
+const About = () => (
+  <section id="about" className="border-t border-line bg-surface/40">
+    <div className="page-x grid gap-12 py-24 md:py-32 lg:grid-cols-12">
+      <Reveal className="lg:col-span-4">
+        <div className="relative aspect-[4/5] max-w-[220px] overflow-hidden rounded-2xl bg-accent sm:max-w-[300px] lg:sticky lg:top-24 lg:mx-auto lg:max-w-[360px]">
+          <img
+            src="/my-photo.webp"
+            alt={profile.name}
+            width={1080}
+            height={1595}
+            loading="lazy"
+            className="absolute inset-x-0 bottom-0 h-[94%] w-full object-cover object-top"
+          />
         </div>
+      </Reveal>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-
-          {/* Row 1: Bio + Chatbot */}
-          {/* Main Bio Card */}
-          <div
-            className="bento-card md:col-span-2 lg:col-span-2 animate-fade-in-up"
-            style={{ animationDelay: '0.1s' }}
-          >
-            <div className="h-full flex flex-col justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Building the future with<br />
-                  <span className="text-emerald-400">AI Automation</span>
-                </h3>
-                <ScrollTextReveal
-                  text="I'm a developer passionate about AI automation and building intelligent products that solve real problems. I've taken logistics, campus SaaS and courier platforms from an empty repository to live production, owning architecture, real-time systems, payments, security and deployment end to end."
-                  className="text-neutral-400 leading-relaxed mb-4"
-                />
-                <ScrollTextReveal
-                  text="My expertise lies in integrating LLMs, designing autonomous workflows, and building scalable architectures. I believe in leveraging AI to create seamless, efficient, and maintainable solutions."
-                  className="text-neutral-500 leading-relaxed"
-                />
-              </div>
-              <div className="flex gap-4 mt-6">
-                <div className="flex items-center gap-2 text-sm text-neutral-500">
-                  <MapPin className="w-4 h-4 text-emerald-400" />
-                  Greater Noida, India
-                </div>
-              </div>
-            </div>
+      <div className="lg:col-span-8">
+        <Reveal>
+          <RevealText text="About" className="display text-[clamp(3rem,9vw,5rem)] font-bold leading-[0.9]" />
+          <div className="mt-8 max-w-[60ch] space-y-5 text-lg leading-relaxed">
+            <p>
+              I'm a CS student at NIET who spends most of the week shipping software that people pay for. Since 2026
+              I've been the founding engineer at SpeedoExpress, and I run Anvaya Labs, a small studio that builds
+              platforms for local businesses.
+            </p>
+            <p className="text-muted">
+              The work I like best is the unglamorous middle of a system: tenant isolation that can't be bypassed,
+              payments that settle exactly once, and a map that never shows a driver who left an hour ago.
+            </p>
+            <p className="text-muted">Based in {profile.location}. Open to internships and freelance projects.</p>
           </div>
+        </Reveal>
 
-          {/* AI Chatbot */}
-          <div
-            className="md:col-span-2 lg:col-span-2 animate-fade-in-up"
-            style={{ animationDelay: '0.2s' }}
-          >
-            <ChatbotInline 
-              title="Ask about Yash"
-              placeholder="Ask about Yash's experience..."
-            />
+        <Reveal className="mt-12 grid gap-10 sm:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-medium text-muted">Education</h3>
+            <p className="mt-3 text-lg font-medium">{education.degree}</p>
+            <p className="mt-1 text-sm text-muted">
+              {education.school}, {education.period}
+            </p>
           </div>
-
-          {/* Row 2: Small cards */}
-          {/* Education Card */}
-          <div
-            className="bento-card accent-violet animate-fade-in-up"
-            style={{ animationDelay: '0.3s' }}
-          >
-            <GraduationCap className="w-8 h-8 text-violet-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">B.Tech + M.Tech</h4>
-            <p className="text-sm text-neutral-400">Computer Science</p>
-            <p className="text-xs text-neutral-500 mt-2">NIET 2024-2029</p>
+          <div>
+            <h3 className="text-sm font-medium text-muted">Recognition</h3>
+            <ul className="mt-3 space-y-3">
+              {recognition.map((r) => (
+                <li key={r.what}>
+                  <p className="text-lg font-medium">{r.what}</p>
+                  <p className="text-sm text-muted">{r.where}</p>
+                </li>
+              ))}
+            </ul>
           </div>
+        </Reveal>
 
-          {/* Projects Card */}
-          <div
-            className="bento-card accent-emerald animate-fade-in-up"
-            style={{ animationDelay: '0.4s' }}
-          >
-            <Rocket className="w-8 h-8 text-emerald-400 mb-4" />
-            <h4 className="text-white font-semibold mb-1">20+ Projects</h4>
-            <p className="text-sm text-neutral-400">3 Live in Production</p>
-            <p className="text-xs text-neutral-500 mt-2">Logistics, Campus SaaS, Courier</p>
-          </div>
-
-          {/* Achievement Card - spans 2 cols */}
-          <div
-            className="bento-card accent-amber md:col-span-2 lg:col-span-2 animate-fade-in-up"
-            style={{ animationDelay: '0.5s' }}
-          >
-            <Trophy className="w-8 h-8 text-amber-400 mb-4" />
-            <div className="flex flex-wrap gap-6">
-              <div>
-                <h4 className="text-white font-semibold mb-0.5">Rank 6 / 150+</h4>
-                <p className="text-xs text-neutral-400">Techvanya 2.0 Promptathon</p>
-                <p className="text-xs text-neutral-500">GLA University, Mathura</p>
-              </div>
-              <div className="lg:border-l lg:border-neutral-700/50 lg:pl-6">
-                <h4 className="text-white font-semibold mb-0.5">Top 43 / 500+</h4>
-                <p className="text-xs text-neutral-400">MIT Pune Startup Event</p>
-                <p className="text-xs text-neutral-500">Impact Career Solution</p>
-              </div>
-              <div className="lg:border-l lg:border-neutral-700/50 lg:pl-6">
-                <h4 className="text-white font-semibold mb-0.5">Vice President</h4>
-                <p className="text-xs text-neutral-400">Conventus, NIET MUN &amp; Debate</p>
-                <p className="text-xs text-neutral-500">VARTALAB (~125 attendees) &middot; CMUN (5 committees)</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Row 3: Tech Stack Marquee */}
-          <div
-            className="bento-card md:col-span-2 lg:col-span-4 animate-fade-in-up overflow-hidden relative"
-            style={{ animationDelay: '0.6s' }}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-white font-semibold">Tech Stack</h4>
-              <span className="text-xs text-neutral-500">What I work with</span>
-            </div>
-            <TechMarquee />
-          </div>
-
-        </div>
+        <Reveal className="mt-14">
+          <ChatbotInline />
+        </Reveal>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 
 const firebaseConfig = {
@@ -17,6 +17,13 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firestore
 export const db = getFirestore(app);
+
+// Local testing only: VITE_FIRESTORE_EMULATOR=127.0.0.1:8080 points the app at the emulator.
+const emulator = import.meta.env.VITE_FIRESTORE_EMULATOR as string | undefined;
+if (emulator) {
+  const [host, port] = emulator.split(':');
+  connectFirestoreEmulator(db, host, Number(port));
+}
 
 // Initialize Analytics (only in browser)
 export const initAnalytics = async () => {

@@ -1,16 +1,68 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Contact form: create-only, with the exact shape the site sends.
     match /contacts/{doc} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'message', 'createdAt', 'read'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 200
+        && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 5000
+        && request.resource.data.read == false
+        && request.resource.data.createdAt == request.time;
     }
 
-    match /projectViews/{doc} {
-      allow read, write: if true;
+    // View counters: public read; writes may only add exactly one view.
+    function isCounterId(id) {
+      return id.matches('^[a-z0-9-]{1,40}$');
+    }
+    function isNewCounter() {
+      return request.resource.data.keys().hasOnly(['views', 'lastViewed'])
+        && request.resource.data.views == 1
+        && request.resource.data.lastViewed == request.time;
+    }
+    function isIncrement() {
+      return request.resource.data.keys().hasOnly(['views', 'lastViewed'])
+        && request.resource.data.views == resource.data.views + 1
+        && request.resource.data.lastViewed == request.time;
     }
 
-    match /pageViews/{doc} {
-      allow read, write: if true;
+    match /projectViews/{id} {
+      allow read: if true;
+      allow create: if isCounterId(id) && isNewCounter();
+      allow update: if isCounterId(id) && isIncrement();
+    }
+
+    match /pageViews/{id} {
+      allow read: if true;
+      allow create: if isCounterId(id) && isNewCounter();
+      allow update: if isCounterId(id) && isIncrement();
+    }
+
+    // Pixel Swarm leaderboard: public read; append-only runs with the exact shape the game
+    // sends and sane bounds. No updates or deletes (moderate from the console).
+    // Name rules mirror src/swarm/leaderboard.ts.
+    match /swarmScores/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['name', 'score', 'time', 'kills', 'level', 'hero', 'createdAt'])
+        && request.resource.data.keys().hasAll(['name', 'score', 'time', 'kills', 'level', 'hero', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.matches('^[A-Za-z0-9 _.-]{1,16}$')
+        && !request.resource.data.name.lower().matches('.*(fuck|shit|cunt|nigg|fag|bitch|dick|cock|pussy|rape|nazi|hitler|slut|whore|porn).*')
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0 && request.resource.data.score <= 5000000
+        && request.resource.data.time is number
+        && request.resource.data.time >= 0 && request.resource.data.time <= 7200
+        && request.resource.data.kills is int
+        && request.resource.data.kills >= 0 && request.resource.data.kills <= 200000
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1 && request.resource.data.level <= 500
+        && request.resource.data.hero in ['hiro', 'knight', 'mira']
+        && request.resource.data.createdAt == request.time;
     }
   }
 }

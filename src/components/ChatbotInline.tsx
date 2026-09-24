@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Sparkles, ChevronDown } from 'lucide-react';
+import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
+import { ArrowUp } from 'lucide-react';
+import { profile } from '../data/site';
 
 interface Message {
   id: number;
@@ -8,72 +8,53 @@ interface Message {
   isBot: boolean;
 }
 
-type Personality = 'professional' | 'genz' | 'boomer' | 'stoned';
-
-const personalities: { id: Personality; label: string; emoji: string }[] = [
-  { id: 'professional', label: 'Professional', emoji: '💼' },
-  { id: 'genz', label: 'GenZ', emoji: '✨' },
-  { id: 'boomer', label: 'Boomer', emoji: '👴' },
-  { id: 'stoned', label: 'Stoned', emoji: '🌿' },
-];
-
-const greetings: Record<Personality, string> = {
-  professional: "Hello! I'm here to help you learn about Yash's qualifications, experience, and skills. How may I assist you?",
-  genz: "yooo what's good!! 💀✨ ask me anything about yash, he's literally so goated no cap frfr",
-  boomer: "Well hello there! Welcome to Yash's cyber page. I'm here to tell you about this talented young man. What would you like to know?",
-  stoned: "heyyy... duuude... welcome... 🌿 so like... yash is pretty cool maaaan... ask me whatever... i got time...",
-};
-
-// Fallback responses if API fails
-const getFallbackResponse = (): string => {
-  return "Hmm, I'm having trouble connecting right now. Feel free to reach out to Yash directly at yash113gadia@gmail.com!";
-};
-
 interface ChatbotProps {
-  specializedContext?: string;
+  mode?: 'general' | 'architecture';
   title?: string;
   placeholder?: string;
   suggestedQuestions?: string[];
 }
 
-const ChatbotInline = ({ 
-  specializedContext = '', 
-  title = "Ask about Yash", 
-  placeholder = "Ask about Yash...",
-  suggestedQuestions = ["Tell me about Attestr", "What's CodePilot?", "Why hire Yash?"]
+const greeting = "Ask me anything about Yash's projects, experience or stack. Answers come from what he has written about his own work.";
+
+// Render **bold** and line breaks from model output as React nodes, never as raw HTML.
+const renderText = (text: string): ReactNode =>
+  text.split('\n').map((line, i) => (
+    <p key={i} className="mb-1 last:mb-0">
+      {line.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
+        part.startsWith('**') && part.endsWith('**') ? (
+          <strong key={j} className="font-semibold text-ink">{part.slice(2, -2)}</strong>
+        ) : (
+          <Fragment key={j}>{part}</Fragment>
+        ),
+      )}
+    </p>
+  ));
+
+const ChatbotInline = ({
+  mode = 'general',
+  title = 'Ask about my work',
+  placeholder = 'Ask a question',
+  suggestedQuestions = [
+    'How does SpeedoExpress track drivers live?',
+    'How is BiteSite kept multi-tenant?',
+    'What is Yash looking for next?',
+  ],
 }: ChatbotProps) => {
-  const [personality, setPersonality] = useState<Personality>('professional');
-  const [showPersonalityMenu, setShowPersonalityMenu] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: greetings.professional, isBot: true }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([{ id: 1, text: greeting, isBot: true }]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const messagesContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
-    }
-  };
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const handlePersonalityChange = (newPersonality: Personality) => {
-    setPersonality(newPersonality);
-    setShowPersonalityMenu(false);
-    setMessages([{ id: Date.now(), text: greetings[newPersonality], isBot: true }]);
-  };
+    if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
+  }, [messages, isTyping]);
 
   const handleSend = async (text?: string) => {
-    const messageText = text || input;
-    if (!messageText.trim() || isTyping) return;
+    const messageText = (text ?? input).trim();
+    if (!messageText || isTyping) return;
 
-    const userMessage: Message = { id: Date.now(), text: messageText, isBot: false };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, { id: Date.now(), text: messageText, isBot: false }]);
     setInput('');
     setIsTyping(true);
 
@@ -81,131 +62,64 @@ const ChatbotInline = ({
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          message: messageText, 
-          personality,
-          specializedContext 
-        }),
+        body: JSON.stringify({ message: messageText, mode }),
       });
-
       if (!response.ok) throw new Error('API error');
-
       const data = await response.json();
-      const botMessage: Message = { id: Date.now() + 1, text: data.response, isBot: true };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [...prev, { id: Date.now() + 1, text: String(data.response ?? ''), isBot: true }]);
     } catch (error) {
       console.error('Chat error:', error);
-      const fallback = getFallbackResponse();
-      const botMessage: Message = { id: Date.now() + 1, text: fallback, isBot: true };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          text: `I couldn't reach the assistant just now. You can email Yash directly at ${profile.email}.`,
+          isBot: true,
+        },
+      ]);
     } finally {
       setIsTyping(false);
     }
   };
 
-  const formatMessage = (text: string) => {
-    return text.split('\n').map((line, i) => {
-      line = line.replace(/\*\*(.+?)\*\*/g, '<strong class="text-emerald-400">$1</strong>');
-      return <p key={i} className="mb-1" dangerouslySetInnerHTML={{ __html: line }} />;
-    });
-  };
-
-  const currentPersonality = personalities.find(p => p.id === personality)!;
-
   return (
-    <div className="bento-card h-[400px] flex flex-col overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
-            <Sparkles className="w-5 h-5 text-emerald-400" />
-          </div>
-          <div>
-            <h4 className="text-white font-semibold">{title}</h4>
-            <p className="text-xs text-neutral-500">Powered by Gemini AI</p>
-          </div>
-        </div>
-
-        {/* Personality Selector */}
-        <div className="relative">
-          <button
-            onClick={() => setShowPersonalityMenu(!showPersonalityMenu)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg text-sm text-neutral-300 transition-colors"
-          >
-            <span>{currentPersonality.emoji}</span>
-            <span className="hidden sm:inline">{currentPersonality.label}</span>
-            <ChevronDown className="w-3 h-3" />
-          </button>
-
-          <AnimatePresence>
-            {showPersonalityMenu && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="absolute right-0 top-full mt-2 bg-neutral-800 rounded-lg overflow-hidden shadow-xl border border-neutral-700 z-10"
-              >
-                {personalities.map((p) => (
-                  <button
-                    key={p.id}
-                    onClick={() => handlePersonalityChange(p.id)}
-                    className={`flex items-center gap-2 w-full px-4 py-2 text-sm text-left hover:bg-neutral-700 transition-colors ${
-                      personality === p.id ? 'bg-neutral-700 text-emerald-400' : 'text-neutral-300'
-                    }`}
-                  >
-                    <span>{p.emoji}</span>
-                    <span>{p.label}</span>
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+    <div className="flex h-[460px] flex-col overflow-hidden rounded-xl border border-line bg-surface">
+      <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
+        <h3 className="text-sm font-semibold">{title}</h3>
+        <span className="text-xs text-faint">AI answers, may be imperfect</span>
       </div>
 
-      {/* Messages */}
-      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto py-4 space-y-3">
-        {messages.map((message) => (
-          <motion.div
-            key={message.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-          >
-            <div className={`flex gap-2 max-w-[90%] ${message.isBot ? '' : 'flex-row-reverse'}`}>
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${message.isBot ? 'bg-emerald-500/20' : 'bg-neutral-700'}`}>
-                {message.isBot ? <Bot className="w-3 h-3 text-emerald-400" /> : <User className="w-3 h-3 text-neutral-400" />}
-              </div>
-              <div className={`px-3 py-2 rounded-2xl text-sm ${message.isBot ? 'bg-neutral-800 text-neutral-200' : 'bg-emerald-500 text-black'}`}>
-                {message.isBot ? formatMessage(message.text) : message.text}
-              </div>
+      <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto px-5 py-4" aria-live="polite">
+        {messages.map((m) => (
+          <div key={m.id} className={`flex ${m.isBot ? 'justify-start' : 'justify-end'}`}>
+            <div
+              className={`max-w-[88%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                m.isBot ? 'bg-sunken text-ink/90' : 'bg-accent text-accent-ink'
+              }`}
+            >
+              {m.isBot ? renderText(m.text) : m.text}
             </div>
-          </motion.div>
+          </div>
         ))}
-
         {isTyping && (
-          <div className="flex gap-2">
-            <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-              <Bot className="w-3 h-3 text-emerald-400" />
-            </div>
-            <div className="px-3 py-2 bg-neutral-800 rounded-2xl flex gap-1">
-              <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+          <div className="flex">
+            <div className="flex gap-1 rounded-xl bg-sunken px-3.5 py-3" aria-label="Assistant is typing">
+              {[0, 150, 300].map((d) => (
+                <span key={d} className="h-1.5 w-1.5 animate-bounce rounded-full bg-faint motion-reduce:animate-none" style={{ animationDelay: `${d}ms` }} />
+              ))}
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggested */}
-      {messages.length <= 2 && (
-        <div className="flex flex-wrap gap-2 pb-3">
-          {suggestedQuestions.map((q, i) => (
+      {messages.length <= 1 && (
+        <div className="flex flex-wrap gap-2 px-5 pb-3">
+          {suggestedQuestions.map((q) => (
             <button
-              key={i}
+              key={q}
+              type="button"
               onClick={() => handleSend(q)}
-              className="text-xs px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 rounded-full transition-colors"
+              className="rounded-full border border-line px-3 py-1.5 text-left text-xs text-muted transition-colors hover:border-ink/25 hover:text-ink"
             >
               {q}
             </button>
@@ -213,24 +127,32 @@ const ChatbotInline = ({
         </div>
       )}
 
-      {/* Input */}
-      <div className="flex gap-2 pt-3 border-t border-neutral-800">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSend();
+        }}
+        className="flex gap-2 border-t border-line p-3"
+      >
+        <label htmlFor={`chat-${title}`} className="sr-only">{placeholder}</label>
         <input
+          id={`chat-${title}`}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           placeholder={placeholder}
-          className="flex-1 bg-neutral-800 border border-neutral-700 rounded-xl px-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-500/50"
+          maxLength={1000}
+          className="min-w-0 flex-1 rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink placeholder:text-faint focus:border-accent focus:outline-none"
         />
         <button
-          onClick={() => handleSend()}
+          type="submit"
           disabled={!input.trim() || isTyping}
-          className="w-9 h-9 bg-emerald-500 hover:bg-emerald-400 disabled:bg-neutral-700 rounded-xl flex items-center justify-center transition-colors"
+          aria-label="Send"
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-accent-ink transition-opacity disabled:opacity-40"
         >
-          <Send className="w-4 h-4 text-black" />
+          <ArrowUp className="h-4 w-4" strokeWidth={2} />
         </button>
-      </div>
+      </form>
     </div>
   );
 };

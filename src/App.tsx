@@ -1,39 +1,52 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CustomCursor from './components/CustomCursor';
-import PageLoader from './components/PageLoader';
-import ScrollProgress from './components/ScrollProgress';
-import FloatingContactButton from './components/FloatingContactButton';
-import GrainOverlay from './components/GrainOverlay';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 import ScrollToTopOnRoute from './components/ScrollToTopOnRoute';
+import SmoothScroll from './components/SmoothScroll';
+import GameLayer from './game/GameLayer';
+import CommandPalette from './game/CommandPalette';
+import CityGame from './city/CityGame';
+import SwarmGame from './swarm/SwarmGame';
 import Home from './pages/Home';
 import Mentor from './pages/Mentor';
 import ProjectDescription from './pages/ProjectDescription';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
+const PortfolioRedirect = () => {
+  const { hash } = useLocation();
+  return <Navigate to={{ pathname: '/', hash }} replace />;
+};
 
+// The games are full-screen and bring their own HUD; every other page gets the site chrome.
+const Shell = () => {
+  const { pathname } = useLocation();
+  const game = pathname === '/play' || pathname === '/city';
+  return (
+    <>
+      <SmoothScroll enabled={!game} />
+      <ScrollToTopOnRoute />
+      {!game && <Navigation />}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/play" element={<SwarmGame />} />
+          <Route path="/city" element={<CityGame />} />
+          {/* The portfolio briefly lived here; keep old links (and their #section) working. */}
+          <Route path="/portfolio" element={<PortfolioRedirect />} />
+          <Route path="/Mentor" element={<Mentor />} />
+          <Route path="/project_description" element={<ProjectDescription />} />
+        </Routes>
+      </main>
+      {!game && <Footer />}
+      {!game && <GameLayer />}
+      <CommandPalette />
+    </>
+  );
+};
+
+function App() {
   return (
     <Router>
-      <ScrollToTopOnRoute />
-      {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}
-      {!isLoading && (
-        <>
-          <CustomCursor />
-          <ScrollProgress />
-          <Navigation />
-          <FloatingContactButton />
-          <ScrollToTop />
-          <GrainOverlay />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Mentor" element={<Mentor />} />
-            <Route path="/project_description" element={<ProjectDescription />} />
-          </Routes>
-        </>
-      )}
+      <Shell />
     </Router>
   );
 }

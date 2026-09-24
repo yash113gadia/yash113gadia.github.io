@@ -1,55 +1,31 @@
-# Portfolio — Yash Gadia
+# Portfolio: Yash Gadia
 
 **[yashgadia.vercel.app](https://yashgadia.vercel.app)**
 
-A 3D animated personal portfolio built with React, Three.js, and a bunch of stuff I probably didn't need but added anyway.
+Personal site. The hero is a live dispatch simulation in the spirit of SpeedoExpress: drivers move on a generated street graph, position trails expire on a TTL, and clicking the map sends the nearest driver by road distance (Dijkstra) to a pickup.
 
-## Features
+## Stack
 
-- Interactive 3D elements with physics (React Three Fiber + Rapier)
-- Scroll-driven animations and smooth scrolling via Lenis
-- Custom cursor — the default one isn't cool enough
-- AI chatbot with personality modes (Professional, GenZ, Boomer, Stoned) powered by Gemini
-- Floating orbs, grain overlay, typewriter hero text
-- Project showcase with view tracking
-- Contact form that saves to Firestore
-- Page view analytics via Firebase
+- React 19, TypeScript, Vite 7, Tailwind CSS 3
+- Framer Motion for scroll-linked motion (stacking project cards, timeline, reveals), all disabled under `prefers-reduced-motion`
+- Canvas 2D for the dispatch map (`src/components/LiveMap.tsx`), paused when off-screen
+- Firebase Firestore for the contact form and project view counts, loaded on demand
+- Groq (Llama 3.3) chatbot behind `/api/chat`
 
-## Tech Stack
+## Layout
 
-**Frontend**
-- React 19, TypeScript, Vite 7
-- Three.js, React Three Fiber, Rapier (physics), Matter.js
-- Framer Motion, Tailwind CSS, Lenis
+- `src/data/site.ts`: all profile and project copy
+- `src/data/architecture.ts`: the "How it works" notes, also used by the chatbot
+- `src/server/chat.ts`: chat prompt and Groq call, shared by `api/chat.ts` (Vercel), `netlify/functions/chat.ts` and the dev server
+- `firestore.rules`: contact form shape validation; view counters can only go up by one
 
-**Backend**
-- Express 5
-- Firebase (Auth, Firestore, Analytics)
-- Google Gemini AI
-
-## Getting Started
+## Running it
 
 ```bash
-# install dependencies
 npm install
-
-# start dev server
-npm run dev
-
-# production build
+cp .env.example .env   # add GROQ_API_KEY and the VITE_FIREBASE_* values
+npm run dev            # serves /api/chat locally too
 npm run build
 ```
 
-You'll need Firebase credentials and a Gemini API key — set those up in your environment before running.
-
-## Design
-
-Dark theme. Space Grotesk + JetBrains Mono. Emerald accents. Grain texture overlay. That's the vibe.
-
-## Deployment
-
-Hosted on Vercel. Push to main and it deploys.
-
----
-
-Built by [Yash Gadia](https://yashgadia.vercel.app)
+Hosted on Vercel; pushing to `main` deploys. Firestore rules deploy separately with `firebase deploy --only firestore:rules`.

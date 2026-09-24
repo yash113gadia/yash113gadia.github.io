@@ -1,40 +1,39 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        // Tall-enough desktop windows: the only place the project cards pin and stack.
+        // Note: a raw screen disables Tailwind's max-* variants, so write styles phone-first.
+        stack: { raw: '(min-width: 1024px) and (min-height: 700px)' },
+      },
+      // Semantic tokens; values live in src/index.css for light and dark.
       colors: {
-        bg: "#0a0a0a",
-        surface: "#171717",
-        "surface-light": "#262626",
-        accent: "#10b981",
+        canvas: token('canvas'),
+        surface: token('surface'),
+        sunken: token('sunken'),
+        line: token('line'),
+        ink: token('ink'),
+        muted: token('muted'),
+        faint: token('faint'),
+        accent: token('accent'),
+        'accent-fg': token('accent-fg'),
+        'accent-ink': token('accent-ink'),
+        'accent-soft': token('accent-soft'),
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['"Geist Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono Variable"', 'ui-monospace', 'monospace'],
       },
-      animation: {
-        'marquee': 'marquee 30s linear infinite',
-        'marquee-reverse': 'marquee-reverse 30s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        'marquee-reverse': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+      maxWidth: {
+        page: '1200px',
       },
     },
   },

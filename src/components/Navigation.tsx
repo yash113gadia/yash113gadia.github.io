@@ -1,125 +1,99 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Menu, X, FileText } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Command, Menu, X } from 'lucide-react';
+import { openPalette } from '../game/store';
+import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
+import { profile } from '../data/site';
 
 const navLinks = [
+  { name: 'Work', href: '/#work' },
+  { name: 'Experience', href: '/#experience' },
   { name: 'About', href: '/#about' },
-  { name: 'Projects', href: '/#projects' },
-  { name: 'Skills', href: '/#skills' },
-  { name: 'Journey', href: '/#journey' },
   { name: 'Contact', href: '/#contact' },
+  { name: 'Play the game', href: '/play' },
 ];
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Show nav if scrolled or if not on home page
-  const shouldShowNav = isScrolled || !isHomePage;
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: shouldShowNav ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-2xl px-6 py-3 flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="text-xl font-bold">
-              <span className="text-white">Y</span>
-              <span className="text-emerald-400">G</span>
-            </Link>
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-canvas/85 backdrop-blur-md">
+      <nav className="page-x flex h-16 items-center justify-between">
+        <Link to="/" onClick={() => setOpen(false)} className="text-[15px] font-semibold tracking-tight">
+          {profile.name}
+        </Link>
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm text-neutral-400 hover:text-white transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
-            {/* Resume Button */}
-            <div className="hidden md:flex items-center gap-4">
-              <a
-                href="/Yash_Gadia_Resume.pdf"
-                download="Yash_Gadia_Resume.pdf"
-                className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black text-sm font-semibold rounded-full transition-colors"
-              >
-                <FileText className="w-4 h-4" />
-                Resume
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white"
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="rounded-full px-3 py-1.5 text-sm text-muted transition-colors hover:text-ink"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {link.name}
+            </a>
+          ))}
+          <span className="mx-2 h-5 w-px bg-line" aria-hidden />
+          <button
+            type="button"
+            onClick={openPalette}
+            aria-label="Open command palette"
+            className="flex h-9 items-center gap-1.5 rounded-full px-2.5 text-muted transition-colors hover:bg-sunken hover:text-ink"
+          >
+            <Command className="h-3.5 w-3.5" strokeWidth={1.75} />
+            <span className="font-mono text-xs">K</span>
+          </button>
+          <ThemeToggle />
+          <a href={profile.resume} className="btn-ghost ml-1 px-4 py-1.5">
+            Resume
+          </a>
+        </div>
+
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="grid h-9 w-9 place-items-center rounded-full text-ink hover:bg-sunken"
+          >
+            {open ? <X className="h-5 w-5" strokeWidth={1.75} /> : <Menu className="h-5 w-5" strokeWidth={1.75} />}
+          </button>
+        </div>
+      </nav>
+
+      {open && (
+        <div id="mobile-menu" className="border-t border-line bg-canvas md:hidden">
+          <div className="page-x flex flex-col py-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-base text-ink"
+              >
+                {link.name}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openPalette();
+              }}
+              className="py-3 text-left text-base text-ink"
+            >
+              Command palette
             </button>
+            <a href={profile.resume} onClick={() => setOpen(false)} className="py-3 text-base text-accent-fg">
+              Resume (PDF)
+            </a>
           </div>
         </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-neutral-950/95 backdrop-blur-xl pt-24 px-6 md:hidden"
-          >
-            <div className="flex flex-col gap-6">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-2xl font-semibold text-white hover:text-emerald-400 transition-colors"
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-              <motion.a
-                href="/Yash_Gadia_Resume.pdf"
-                download="Yash_Gadia_Resume.pdf"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex items-center gap-2 text-emerald-400 text-xl font-semibold"
-              >
-                <FileText className="w-5 h-5" />
-                Download Resume
-              </motion.a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      )}
+    </header>
   );
 };
 
